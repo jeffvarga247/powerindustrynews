@@ -31,7 +31,7 @@ MAX_STORIES_PER_CATEGORY = 30  # how many stories to show per category page
 # Shown in the footer of every page. Edit this to control how sponsorship
 # is disclosed to visitors -- keeping this honest and visible is what lets
 # a sponsor-supported trade site retain professional trust over time.
-SPONSOR_DISCLOSURE_HTML = 'An independent industry resource brought to you by <strong>Sentry GSI</strong>.'
+SPONSOR_DISCLOSURE_HTML = 'An independent industry resource brought to you by JGV Creative'
 
 
 def load_json(path, default):
