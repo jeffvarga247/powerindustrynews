@@ -1,0 +1,42 @@
+name: Update News Site
+
+# Runs automatically on a schedule, and lets you trigger it manually too
+on:
+  schedule:
+    - cron: '0 * * * *'   # every hour, on the hour (UTC time)
+  workflow_dispatch: {}     # adds a "Run workflow" button in the Actions tab
+
+# Let the workflow commit the updated site back to the repo
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install feedparser
+        run: pip install feedparser
+
+      - name: Run the aggregator
+        run: python aggregate.py
+
+      - name: Copy site into docs/ (what GitHub Pages actually serves)
+        run: |
+          rm -rf docs
+          cp -r site docs
+
+      - name: Commit and push the updated site
+        run: |
+          git config user.name "news-aggregator-bot"
+          git config user.email "actions@github.com"
+          git add docs story_store.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update news site"
+          git push
