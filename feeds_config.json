@@ -1,0 +1,22 @@
+{
+  "Failures": [
+    "https://www.utilitydive.com/feeds/news/",
+    "https://www.powermag.com/feed"
+  ],
+  "Protection": [
+    "https://spectrum.ieee.org/feeds/topic/energy.rss"
+  ],
+  "Growth": [
+    "https://www.utilitydive.com/feeds/news/",
+    "https://www.renewableenergyworld.com/feed"
+  ],
+  "Standards": [
+    "https://spectrum.ieee.org/feeds/topic/energy.rss"
+  ],
+  "Insurance": [
+  ],
+  "Installation and Upgrades": [
+    "https://www.utilitydive.com/feeds/news/",
+    "https://www.powermag.com/feed"
+  ]
+}
