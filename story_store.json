@@ -1,12 +1,28 @@
 {
   "Failures": [
     {
+      "id": "https://www.powermag.com/?p=266544",
+      "title": "Energy Security During Uncertainty: Why Hydrogen Power Matters More Than Ever",
+      "link": "https://www.powermag.com/energy-security-during-uncertainty-why-hydrogen-power-matters-more-than-ever/",
+      "summary": "<p>The global energy landscape is experiencing increased uncertainty. Recent geopolitical tensions have created volatility in oil and gas markets, highlighted vulnerabilities in global supply chains, and renewed attention on energy security. While these events often dominate headlines, the effects e",
+      "source": "POWER Magazine",
+      "published": "Tue, 04 Aug 2026 16:56:58 +0000"
+    },
+    {
       "id": "https://www.powermag.com/?p=266537",
       "title": "Resilience and Digital Transformation Spearhead the Energy Infrastructure Transition",
       "link": "https://www.powermag.com/resilience-and-digital-transformation-spearhead-the-energy-infrastructure-transition/",
       "summary": "<p>The transition to sustainable energy infrastructure has been experiencing steady progress in recent years across the globe, while simultaneously undergoing constant fluctuation. Actual progress is influenced by a wide variety of factors, such as the drivers behind participants’ motivations and th",
       "source": "POWER Magazine",
       "published": "Tue, 04 Aug 2026 16:04:01 +0000"
+    },
+    {
+      "id": "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/",
+      "title": "Battery-eligible New Jersey VPP program begins to take shape",
+      "link": "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/",
+      "summary": "<figure><div><img src=\"https://imgproxy.divecdn.com/GfvJWRDFXcbmzet0Q0EOew6RscAgeF3ON7iX-kX0tqE/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9TaGVycmlsbC5qcGc=.webp\" /></div></figure><p>Utility-owned storage could help mitigate grid congestion, a utility manager said at a July s",
+      "source": "Utility Dive - Latest News",
+      "published": "Tue, 04 Aug 2026 12:50:30 -0400"
     },
     {
       "id": "https://www.utilitydive.com/news/electrical-manufacturers-state-regulators-back-700m-microgrid-bill/826868/",
@@ -20,9 +36,25 @@
       "id": "https://www.utilitydive.com/news/americas-permitting-crisis-lives-at-city-hall-residential-battery-storage-solar/825670/",
       "title": "America’s permitting crisis lives at City Hall",
       "link": "https://www.utilitydive.com/news/americas-permitting-crisis-lives-at-city-hall-residential-battery-storage-solar/825670/",
-      "summary": "<p>Every month a city spends re-reviewing a battery it has already certified safe is capacity the grid doesn't get and a bill a family doesn't see fall, writes Base Power COO Justin Lopas.</p>",
+      "summary": "<p>Every month a city spends re-reviewing a battery it has already certified safe is time wasted when that resource could be adding capacity to the grid or lowering a family's bill, writes Base Power COO Justin Lopas.</p>",
       "source": "Utility Dive - Latest News",
       "published": "Tue, 04 Aug 2026 10:50:18 -0400"
+    },
+    {
+      "id": "https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/",
+      "title": "Eversource Q2 income plunges on transmission ROE, offshore wind charges",
+      "link": "https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/",
+      "summary": "<figure><div><img src=\"https://imgproxy.divecdn.com/8j6IGnj-hNM-zvzntHtCXJp3hlN0KytotaMkN4W14Yk/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xMzU4MTQ1NzA2LmpwZw==.webp\" /></div></figure><p>Jefferies analysts cast doubt on Connecticut Light and Power’s $1 billion",
+      "source": "Utility Dive - Latest News",
+      "published": "Tue, 04 Aug 2026 09:35:56 -0400"
+    },
+    {
+      "id": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
+      "title": "Southern Co. contracted large load rises to 17 GW",
+      "link": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
+      "summary": "<figure><div><img src=\"https://imgproxy.divecdn.com/6XY2OXmAksFSxuJVFRAuxVSE7tVgjglv55Q9S8JYSMo/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9DaHJpc19Xb21hY2suanBn.webp\" /></div></figure><p>Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. T",
+      "source": "Utility Dive - Latest News",
+      "published": "Tue, 04 Aug 2026 09:20:14 -0400"
     },
     {
       "id": "https://www.utilitydive.com/news/texas-approves-ai-data-center-co-location-next-to-wind-farm-with-curtailme/826617/",
@@ -469,6 +501,14 @@
       "published": "Tue, 28 Jul 2026 18:58:09 +0000"
     },
     {
+      "id": "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/",
+      "title": "Battery-eligible New Jersey VPP program begins to take shape",
+      "link": "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/",
+      "summary": "<figure><div><img src=\"https://imgproxy.divecdn.com/GfvJWRDFXcbmzet0Q0EOew6RscAgeF3ON7iX-kX0tqE/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9TaGVycmlsbC5qcGc=.webp\" /></div></figure><p>Utility-owned storage could help mitigate grid congestion, a utility manager said at a July s",
+      "source": "Utility Dive - Latest News",
+      "published": "Tue, 04 Aug 2026 12:50:30 -0400"
+    },
+    {
       "id": "https://www.utilitydive.com/news/electrical-manufacturers-state-regulators-back-700m-microgrid-bill/826868/",
       "title": "$700M microgrid bill has state energy office, electrical manufacturer support",
       "link": "https://www.utilitydive.com/news/electrical-manufacturers-state-regulators-back-700m-microgrid-bill/826868/",
@@ -480,9 +520,25 @@
       "id": "https://www.utilitydive.com/news/americas-permitting-crisis-lives-at-city-hall-residential-battery-storage-solar/825670/",
       "title": "America’s permitting crisis lives at City Hall",
       "link": "https://www.utilitydive.com/news/americas-permitting-crisis-lives-at-city-hall-residential-battery-storage-solar/825670/",
-      "summary": "<p>Every month a city spends re-reviewing a battery it has already certified safe is capacity the grid doesn't get and a bill a family doesn't see fall, writes Base Power COO Justin Lopas.</p>",
+      "summary": "<p>Every month a city spends re-reviewing a battery it has already certified safe is time wasted when that resource could be adding capacity to the grid or lowering a family's bill, writes Base Power COO Justin Lopas.</p>",
       "source": "Utility Dive - Latest News",
       "published": "Tue, 04 Aug 2026 10:50:18 -0400"
+    },
+    {
+      "id": "https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/",
+      "title": "Eversource Q2 income plunges on transmission ROE, offshore wind charges",
+      "link": "https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/",
+      "summary": "<figure><div><img src=\"https://imgproxy.divecdn.com/8j6IGnj-hNM-zvzntHtCXJp3hlN0KytotaMkN4W14Yk/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xMzU4MTQ1NzA2LmpwZw==.webp\" /></div></figure><p>Jefferies analysts cast doubt on Connecticut Light and Power’s $1 billion",
+      "source": "Utility Dive - Latest News",
+      "published": "Tue, 04 Aug 2026 09:35:56 -0400"
+    },
+    {
+      "id": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
+      "title": "Southern Co. contracted large load rises to 17 GW",
+      "link": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
+      "summary": "<figure><div><img src=\"https://imgproxy.divecdn.com/6XY2OXmAksFSxuJVFRAuxVSE7tVgjglv55Q9S8JYSMo/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9DaHJpc19Xb21hY2suanBn.webp\" /></div></figure><p>Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. T",
+      "source": "Utility Dive - Latest News",
+      "published": "Tue, 04 Aug 2026 09:20:14 -0400"
     },
     {
       "id": "https://www.renewableenergyworld.com/?p=80798140131",
@@ -914,12 +970,28 @@
   "Insurance": [],
   "Installation and Upgrades": [
     {
+      "id": "https://www.powermag.com/?p=266544",
+      "title": "Energy Security During Uncertainty: Why Hydrogen Power Matters More Than Ever",
+      "link": "https://www.powermag.com/energy-security-during-uncertainty-why-hydrogen-power-matters-more-than-ever/",
+      "summary": "<p>The global energy landscape is experiencing increased uncertainty. Recent geopolitical tensions have created volatility in oil and gas markets, highlighted vulnerabilities in global supply chains, and renewed attention on energy security. While these events often dominate headlines, the effects e",
+      "source": "POWER Magazine",
+      "published": "Tue, 04 Aug 2026 16:56:58 +0000"
+    },
+    {
       "id": "https://www.powermag.com/?p=266537",
       "title": "Resilience and Digital Transformation Spearhead the Energy Infrastructure Transition",
       "link": "https://www.powermag.com/resilience-and-digital-transformation-spearhead-the-energy-infrastructure-transition/",
       "summary": "<p>The transition to sustainable energy infrastructure has been experiencing steady progress in recent years across the globe, while simultaneously undergoing constant fluctuation. Actual progress is influenced by a wide variety of factors, such as the drivers behind participants’ motivations and th",
       "source": "POWER Magazine",
       "published": "Tue, 04 Aug 2026 16:04:01 +0000"
+    },
+    {
+      "id": "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/",
+      "title": "Battery-eligible New Jersey VPP program begins to take shape",
+      "link": "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/",
+      "summary": "<figure><div><img src=\"https://imgproxy.divecdn.com/GfvJWRDFXcbmzet0Q0EOew6RscAgeF3ON7iX-kX0tqE/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9TaGVycmlsbC5qcGc=.webp\" /></div></figure><p>Utility-owned storage could help mitigate grid congestion, a utility manager said at a July s",
+      "source": "Utility Dive - Latest News",
+      "published": "Tue, 04 Aug 2026 12:50:30 -0400"
     },
     {
       "id": "https://www.utilitydive.com/news/electrical-manufacturers-state-regulators-back-700m-microgrid-bill/826868/",
@@ -933,9 +1005,25 @@
       "id": "https://www.utilitydive.com/news/americas-permitting-crisis-lives-at-city-hall-residential-battery-storage-solar/825670/",
       "title": "America’s permitting crisis lives at City Hall",
       "link": "https://www.utilitydive.com/news/americas-permitting-crisis-lives-at-city-hall-residential-battery-storage-solar/825670/",
-      "summary": "<p>Every month a city spends re-reviewing a battery it has already certified safe is capacity the grid doesn't get and a bill a family doesn't see fall, writes Base Power COO Justin Lopas.</p>",
+      "summary": "<p>Every month a city spends re-reviewing a battery it has already certified safe is time wasted when that resource could be adding capacity to the grid or lowering a family's bill, writes Base Power COO Justin Lopas.</p>",
       "source": "Utility Dive - Latest News",
       "published": "Tue, 04 Aug 2026 10:50:18 -0400"
+    },
+    {
+      "id": "https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/",
+      "title": "Eversource Q2 income plunges on transmission ROE, offshore wind charges",
+      "link": "https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/",
+      "summary": "<figure><div><img src=\"https://imgproxy.divecdn.com/8j6IGnj-hNM-zvzntHtCXJp3hlN0KytotaMkN4W14Yk/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xMzU4MTQ1NzA2LmpwZw==.webp\" /></div></figure><p>Jefferies analysts cast doubt on Connecticut Light and Power’s $1 billion",
+      "source": "Utility Dive - Latest News",
+      "published": "Tue, 04 Aug 2026 09:35:56 -0400"
+    },
+    {
+      "id": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
+      "title": "Southern Co. contracted large load rises to 17 GW",
+      "link": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
+      "summary": "<figure><div><img src=\"https://imgproxy.divecdn.com/6XY2OXmAksFSxuJVFRAuxVSE7tVgjglv55Q9S8JYSMo/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9DaHJpc19Xb21hY2suanBn.webp\" /></div></figure><p>Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. T",
+      "source": "Utility Dive - Latest News",
+      "published": "Tue, 04 Aug 2026 09:20:14 -0400"
     },
     {
       "id": "https://www.utilitydive.com/news/texas-approves-ai-data-center-co-location-next-to-wind-farm-with-curtailme/826617/",
