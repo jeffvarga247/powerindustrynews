@@ -1,6 +1,22 @@
 {
   "Failures": [
     {
+      "id": "https://www.powermag.com/?p=266572",
+      "title": "Nebraska Public Power District Breaks Ground on 694-MW Princeton Road Station",
+      "link": "https://www.powermag.com/nebraska-public-power-district-breaks-ground-on-694-mw-princeton-road-station/",
+      "summary": "<p>Nebraska Public Power District (NPPD) marked the start of construction on Princeton Road Station with a groundbreaking ceremony the morning of July 17, drawing state and local officials, community stakeholders, and NPPD staff to the site just north of Hallam, Nebraska. The 694-MW dual-fuel facili",
+      "source": "POWER Magazine",
+      "published": "Tue, 04 Aug 2026 21:26:19 +0000"
+    },
+    {
+      "id": "https://www.powermag.com/?p=266560",
+      "title": "Abbott Orders Full Audit of Texas Data Center Interconnection Queue, Threatens to Deny Grid Access",
+      "link": "https://www.powermag.com/abbott-orders-full-audit-of-texas-data-center-interconnection-queue-threatens-to-deny-grid-access/",
+      "summary": "<p>Texas Governor Greg Abbott has directed the Public Utility Commission of Texas (PUCT) and the Electric Reliability Council of Texas (ERCOT) to conduct a comprehensive audit of every data center advancing through the state’s interconnection queue, warning that projects that fail to disclose owners",
+      "source": "POWER Magazine",
+      "published": "Tue, 04 Aug 2026 21:05:52 +0000"
+    },
+    {
       "id": "https://www.powermag.com/?p=266544",
       "title": "Energy Security During Uncertainty: Why Hydrogen Power Matters More Than Ever",
       "link": "https://www.powermag.com/energy-security-during-uncertainty-why-hydrogen-power-matters-more-than-ever/",
@@ -969,6 +985,22 @@
   ],
   "Insurance": [],
   "Installation and Upgrades": [
+    {
+      "id": "https://www.powermag.com/?p=266572",
+      "title": "Nebraska Public Power District Breaks Ground on 694-MW Princeton Road Station",
+      "link": "https://www.powermag.com/nebraska-public-power-district-breaks-ground-on-694-mw-princeton-road-station/",
+      "summary": "<p>Nebraska Public Power District (NPPD) marked the start of construction on Princeton Road Station with a groundbreaking ceremony the morning of July 17, drawing state and local officials, community stakeholders, and NPPD staff to the site just north of Hallam, Nebraska. The 694-MW dual-fuel facili",
+      "source": "POWER Magazine",
+      "published": "Tue, 04 Aug 2026 21:26:19 +0000"
+    },
+    {
+      "id": "https://www.powermag.com/?p=266560",
+      "title": "Abbott Orders Full Audit of Texas Data Center Interconnection Queue, Threatens to Deny Grid Access",
+      "link": "https://www.powermag.com/abbott-orders-full-audit-of-texas-data-center-interconnection-queue-threatens-to-deny-grid-access/",
+      "summary": "<p>Texas Governor Greg Abbott has directed the Public Utility Commission of Texas (PUCT) and the Electric Reliability Council of Texas (ERCOT) to conduct a comprehensive audit of every data center advancing through the state’s interconnection queue, warning that projects that fail to disclose owners",
+      "source": "POWER Magazine",
+      "published": "Tue, 04 Aug 2026 21:05:52 +0000"
+    },
     {
       "id": "https://www.powermag.com/?p=266544",
       "title": "Energy Security During Uncertainty: Why Hydrogen Power Matters More Than Ever",
