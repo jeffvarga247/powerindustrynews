@@ -1,0 +1,7 @@
+[
+  {"name": "International Conference of Doble Clients", "start_date": "2026-03-29", "end_date": "2026-04-03", "location": "Boston, MA, USA", "link": "https://www.doble.com/event/2026-international-conference-of-doble-clients/"},
+  {"name": "IEEE PES Transmission & Distribution (T&D) Conference & Exposition", "start_date": "2026-05-04", "end_date": "2026-05-07", "location": "TBD", "link": "https://ieee-pes.org/calendar/2026-ieee-pes-transmission-distribution-conference-expo-td/"},
+  {"name": "IEEE PES General Meeting", "start_date": "2026-07-19", "end_date": "2026-07-23", "location": "Montreal, Canada", "link": "https://ieeetv.ieee.org/2026pes-general_meeting"},
+  {"name": "CIGRE Paris Session", "start_date": "2026-08-23", "end_date": "2026-08-28", "location": "Palais des Congres, Paris, France", "link": "https://session.cigre.org/"},
+  {"name": "CIGRE Canada Conference & Exhibition", "start_date": "", "end_date": "", "location": "TBD", "link": "https://www.cigre.org/"}
+]
