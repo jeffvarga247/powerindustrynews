@@ -21,17 +21,300 @@ import json
 import os
 import html
 from datetime import datetime, timezone
+
 import feedparser
 
 CONFIG_FILE = "feeds_config.json"
-STORE_FILE = "story_store.json"  # persistent archive of stories per category
+STORE_FILE = "story_store.json"   # persistent archive of stories per category
 OUTPUT_DIR = "site"
-MAX_STORIES_PER_CATEGORY = 30  # how many stories to show per category page
+
+MAX_STORIES_PER_CATEGORY = 30     # how many stories to show per category page
+
+SITE_NAME = "Power Industry News"
+SITE_TAGLINE = "Grid intelligence for utility, protection, and plant professionals"
 
 # Shown in the footer of every page. Edit this to control how sponsorship
 # is disclosed to visitors -- keeping this honest and visible is what lets
 # a sponsor-supported trade site retain professional trust over time.
 SPONSOR_DISCLOSURE_HTML = 'An independent industry resource brought to you by JGV Creative'
+
+# ---------------------------------------------------------------------------
+# Design system
+# ---------------------------------------------------------------------------
+# A fixed palette of "field status" colors, cycled through by category name so
+# any category (including ones you add later in feeds_config.json) gets a
+# stable, distinct color without needing to be hand-configured.
+CATEGORY_PALETTE = [
+    {"accent": "#b3421f", "tint": "#f6e9e4"},  # rust / failure red
+    {"accent": "#2b5f8a", "tint": "#e6edf2"},  # steel blue / protection
+    {"accent": "#3f7a4f", "tint": "#e9f0e9"},  # growth green
+    {"accent": "#5c5347", "tint": "#efece6"},  # graphite / standards
+    {"accent": "#6b4f8a", "tint": "#ede8f2"},  # insurance violet
+    {"accent": "#b3781f", "tint": "#f5ece0"},  # copper / installation amber
+]
+
+
+def category_color(category):
+    """Deterministically assign one of the palette colors to a category name."""
+    idx = sum(ord(c) for c in category) % len(CATEGORY_PALETTE)
+    return CATEGORY_PALETTE[idx]
+
+
+SHARED_CSS = """
+:root {
+    --ink: #1b1f24;
+    --paper: #f7f5f0;
+    --paper-raised: #ffffff;
+    --line: #ddd7c8;
+    --muted: #706a5c;
+    --copper: #b3781f;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.55;
+}
+
+h1, h2, h3, .masthead-title, .cat-card h2, .story h3 {
+    font-family: 'Space Grotesk', 'Arial Narrow', Arial, sans-serif;
+}
+
+a { color: inherit; }
+
+.meta, .eyebrow, nav, .updated, footer, .tag {
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+/* ---------- masthead ---------- */
+header.masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 28px 24px 0 24px;
+}
+
+.masthead-inner {
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+.masthead-title {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.masthead-title a { text-decoration: none; color: inherit; }
+
+.masthead-tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: #c8bfa8;
+    letter-spacing: 0.5px;
+    margin: 6px 0 22px 0;
+    text-transform: uppercase;
+}
+
+nav.catnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding-bottom: 16px;
+    font-size: 12.5px;
+    letter-spacing: 0.3px;
+}
+
+nav.catnav a {
+    text-decoration: none;
+    color: #e9e3d2;
+    padding: 7px 12px;
+    border: 1px solid #3a3f46;
+    border-bottom: none;
+    background: #23282f;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+nav.catnav a.home {
+    background: var(--copper);
+    border-color: var(--copper);
+    color: #1b1f24;
+    font-weight: 700;
+}
+
+nav.catnav a.active {
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--paper);
+    font-weight: 700;
+}
+
+/* ---------- one-line-diagram divider (site signature) ---------- */
+/* A thin schematic rule with node marks, evoking a single-line electrical
+   diagram -- used wherever the page changes register (masthead -> body,
+   section -> section). */
+.diagram-rule {
+    height: 14px;
+    background:
+        repeating-linear-gradient(
+            to right,
+            var(--copper) 0px, var(--copper) 2px,
+            transparent 2px, transparent 34px
+        );
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: 34px 2px;
+    position: relative;
+}
+
+.diagram-rule::before,
+.diagram-rule::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--copper);
+    transform: translateY(-50%);
+}
+
+.diagram-rule::before { left: 6%; }
+.diagram-rule::after { right: 6%; }
+
+/* ---------- layout ---------- */
+main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 24px 60px 24px;
+}
+
+.updated {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    margin: 0 0 34px 0;
+    text-transform: uppercase;
+}
+
+/* ---------- homepage category grid ---------- */
+.cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+}
+
+.cat-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--accent, var(--copper));
+    padding: 20px 20px 18px 18px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.cat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(27, 31, 36, 0.10);
+}
+
+.cat-card .eyebrow {
+    font-size: 11px;
+    color: var(--accent, var(--copper));
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.cat-card h2 {
+    font-size: 20px;
+    margin: 8px 0 10px 0;
+}
+
+.cat-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+/* ---------- story list (category page) ---------- */
+.story {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--accent, var(--copper));
+    padding: 20px 22px;
+    margin-bottom: 14px;
+}
+
+.story h3 {
+    font-size: 19px;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+}
+
+.story h3 a {
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.story h3 a:hover { color: var(--accent, var(--copper)); }
+
+.story .meta {
+    color: var(--muted);
+    font-size: 11.5px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+}
+
+.story p:last-child {
+    margin: 0;
+    color: #3a3630;
+}
+
+.empty-state {
+    border: 1px dashed var(--line);
+    padding: 30px;
+    text-align: center;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+}
+
+/* ---------- footer ---------- */
+footer.site-footer {
+    border-top: 1px solid var(--line);
+    margin-top: 10px;
+    padding-top: 18px;
+    color: var(--muted);
+    font-size: 11.5px;
+    letter-spacing: 0.2px;
+}
+
+@media (max-width: 520px) {
+    .masthead-title { font-size: 24px; }
+    main { padding: 28px 16px 48px 16px; }
+}
+"""
+
+FONT_LINKS = (
+    '<link rel="preconnect" href="https://fonts.googleapis.com">'
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+    '<link href="https://fonts.googleapis.com/css2?'
+    'family=Space+Grotesk:wght@500;700&'
+    'family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&'
+    'family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">'
+)
 
 
 def load_json(path, default):
@@ -53,6 +336,7 @@ def slugify(text):
 
 def fetch_category_stories(category, feed_urls, known_ids):
     """Fetch all stories currently in the feeds for one category.
+
     known_ids is used only to tag which stories are brand new this run
     (for logging) -- it does not exclude older stories from the site."""
     stories = []
@@ -87,92 +371,91 @@ def fetch_category_stories(category, feed_urls, known_ids):
                 "source": source_title,
                 "published": published,
             })
-
     return stories
 
 
-def render_category_page(category, stories, all_categories):
-    nav_links = "".join(
-        f'<a href="index.html">Home</a> | ' if i == 0 else ""
-        for i in range(1)
-    )
-    cat_nav = " | ".join(
-        f'<a href="category_{slugify(c)}.html">{html.escape(c)}</a>' for c in all_categories
-    )
+def render_nav(all_categories, active_category=None):
+    links = ['<a class="home" href="index.html">Home</a>']
+    for c in all_categories:
+        cls = "active" if c == active_category else ""
+        links.append(
+            f'<a class="{cls}" href="category_{slugify(c)}.html">{html.escape(c)}</a>'
+        )
+    return "\n".join(links)
 
-    items_html = ""
-    if not stories:
-        items_html = "<p>No new stories yet. Check back after the next update.</p>"
-    else:
-        for s in stories[:MAX_STORIES_PER_CATEGORY]:
-            items_html += f"""
-            <div class="story">
-              <h3><a href="{html.escape(s['link'])}" target="_blank" rel="noopener">{html.escape(s['title'])}</a></h3>
-              <p class="meta">{html.escape(s['source'])} &middot; {html.escape(s['published'])}</p>
-              <p>{html.escape(s['summary'])}...</p>
-            </div>
-            """
 
+def page_shell(title, body_html, nav_html, updated_line=""):
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>{html.escape(category)} News</title>
-<style>
-  body {{ font-family: -apple-system, Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #222; }}
-  h1 {{ border-bottom: 3px solid #222; padding-bottom: 10px; }}
-  nav {{ margin-bottom: 30px; font-size: 14px; }}
-  nav a {{ text-decoration: none; color: #0645ad; margin-right: 4px; }}
-  .story {{ border-bottom: 1px solid #ddd; padding: 16px 0; }}
-  .story h3 {{ margin-bottom: 4px; }}
-  .meta {{ color: #666; font-size: 13px; margin: 2px 0 8px 0; }}
-  footer {{ margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd; color: #888; font-size: 12px; }}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{html.escape(title)}</title>
+{FONT_LINKS}
+<style>{SHARED_CSS}</style>
 </head>
 <body>
-  <nav><a href="index.html">Home</a> | {cat_nav}</nav>
-  <h1>{html.escape(category)}</h1>
-  {items_html}
-  <footer>{SPONSOR_DISCLOSURE_HTML}</footer>
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="masthead-title"><a href="index.html">{html.escape(SITE_NAME)}</a></p>
+    <p class="masthead-tagline">{html.escape(SITE_TAGLINE)}</p>
+    <nav class="catnav">{nav_html}</nav>
+  </div>
+</header>
+<div class="diagram-rule"></div>
+<main>
+{updated_line}
+{body_html}
+<footer class="site-footer">{SPONSOR_DISCLOSURE_HTML}</footer>
+</main>
 </body>
 </html>
 """
+
+
+def render_category_page(category, stories, all_categories):
+    color = category_color(category)
+    nav_html = render_nav(all_categories, active_category=category)
+
+    if not stories:
+        items_html = (
+            '<div class="empty-state">No new stories yet. '
+            'Check back after the next update.</div>'
+        )
+    else:
+        cards = []
+        for s in stories[:MAX_STORIES_PER_CATEGORY]:
+            cards.append(f"""<div class="story" style="--accent:{color['accent']}">
+  <h3><a href="{html.escape(s['link'])}" target="_blank" rel="noopener">{html.escape(s['title'])}</a></h3>
+  <p class="meta">{html.escape(s['source'])} &middot; {html.escape(s['published'])}</p>
+  <p>{html.escape(s['summary'])}&hellip;</p>
+</div>""")
+        items_html = "\n".join(cards)
+
+    body = f"""<h1 style="border-bottom:3px solid {color['accent']}; padding-bottom:10px; margin-top:0;">{html.escape(category)}</h1>
+{items_html}"""
+
+    return page_shell(f"{category} News", body, nav_html)
 
 
 def render_index_page(categories, story_counts, last_updated):
-    links_html = ""
+    cards = []
     for c in categories:
+        color = category_color(c)
         count = story_counts.get(c, 0)
-        links_html += f"""
-        <div class="cat-card">
-          <a href="category_{slugify(c)}.html"><h2>{html.escape(c)}</h2></a>
-          <p>{count} new stories</p>
-        </div>
-        """
+        cards.append(f"""<a class="cat-card" style="--accent:{color['accent']}" href="category_{slugify(c)}.html">
+  <p class="eyebrow">Category</p>
+  <h2>{html.escape(c)}</h2>
+  <p>{count} stories tracked</p>
+</a>""")
 
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>My News Site</title>
-<style>
-  body {{ font-family: -apple-system, Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #222; }}
-  h1 {{ border-bottom: 3px solid #222; padding-bottom: 10px; }}
-  .updated {{ color: #666; font-size: 13px; margin-bottom: 30px; }}
-  .cat-card {{ border: 1px solid #ddd; border-radius: 8px; padding: 16px; margin-bottom: 14px; }}
-  .cat-card a {{ text-decoration: none; color: #222; }}
-  .cat-card h2 {{ margin: 0 0 6px 0; }}
-  footer {{ margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd; color: #888; font-size: 12px; }}
-</style>
-</head>
-<body>
-  <h1>My News Site</h1>
-  <p class="updated">Last updated: {last_updated}</p>
-  {links_html}
-  <footer>{SPONSOR_DISCLOSURE_HTML}</footer>
-</body>
-</html>
-"""
+    body = f"""<div class="cat-grid">
+{''.join(cards)}
+</div>"""
+
+    updated_line = f'<p class="updated">Last updated: {html.escape(last_updated)}</p>'
+    nav_html = render_nav(categories, active_category=None)
+    return page_shell(SITE_NAME, body, nav_html, updated_line=updated_line)
 
 
 def main():
@@ -201,6 +484,7 @@ def main():
         merged = {s["id"]: s for s in existing}
         for s in fetched:
             merged[s["id"]] = s  # refresh with latest data if seen again
+
         merged_list = list(merged.values())
         merged_list.sort(key=lambda s: s["published"], reverse=True)
 
