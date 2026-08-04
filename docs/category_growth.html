@@ -2,196 +2,420 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Growth News</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #222; }
-  h1 { border-bottom: 3px solid #222; padding-bottom: 10px; }
-  nav { margin-bottom: 30px; font-size: 14px; }
-  nav a { text-decoration: none; color: #0645ad; margin-right: 4px; }
-  .story { border-bottom: 1px solid #ddd; padding: 16px 0; }
-  .story h3 { margin-bottom: 4px; }
-  .meta { color: #666; font-size: 13px; margin: 2px 0 8px 0; }
-  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd; color: #888; font-size: 12px; }
+:root {
+    --ink: #1b1f24;
+    --paper: #f7f5f0;
+    --paper-raised: #ffffff;
+    --line: #ddd7c8;
+    --muted: #706a5c;
+    --copper: #b3781f;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.55;
+}
+
+h1, h2, h3, .masthead-title, .cat-card h2, .story h3 {
+    font-family: 'Space Grotesk', 'Arial Narrow', Arial, sans-serif;
+}
+
+a { color: inherit; }
+
+.meta, .eyebrow, nav, .updated, footer, .tag {
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+/* ---------- masthead ---------- */
+header.masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 28px 24px 0 24px;
+}
+
+.masthead-inner {
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+.masthead-title {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.masthead-title a { text-decoration: none; color: inherit; }
+
+.masthead-tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: #c8bfa8;
+    letter-spacing: 0.5px;
+    margin: 6px 0 22px 0;
+    text-transform: uppercase;
+}
+
+nav.catnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding-bottom: 16px;
+    font-size: 12.5px;
+    letter-spacing: 0.3px;
+}
+
+nav.catnav a {
+    text-decoration: none;
+    color: #e9e3d2;
+    padding: 7px 12px;
+    border: 1px solid #3a3f46;
+    border-bottom: none;
+    background: #23282f;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+nav.catnav a.home {
+    background: var(--copper);
+    border-color: var(--copper);
+    color: #1b1f24;
+    font-weight: 700;
+}
+
+nav.catnav a.active {
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--paper);
+    font-weight: 700;
+}
+
+/* ---------- one-line-diagram divider (site signature) ---------- */
+/* A thin schematic rule with node marks, evoking a single-line electrical
+   diagram -- used wherever the page changes register (masthead -> body,
+   section -> section). */
+.diagram-rule {
+    height: 14px;
+    background:
+        repeating-linear-gradient(
+            to right,
+            var(--copper) 0px, var(--copper) 2px,
+            transparent 2px, transparent 34px
+        );
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: 34px 2px;
+    position: relative;
+}
+
+.diagram-rule::before,
+.diagram-rule::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--copper);
+    transform: translateY(-50%);
+}
+
+.diagram-rule::before { left: 6%; }
+.diagram-rule::after { right: 6%; }
+
+/* ---------- layout ---------- */
+main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 24px 60px 24px;
+}
+
+.updated {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    margin: 0 0 34px 0;
+    text-transform: uppercase;
+}
+
+/* ---------- homepage category grid ---------- */
+.cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+}
+
+.cat-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--accent, var(--copper));
+    padding: 20px 20px 18px 18px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.cat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(27, 31, 36, 0.10);
+}
+
+.cat-card .eyebrow {
+    font-size: 11px;
+    color: var(--accent, var(--copper));
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.cat-card h2 {
+    font-size: 20px;
+    margin: 8px 0 10px 0;
+}
+
+.cat-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+/* ---------- story list (category page) ---------- */
+.story {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--accent, var(--copper));
+    padding: 20px 22px;
+    margin-bottom: 14px;
+}
+
+.story h3 {
+    font-size: 19px;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+}
+
+.story h3 a {
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.story h3 a:hover { color: var(--accent, var(--copper)); }
+
+.story .meta {
+    color: var(--muted);
+    font-size: 11.5px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+}
+
+.story p:last-child {
+    margin: 0;
+    color: #3a3630;
+}
+
+.empty-state {
+    border: 1px dashed var(--line);
+    padding: 30px;
+    text-align: center;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+}
+
+/* ---------- footer ---------- */
+footer.site-footer {
+    border-top: 1px solid var(--line);
+    margin-top: 10px;
+    padding-top: 18px;
+    color: var(--muted);
+    font-size: 11.5px;
+    letter-spacing: 0.2px;
+}
+
+@media (max-width: 520px) {
+    .masthead-title { font-size: 24px; }
+    main { padding: 28px 16px 48px 16px; }
+}
 </style>
 </head>
 <body>
-  <nav><a href="index.html">Home</a> | <a href="category_failures.html">Failures</a> | <a href="category_protection.html">Protection</a> | <a href="category_growth.html">Growth</a> | <a href="category_standards.html">Standards</a> | <a href="category_insurance.html">Insurance</a> | <a href="category_installation_and_upgrades.html">Installation and Upgrades</a></nav>
-  <h1>Growth</h1>
-  
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/power-grid/trump-expands-a-voluntary-pledge-to-protect-consumers-from-high-utility-bills-from-ai-data-centers/" target="_blank" rel="noopener">Dozens of utilities join pledge pledge to protect consumers from high bills from AI data centers</a></h3>
-              <p class="meta">Factor This™ &middot; Tue, 28 Jul 2026 18:58:09 +0000</p>
-              <p>President Donald Trump announced a voluntary pledge with 23 governors and 187 companies to lower U.S. electricity bills amid AI growth concerns....</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/" target="_blank" rel="noopener">Battery-eligible New Jersey VPP program begins to take shape</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 12:50:30 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/GfvJWRDFXcbmzet0Q0EOew6RscAgeF3ON7iX-kX0tqE/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9TaGVycmlsbC5qcGc=.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Utility-owned storage could help mitigate grid congestion, a utility manager said at a July s...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/electrical-manufacturers-state-regulators-back-700m-microgrid-bill/826868/" target="_blank" rel="noopener">$700M microgrid bill has state energy office, electrical manufacturer support</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 11:07:30 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/t84mxgyKKIiONc9NZYVdXdmZ8NuFSTH9PBNlR2lr4_8/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9QZXRlcldlbGNoLmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The bill would make microgrids and distributed energy resources eligible for state energy...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/americas-permitting-crisis-lives-at-city-hall-residential-battery-storage-solar/825670/" target="_blank" rel="noopener">America’s permitting crisis lives at City Hall</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 10:50:18 -0400</p>
-              <p>&lt;p&gt;Every month a city spends re-reviewing a battery it has already certified safe is time wasted when that resource could be adding capacity to the grid or lowering a family&#x27;s bill, writes Base Power COO Justin Lopas.&lt;/p&gt;...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/" target="_blank" rel="noopener">Eversource Q2 income plunges on transmission ROE, offshore wind charges</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 09:35:56 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/8j6IGnj-hNM-zvzntHtCXJp3hlN0KytotaMkN4W14Yk/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xMzU4MTQ1NzA2LmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Jefferies analysts cast doubt on Connecticut Light and Power’s $1 billion...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/" target="_blank" rel="noopener">Southern Co. contracted large load rises to 17 GW</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 09:20:14 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/6XY2OXmAksFSxuJVFRAuxVSE7tVgjglv55Q9S8JYSMo/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9DaHJpc19Xb21hY2suanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. T...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/power-grid/aligning-wildfire-mitigation-with-utility-operations-and-planning/" target="_blank" rel="noopener">Aligning wildfire mitigation with utility operations and planning</a></h3>
-              <p class="meta">Factor This™ &middot; Thu, 30 Jul 2026 13:24:33 +0000</p>
-              <p>Utilizing advanced platforms like Firescape, utilities such as PNM are adjusting what it means for them to simultaneously evaluate wildfire risk and consider reliability....</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/texas-approves-ai-data-center-co-location-next-to-wind-farm-with-curtailme/826617/" target="_blank" rel="noopener">Texas approves AI data center co-location next to wind farm, with curtailment caveats</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Thu, 30 Jul 2026 12:57:06 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/7EkdNb1KhZmA6eR5sqHhxysHOKnvjsfktBA3xkA6UtQ/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMjU0Mjc0OTA2LmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;A final order in the case could offer an early template for other large b...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/energy-storage/battery/scaling-and-optimizing-modern-battery-production-the-role-of-advanced-automation-and-digitalization/" target="_blank" rel="noopener">Scaling and optimizing modern battery production: The role of advanced automation and digitalization</a></h3>
-              <p class="meta">Factor This™ &middot; Thu, 30 Jul 2026 11:00:00 +0000</p>
-              <p>The future of the battery industry depends on solving the challenges of scalability, sustainability, and efficiency all at once....</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/electric-vehicle/ev-charging/need-backup-power-automakers-want-you-to-look-no-further-than-their-vehicles-in-your-driveway/" target="_blank" rel="noopener">Need backup power? Automakers want you to look no further than their vehicles in your driveway</a></h3>
-              <p class="meta">Factor This™ &middot; Thu, 30 Jul 2026 10:30:00 +0000</p>
-              <p>Ford&#x27;s F-150 PowerBoost hybrid and Lightning electric trucks can now connect to home power systems via a new adapter, enabling backup power during outages....</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/energy-business/policy-and-regulation/relieving-grid-congestion-with-advanced-transmission-technologies-factor-this-policycast/" target="_blank" rel="noopener">Relieving grid congestion with advanced transmission technologies | Factor This Policycast</a></h3>
-              <p class="meta">Factor This™ &middot; Thu, 30 Jul 2026 10:00:00 +0000</p>
-              <p>This episode of the Factor This Policycast, presented in partnership with Advanced Energy United, explores the offerings of advanced transmission technologies (ATTs), including grid-enhancing technologies (GETs) and advanced conductors, tools that can be quickly deployed to increase the capabilities...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/hydro-power/hybridizing-hydro-could-ease-grid-constraints-says-ember/" target="_blank" rel="noopener">Hybridizing hydro could ease grid constraints says Ember</a></h3>
-              <p class="meta">Factor This™ &middot; Mon, 03 Aug 2026 19:52:31 +0000</p>
-              <p>A new report from Ember shows that adding wind and solar behind the meter of existing hydro assets could bypass grid constraints....</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/hydro-power/arizona-california-and-nevada-would-share-cuts-under-federal-proposal-to-manage-the-colorado-river/" target="_blank" rel="noopener">Arizona, California and Nevada would share cuts under federal proposal to manage the Colorado River</a></h3>
-              <p class="meta">Factor This™ &middot; Mon, 03 Aug 2026 19:37:27 +0000</p>
-              <p>Three western U.S. states would take less water from the Colorado River under a federal proposal released Friday to stave off a crisis in the beleaguered waterway....</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/energy-business/new-project-development/what-is-superhot-geothermal-deep-rock-to-baseload-power-explained/" target="_blank" rel="noopener">What is ‘superhot’ geothermal? Deep rock to baseload power, explained</a></h3>
-              <p class="meta">Factor This™ &middot; Mon, 03 Aug 2026 15:00:32 +0000</p>
-              <p>Co-founder of Quaise Energy, Matt Houde, explains how his company is tackling the challenges of scaling superhot geothermal energy, which promises 24/7 baseload power....</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/" target="_blank" rel="noopener">Dominion offshore wind project cost rises nearly $300M</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 12:07:45 -0400</p>
-              <p>&lt;p&gt;The increase is due to revised network upgrade costs assigned by the PJM Interconnection, tariffs imposed by the Trump administration in April and updated turbine installation projections, executives said.&lt;/p&gt;...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/power-grid/grid-modernization/redefining-the-utility-playbook-with-pges-sumeet-singh/" target="_blank" rel="noopener">Redefining the utility playbook with PG&amp;E’s Sumeet Singh</a></h3>
-              <p class="meta">Factor This™ &middot; Mon, 03 Aug 2026 11:00:00 +0000</p>
-              <p>In this episode of the Factor This podcast, Sumeet Singh, CEO of Pacific Gas &amp; Electric, details how utility leaders can balance cultural shifts with the economic imperative to maximize underutilized grid capacity and lower customer rates. He breaks down how PG&amp;E processes billions of pieces of data...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/energy-business/new-project-development/theyre-choosin-texas-factor-this-brief/" target="_blank" rel="noopener">They’re choosin’ Texas | Factor This Brief</a></h3>
-              <p class="meta">Factor This™ &middot; Mon, 03 Aug 2026 09:55:00 +0000</p>
-              <p>As data centers flock to Texas, Georgia Power installs a battery at an existing solar site, Antora Energy raises $550M, a key southeast Asian PV project comes online quickly, ComEd expands rooftop solar deployment, and Minnesota Power moves a little earth....</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/aep-secures-13-gw-of-gas-turbines-as-generation-central-to-growth-plans/826808/" target="_blank" rel="noopener">AEP secures 13 GW of gas turbines as generation ‘central’ to growth plans</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 09:44:56 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/XAPLSBxN1TTbHzNdAz52kdNz_No89W5dz7211JTjAb4/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xNDU0MDU2MDk1LmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Turbines are “a scarce resource and will become increasingly more valuabl...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/dte-rate-stability-data-center-projects-large-load-pipeline/826803/" target="_blank" rel="noopener">DTE ties rate stability to data center projects as large-load pipeline remains steady</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 08:43:44 -0400</p>
-              <p>&lt;p&gt;The company’s $30 billion electric utility capital investment plan was unchanged from the first quarter, officials said during the second-quarter earnings call.&lt;/p&gt;...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/pjm-backstop-capacity-auction-ferc-data-centers/826792/" target="_blank" rel="noopener">PJM files backstop auction plan at FERC to meet capacity shortfall</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 08:22:40 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/yQbmQfHXh8WGXdveKU-mIxANihOtz9ZEpGDudzdO-3A/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMTYxODUwNjkxXzEuanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The proposal aims to fill a capacity shortfall driven by surging data cen...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/spons/how-pge-scaled-home-energy-reports-into-wide-ranging-energy-reduction-and/826315/" target="_blank" rel="noopener">How PG&amp;E scaled home energy reports into wide-ranging energy reduction and bill savings</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 05:00:00 -0400</p>
-              <p>&lt;p&gt;Learn how this approach can support savings, affordability and peak flexibility.&lt;/p&gt;...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/spons/converging-geopolitical-and-enterprise-risks-in-energy-what-leaders-need-t/825738/" target="_blank" rel="noopener">Converging geopolitical and enterprise risks in energy: What leaders need to anticipate now</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 05:00:00 -0400</p>
-              <p>&lt;p&gt;Geopolitical developments are significantly reshaping North American energy risk and requiring leaders to adapt operations and strategies.&lt;/p&gt;...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/spons/leading-the-agentic-grid-transformation/826181/" target="_blank" rel="noopener">Leading the agentic grid transformation</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 05:00:00 -0400</p>
-              <p>&lt;p&gt;The strategic priorities shaping the future of intelligent utility operations.&lt;/p&gt;...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/hydro-power/tidal-wave-energy/mocean-energy-targets-wave-powered-offshore-data-centers/" target="_blank" rel="noopener">Mocean Energy targets wave-powered offshore data centers</a></h3>
-              <p class="meta">Factor This™ &middot; Fri, 31 Jul 2026 19:48:00 +0000</p>
-              <p>Scotland-based Mocean Energy plans to move data centers out to sea with power from wave energy, solar PV and battery storage....</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/solar/renewable-generation-is-growing-faster-than-ever/" target="_blank" rel="noopener">Renewable generation is growing faster than ever</a></h3>
-              <p class="meta">Factor This™ &middot; Fri, 31 Jul 2026 17:28:04 +0000</p>
-              <p>The International Renewable Energy Agency reported that renewable electricity generation grew by 9.8% in 2024, totaling 9,836 terawatt hours....</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/california-utilities-credit-downgrades-wildfire-liability-edison/826678/" target="_blank" rel="noopener">Edison CEO: California utilities face credit downgrades without wildfire reforms</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Fri, 31 Jul 2026 11:00:00 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/GpidSbyNqBIQq26J4KMKFI1KASRSLv2OVwHfVRYmNgc/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMjc3MDE0MTEyX0FXWVVNZVMuanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;With four weeks left in the legislative session, CEO Pedro Pizarr...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.renewableenergyworld.com/energy-storage/battery/is-beer-brewing-getting-greener-this-week-in-cleantech/" target="_blank" rel="noopener">Is beer brewing getting greener? – This Week in Cleantech</a></h3>
-              <p class="meta">Factor This™ &middot; Fri, 31 Jul 2026 10:00:00 +0000</p>
-              <p>On this episode of the This Week in Cleantech podcast, Clara Hudson from the Wall Street Journal breaks down Heineken&#x27;s plan to use a renewable-powered heat battery to release steam for its beer brewing in Portugal....</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/xcel-energy-on-track-retail-sales-growth-this-year-executives-say/826705/" target="_blank" rel="noopener">Xcel Energy on track for 3% retail sales growth this year, executives say</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Fri, 31 Jul 2026 08:30:38 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/jdEQG5pYAzFg0KgRgQdu8iYOyKTSKERN4vqK5t5chWg/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9tb250aWNlbGxvLmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The company has a 2026-2030 base capital investment plan of $60 billion and line of sight...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/exelon-data-center-load-new-jersey-battery-earnings/826686/" target="_blank" rel="noopener">Exelon ‘high probability’ data center load falls 40%</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Fri, 31 Jul 2026 07:57:09 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/bLDRpFTLS7kveLk87eltsk6CwscVamsfyRB_16ER-uU/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS80ODgyMjMwMTZfMTI4Mjk2MjE5MzMwMTUwOF81OTg3MzA0MTIzMzI4ODc2MTc1X24uanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The drop to 11 GW reflects Exelon’s abili...</p>
-            </div>
-            
-  <footer>An independent industry resource brought to you by JGV Creative</footer>
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="masthead-title"><a href="index.html">Power Industry News</a></p>
+    <p class="masthead-tagline">Grid intelligence for utility, protection, and plant professionals</p>
+    <nav class="catnav"><a class="home" href="index.html">Home</a>
+<a class="" href="category_failures.html">Failures</a>
+<a class="" href="category_protection.html">Protection</a>
+<a class="active" href="category_growth.html">Growth</a>
+<a class="" href="category_standards.html">Standards</a>
+<a class="" href="category_insurance.html">Insurance</a>
+<a class="" href="category_installation_and_upgrades.html">Installation and Upgrades</a></nav>
+  </div>
+</header>
+<div class="diagram-rule"></div>
+<main>
+
+<h1 style="border-bottom:3px solid #b3781f; padding-bottom:10px; margin-top:0;">Growth</h1>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/power-grid/trump-expands-a-voluntary-pledge-to-protect-consumers-from-high-utility-bills-from-ai-data-centers/" target="_blank" rel="noopener">Dozens of utilities join pledge pledge to protect consumers from high bills from AI data centers</a></h3>
+  <p class="meta">Factor This™ &middot; Tue, 28 Jul 2026 18:58:09 +0000</p>
+  <p>President Donald Trump announced a voluntary pledge with 23 governors and 187 companies to lower U.S. electricity bills amid AI growth concerns.&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/" target="_blank" rel="noopener">Battery-eligible New Jersey VPP program begins to take shape</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 12:50:30 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/GfvJWRDFXcbmzet0Q0EOew6RscAgeF3ON7iX-kX0tqE/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9TaGVycmlsbC5qcGc=.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Utility-owned storage could help mitigate grid congestion, a utility manager said at a July s&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/electrical-manufacturers-state-regulators-back-700m-microgrid-bill/826868/" target="_blank" rel="noopener">$700M microgrid bill has state energy office, electrical manufacturer support</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 11:07:30 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/t84mxgyKKIiONc9NZYVdXdmZ8NuFSTH9PBNlR2lr4_8/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9QZXRlcldlbGNoLmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The bill would make microgrids and distributed energy resources eligible for state energy&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/americas-permitting-crisis-lives-at-city-hall-residential-battery-storage-solar/825670/" target="_blank" rel="noopener">America’s permitting crisis lives at City Hall</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 10:50:18 -0400</p>
+  <p>&lt;p&gt;Every month a city spends re-reviewing a battery it has already certified safe is time wasted when that resource could be adding capacity to the grid or lowering a family&#x27;s bill, writes Base Power COO Justin Lopas.&lt;/p&gt;&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/" target="_blank" rel="noopener">Eversource Q2 income plunges on transmission ROE, offshore wind charges</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 09:35:56 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/8j6IGnj-hNM-zvzntHtCXJp3hlN0KytotaMkN4W14Yk/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xMzU4MTQ1NzA2LmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Jefferies analysts cast doubt on Connecticut Light and Power’s $1 billion&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/" target="_blank" rel="noopener">Southern Co. contracted large load rises to 17 GW</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 09:20:14 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/6XY2OXmAksFSxuJVFRAuxVSE7tVgjglv55Q9S8JYSMo/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9DaHJpc19Xb21hY2suanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. T&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/power-grid/aligning-wildfire-mitigation-with-utility-operations-and-planning/" target="_blank" rel="noopener">Aligning wildfire mitigation with utility operations and planning</a></h3>
+  <p class="meta">Factor This™ &middot; Thu, 30 Jul 2026 13:24:33 +0000</p>
+  <p>Utilizing advanced platforms like Firescape, utilities such as PNM are adjusting what it means for them to simultaneously evaluate wildfire risk and consider reliability.&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/texas-approves-ai-data-center-co-location-next-to-wind-farm-with-curtailme/826617/" target="_blank" rel="noopener">Texas approves AI data center co-location next to wind farm, with curtailment caveats</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Thu, 30 Jul 2026 12:57:06 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/7EkdNb1KhZmA6eR5sqHhxysHOKnvjsfktBA3xkA6UtQ/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMjU0Mjc0OTA2LmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;A final order in the case could offer an early template for other large b&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/energy-storage/battery/scaling-and-optimizing-modern-battery-production-the-role-of-advanced-automation-and-digitalization/" target="_blank" rel="noopener">Scaling and optimizing modern battery production: The role of advanced automation and digitalization</a></h3>
+  <p class="meta">Factor This™ &middot; Thu, 30 Jul 2026 11:00:00 +0000</p>
+  <p>The future of the battery industry depends on solving the challenges of scalability, sustainability, and efficiency all at once.&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/electric-vehicle/ev-charging/need-backup-power-automakers-want-you-to-look-no-further-than-their-vehicles-in-your-driveway/" target="_blank" rel="noopener">Need backup power? Automakers want you to look no further than their vehicles in your driveway</a></h3>
+  <p class="meta">Factor This™ &middot; Thu, 30 Jul 2026 10:30:00 +0000</p>
+  <p>Ford&#x27;s F-150 PowerBoost hybrid and Lightning electric trucks can now connect to home power systems via a new adapter, enabling backup power during outages.&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/energy-business/policy-and-regulation/relieving-grid-congestion-with-advanced-transmission-technologies-factor-this-policycast/" target="_blank" rel="noopener">Relieving grid congestion with advanced transmission technologies | Factor This Policycast</a></h3>
+  <p class="meta">Factor This™ &middot; Thu, 30 Jul 2026 10:00:00 +0000</p>
+  <p>This episode of the Factor This Policycast, presented in partnership with Advanced Energy United, explores the offerings of advanced transmission technologies (ATTs), including grid-enhancing technologies (GETs) and advanced conductors, tools that can be quickly deployed to increase the capabilities&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/hydro-power/hybridizing-hydro-could-ease-grid-constraints-says-ember/" target="_blank" rel="noopener">Hybridizing hydro could ease grid constraints says Ember</a></h3>
+  <p class="meta">Factor This™ &middot; Mon, 03 Aug 2026 19:52:31 +0000</p>
+  <p>A new report from Ember shows that adding wind and solar behind the meter of existing hydro assets could bypass grid constraints.&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/hydro-power/arizona-california-and-nevada-would-share-cuts-under-federal-proposal-to-manage-the-colorado-river/" target="_blank" rel="noopener">Arizona, California and Nevada would share cuts under federal proposal to manage the Colorado River</a></h3>
+  <p class="meta">Factor This™ &middot; Mon, 03 Aug 2026 19:37:27 +0000</p>
+  <p>Three western U.S. states would take less water from the Colorado River under a federal proposal released Friday to stave off a crisis in the beleaguered waterway.&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/energy-business/new-project-development/what-is-superhot-geothermal-deep-rock-to-baseload-power-explained/" target="_blank" rel="noopener">What is ‘superhot’ geothermal? Deep rock to baseload power, explained</a></h3>
+  <p class="meta">Factor This™ &middot; Mon, 03 Aug 2026 15:00:32 +0000</p>
+  <p>Co-founder of Quaise Energy, Matt Houde, explains how his company is tackling the challenges of scaling superhot geothermal energy, which promises 24/7 baseload power.&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/" target="_blank" rel="noopener">Dominion offshore wind project cost rises nearly $300M</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 12:07:45 -0400</p>
+  <p>&lt;p&gt;The increase is due to revised network upgrade costs assigned by the PJM Interconnection, tariffs imposed by the Trump administration in April and updated turbine installation projections, executives said.&lt;/p&gt;&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/power-grid/grid-modernization/redefining-the-utility-playbook-with-pges-sumeet-singh/" target="_blank" rel="noopener">Redefining the utility playbook with PG&amp;E’s Sumeet Singh</a></h3>
+  <p class="meta">Factor This™ &middot; Mon, 03 Aug 2026 11:00:00 +0000</p>
+  <p>In this episode of the Factor This podcast, Sumeet Singh, CEO of Pacific Gas &amp; Electric, details how utility leaders can balance cultural shifts with the economic imperative to maximize underutilized grid capacity and lower customer rates. He breaks down how PG&amp;E processes billions of pieces of data&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/energy-business/new-project-development/theyre-choosin-texas-factor-this-brief/" target="_blank" rel="noopener">They’re choosin’ Texas | Factor This Brief</a></h3>
+  <p class="meta">Factor This™ &middot; Mon, 03 Aug 2026 09:55:00 +0000</p>
+  <p>As data centers flock to Texas, Georgia Power installs a battery at an existing solar site, Antora Energy raises $550M, a key southeast Asian PV project comes online quickly, ComEd expands rooftop solar deployment, and Minnesota Power moves a little earth.&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/aep-secures-13-gw-of-gas-turbines-as-generation-central-to-growth-plans/826808/" target="_blank" rel="noopener">AEP secures 13 GW of gas turbines as generation ‘central’ to growth plans</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 09:44:56 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/XAPLSBxN1TTbHzNdAz52kdNz_No89W5dz7211JTjAb4/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xNDU0MDU2MDk1LmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Turbines are “a scarce resource and will become increasingly more valuabl&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/dte-rate-stability-data-center-projects-large-load-pipeline/826803/" target="_blank" rel="noopener">DTE ties rate stability to data center projects as large-load pipeline remains steady</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 08:43:44 -0400</p>
+  <p>&lt;p&gt;The company’s $30 billion electric utility capital investment plan was unchanged from the first quarter, officials said during the second-quarter earnings call.&lt;/p&gt;&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/pjm-backstop-capacity-auction-ferc-data-centers/826792/" target="_blank" rel="noopener">PJM files backstop auction plan at FERC to meet capacity shortfall</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 08:22:40 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/yQbmQfHXh8WGXdveKU-mIxANihOtz9ZEpGDudzdO-3A/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMTYxODUwNjkxXzEuanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The proposal aims to fill a capacity shortfall driven by surging data cen&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/spons/how-pge-scaled-home-energy-reports-into-wide-ranging-energy-reduction-and/826315/" target="_blank" rel="noopener">How PG&amp;E scaled home energy reports into wide-ranging energy reduction and bill savings</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 05:00:00 -0400</p>
+  <p>&lt;p&gt;Learn how this approach can support savings, affordability and peak flexibility.&lt;/p&gt;&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/spons/converging-geopolitical-and-enterprise-risks-in-energy-what-leaders-need-t/825738/" target="_blank" rel="noopener">Converging geopolitical and enterprise risks in energy: What leaders need to anticipate now</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 05:00:00 -0400</p>
+  <p>&lt;p&gt;Geopolitical developments are significantly reshaping North American energy risk and requiring leaders to adapt operations and strategies.&lt;/p&gt;&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/spons/leading-the-agentic-grid-transformation/826181/" target="_blank" rel="noopener">Leading the agentic grid transformation</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 05:00:00 -0400</p>
+  <p>&lt;p&gt;The strategic priorities shaping the future of intelligent utility operations.&lt;/p&gt;&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/hydro-power/tidal-wave-energy/mocean-energy-targets-wave-powered-offshore-data-centers/" target="_blank" rel="noopener">Mocean Energy targets wave-powered offshore data centers</a></h3>
+  <p class="meta">Factor This™ &middot; Fri, 31 Jul 2026 19:48:00 +0000</p>
+  <p>Scotland-based Mocean Energy plans to move data centers out to sea with power from wave energy, solar PV and battery storage.&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/solar/renewable-generation-is-growing-faster-than-ever/" target="_blank" rel="noopener">Renewable generation is growing faster than ever</a></h3>
+  <p class="meta">Factor This™ &middot; Fri, 31 Jul 2026 17:28:04 +0000</p>
+  <p>The International Renewable Energy Agency reported that renewable electricity generation grew by 9.8% in 2024, totaling 9,836 terawatt hours.&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/california-utilities-credit-downgrades-wildfire-liability-edison/826678/" target="_blank" rel="noopener">Edison CEO: California utilities face credit downgrades without wildfire reforms</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Fri, 31 Jul 2026 11:00:00 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/GpidSbyNqBIQq26J4KMKFI1KASRSLv2OVwHfVRYmNgc/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMjc3MDE0MTEyX0FXWVVNZVMuanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;With four weeks left in the legislative session, CEO Pedro Pizarr&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.renewableenergyworld.com/energy-storage/battery/is-beer-brewing-getting-greener-this-week-in-cleantech/" target="_blank" rel="noopener">Is beer brewing getting greener? – This Week in Cleantech</a></h3>
+  <p class="meta">Factor This™ &middot; Fri, 31 Jul 2026 10:00:00 +0000</p>
+  <p>On this episode of the This Week in Cleantech podcast, Clara Hudson from the Wall Street Journal breaks down Heineken&#x27;s plan to use a renewable-powered heat battery to release steam for its beer brewing in Portugal.&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/xcel-energy-on-track-retail-sales-growth-this-year-executives-say/826705/" target="_blank" rel="noopener">Xcel Energy on track for 3% retail sales growth this year, executives say</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Fri, 31 Jul 2026 08:30:38 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/jdEQG5pYAzFg0KgRgQdu8iYOyKTSKERN4vqK5t5chWg/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9tb250aWNlbGxvLmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The company has a 2026-2030 base capital investment plan of $60 billion and line of sight&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/exelon-data-center-load-new-jersey-battery-earnings/826686/" target="_blank" rel="noopener">Exelon ‘high probability’ data center load falls 40%</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Fri, 31 Jul 2026 07:57:09 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/bLDRpFTLS7kveLk87eltsk6CwscVamsfyRB_16ER-uU/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS80ODgyMjMwMTZfMTI4Mjk2MjE5MzMwMTUwOF81OTg3MzA0MTIzMzI4ODc2MTc1X24uanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The drop to 11 GW reflects Exelon’s abili&hellip;</p>
+</div>
+<footer class="site-footer">An independent industry resource brought to you by JGV Creative</footer>
+</main>
 </body>
 </html>

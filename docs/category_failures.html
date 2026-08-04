@@ -2,211 +2,434 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Failures News</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  body { font-family: -apple-system, Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #222; }
-  h1 { border-bottom: 3px solid #222; padding-bottom: 10px; }
-  nav { margin-bottom: 30px; font-size: 14px; }
-  nav a { text-decoration: none; color: #0645ad; margin-right: 4px; }
-  .story { border-bottom: 1px solid #ddd; padding: 16px 0; }
-  .story h3 { margin-bottom: 4px; }
-  .meta { color: #666; font-size: 13px; margin: 2px 0 8px 0; }
-  footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid #ddd; color: #888; font-size: 12px; }
+:root {
+    --ink: #1b1f24;
+    --paper: #f7f5f0;
+    --paper-raised: #ffffff;
+    --line: #ddd7c8;
+    --muted: #706a5c;
+    --copper: #b3781f;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.55;
+}
+
+h1, h2, h3, .masthead-title, .cat-card h2, .story h3 {
+    font-family: 'Space Grotesk', 'Arial Narrow', Arial, sans-serif;
+}
+
+a { color: inherit; }
+
+.meta, .eyebrow, nav, .updated, footer, .tag {
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+}
+
+/* ---------- masthead ---------- */
+header.masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 28px 24px 0 24px;
+}
+
+.masthead-inner {
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+.masthead-title {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.masthead-title a { text-decoration: none; color: inherit; }
+
+.masthead-tagline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: #c8bfa8;
+    letter-spacing: 0.5px;
+    margin: 6px 0 22px 0;
+    text-transform: uppercase;
+}
+
+nav.catnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding-bottom: 16px;
+    font-size: 12.5px;
+    letter-spacing: 0.3px;
+}
+
+nav.catnav a {
+    text-decoration: none;
+    color: #e9e3d2;
+    padding: 7px 12px;
+    border: 1px solid #3a3f46;
+    border-bottom: none;
+    background: #23282f;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+nav.catnav a.home {
+    background: var(--copper);
+    border-color: var(--copper);
+    color: #1b1f24;
+    font-weight: 700;
+}
+
+nav.catnav a.active {
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--paper);
+    font-weight: 700;
+}
+
+/* ---------- one-line-diagram divider (site signature) ---------- */
+/* A thin schematic rule with node marks, evoking a single-line electrical
+   diagram -- used wherever the page changes register (masthead -> body,
+   section -> section). */
+.diagram-rule {
+    height: 14px;
+    background:
+        repeating-linear-gradient(
+            to right,
+            var(--copper) 0px, var(--copper) 2px,
+            transparent 2px, transparent 34px
+        );
+    background-position: center;
+    background-repeat: repeat-x;
+    background-size: 34px 2px;
+    position: relative;
+}
+
+.diagram-rule::before,
+.diagram-rule::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--copper);
+    transform: translateY(-50%);
+}
+
+.diagram-rule::before { left: 6%; }
+.diagram-rule::after { right: 6%; }
+
+/* ---------- layout ---------- */
+main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 24px 60px 24px;
+}
+
+.updated {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    margin: 0 0 34px 0;
+    text-transform: uppercase;
+}
+
+/* ---------- homepage category grid ---------- */
+.cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+}
+
+.cat-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--accent, var(--copper));
+    padding: 20px 20px 18px 18px;
+    text-decoration: none;
+    color: var(--ink);
+    display: block;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.cat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(27, 31, 36, 0.10);
+}
+
+.cat-card .eyebrow {
+    font-size: 11px;
+    color: var(--accent, var(--copper));
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.cat-card h2 {
+    font-size: 20px;
+    margin: 8px 0 10px 0;
+}
+
+.cat-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+/* ---------- story list (category page) ---------- */
+.story {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--accent, var(--copper));
+    padding: 20px 22px;
+    margin-bottom: 14px;
+}
+
+.story h3 {
+    font-size: 19px;
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+}
+
+.story h3 a {
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.story h3 a:hover { color: var(--accent, var(--copper)); }
+
+.story .meta {
+    color: var(--muted);
+    font-size: 11.5px;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+}
+
+.story p:last-child {
+    margin: 0;
+    color: #3a3630;
+}
+
+.empty-state {
+    border: 1px dashed var(--line);
+    padding: 30px;
+    text-align: center;
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+}
+
+/* ---------- footer ---------- */
+footer.site-footer {
+    border-top: 1px solid var(--line);
+    margin-top: 10px;
+    padding-top: 18px;
+    color: var(--muted);
+    font-size: 11.5px;
+    letter-spacing: 0.2px;
+}
+
+@media (max-width: 520px) {
+    .masthead-title { font-size: 24px; }
+    main { padding: 28px 16px 48px 16px; }
+}
 </style>
 </head>
 <body>
-  <nav><a href="index.html">Home</a> | <a href="category_failures.html">Failures</a> | <a href="category_protection.html">Protection</a> | <a href="category_growth.html">Growth</a> | <a href="category_standards.html">Standards</a> | <a href="category_insurance.html">Insurance</a> | <a href="category_installation_and_upgrades.html">Installation and Upgrades</a></nav>
-  <h1>Failures</h1>
-  
-            <div class="story">
-              <h3><a href="https://www.powermag.com/energy-security-during-uncertainty-why-hydrogen-power-matters-more-than-ever/" target="_blank" rel="noopener">Energy Security During Uncertainty: Why Hydrogen Power Matters More Than Ever</a></h3>
-              <p class="meta">POWER Magazine &middot; Tue, 04 Aug 2026 16:56:58 +0000</p>
-              <p>&lt;p&gt;The global energy landscape is experiencing increased uncertainty. Recent geopolitical tensions have created volatility in oil and gas markets, highlighted vulnerabilities in global supply chains, and renewed attention on energy security. While these events often dominate headlines, the effects e...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/resilience-and-digital-transformation-spearhead-the-energy-infrastructure-transition/" target="_blank" rel="noopener">Resilience and Digital Transformation Spearhead the Energy Infrastructure Transition</a></h3>
-              <p class="meta">POWER Magazine &middot; Tue, 04 Aug 2026 16:04:01 +0000</p>
-              <p>&lt;p&gt;The transition to sustainable energy infrastructure has been experiencing steady progress in recent years across the globe, while simultaneously undergoing constant fluctuation. Actual progress is influenced by a wide variety of factors, such as the drivers behind participants’ motivations and th...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/" target="_blank" rel="noopener">Battery-eligible New Jersey VPP program begins to take shape</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 12:50:30 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/GfvJWRDFXcbmzet0Q0EOew6RscAgeF3ON7iX-kX0tqE/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9TaGVycmlsbC5qcGc=.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Utility-owned storage could help mitigate grid congestion, a utility manager said at a July s...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/electrical-manufacturers-state-regulators-back-700m-microgrid-bill/826868/" target="_blank" rel="noopener">$700M microgrid bill has state energy office, electrical manufacturer support</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 11:07:30 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/t84mxgyKKIiONc9NZYVdXdmZ8NuFSTH9PBNlR2lr4_8/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9QZXRlcldlbGNoLmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The bill would make microgrids and distributed energy resources eligible for state energy...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/americas-permitting-crisis-lives-at-city-hall-residential-battery-storage-solar/825670/" target="_blank" rel="noopener">America’s permitting crisis lives at City Hall</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 10:50:18 -0400</p>
-              <p>&lt;p&gt;Every month a city spends re-reviewing a battery it has already certified safe is time wasted when that resource could be adding capacity to the grid or lowering a family&#x27;s bill, writes Base Power COO Justin Lopas.&lt;/p&gt;...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/" target="_blank" rel="noopener">Eversource Q2 income plunges on transmission ROE, offshore wind charges</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 09:35:56 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/8j6IGnj-hNM-zvzntHtCXJp3hlN0KytotaMkN4W14Yk/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xMzU4MTQ1NzA2LmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Jefferies analysts cast doubt on Connecticut Light and Power’s $1 billion...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/" target="_blank" rel="noopener">Southern Co. contracted large load rises to 17 GW</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 09:20:14 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/6XY2OXmAksFSxuJVFRAuxVSE7tVgjglv55Q9S8JYSMo/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9DaHJpc19Xb21hY2suanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. T...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/texas-approves-ai-data-center-co-location-next-to-wind-farm-with-curtailme/826617/" target="_blank" rel="noopener">Texas approves AI data center co-location next to wind farm, with curtailment caveats</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Thu, 30 Jul 2026 12:57:06 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/7EkdNb1KhZmA6eR5sqHhxysHOKnvjsfktBA3xkA6UtQ/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMjU0Mjc0OTA2LmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;A final order in the case could offer an early template for other large b...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/the-power-sectors-new-constraint-isnt-demand-its-everything-else/" target="_blank" rel="noopener">The Power Sector’s New Constraint Isn’t Demand—It’s Everything Else</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 22:38:28 +0000</p>
-              <p>&lt;p&gt;For most of the last two decades, the anxiety in power planning was about demand: would consumption grow fast enough to justify new capacity, and how would an aging fleet keep pace? That question has inverted. Demand is no longer the uncertain variable—it is the one thing forecasters are confiden...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/understanding-nerc-impact-ratings-and-compliance-timing-for-generation-control-facilities/" target="_blank" rel="noopener">Understanding NERC Impact Ratings and Compliance Timing for Generation Control Facilities</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 22:36:05 +0000</p>
-              <p>&lt;p&gt;For power generation operators navigating the complex landscape of North American Electric Reliability Corporation (NERC) compliance, two critical questions frequently arise: when does a generation control facility become a Low Impact BES (Bulk Electric System) Control Center, and when does it es...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/minutes-to-exploit-months-to-recover/" target="_blank" rel="noopener">Minutes to Exploit—Months to Recover</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 20:51:21 +0000</p>
-              <p>&lt;p&gt;Critical infrastructure operators should view recent incidents where artificial intelligence (AI) agents escaped containment from test environments and executed successful cyberattacks on a relatively sophisticated production infrastructure as near-misses. This challenge is urgent precisely becau...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/scalable-grid-ready-storage-how-connector-design-is-shaping-the-next-generation-of-energy-systems/" target="_blank" rel="noopener">Scalable, Grid-Ready Storage: How Connector Design Is Shaping the Next Generation of Energy Systems</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 18:09:50 +0000</p>
-              <p>&lt;p&gt;As utility-scale battery energy storage systems (BESS) scale from megawatts to gigawatts, the engineering complexity grows exponentially. Higher-voltage architectures and denser rack configurations are pushing the limits of conventional component design and exposing gaps that can compromise syste...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/" target="_blank" rel="noopener">Dominion offshore wind project cost rises nearly $300M</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 12:07:45 -0400</p>
-              <p>&lt;p&gt;The increase is due to revised network upgrade costs assigned by the PJM Interconnection, tariffs imposed by the Trump administration in April and updated turbine installation projections, executives said.&lt;/p&gt;...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/is-the-power-project-crunch-upending-the-owner-epc-model/" target="_blank" rel="noopener">Is the Power Project Crunch Upending the Owner—EPC Model?</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:34:13 +0000</p>
-              <p>&lt;p&gt;Developers and contractors at a recent event described how the generation buildout is forcing earlier engineering, procurement, and construction contractor involvement; deeper supply-chain tracking; repeatable&lt;/p&gt;
-&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/is-the-power-project-crunch-upending-...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/rayburn-energy-station-a-cooperatives-answer-to-texas-sized-risk/" target="_blank" rel="noopener">Rayburn Energy Station: A Cooperative’s Answer to Texas-Sized Risk</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:34:04 +0000</p>
-              <p>&lt;p&gt;For Rayburn Electric Cooperative, ownership of the 758-MW combined cycle plant in Sherman, Texas, means stable rates, hardened reliability through heat waves and winter storms, and a hedge against the&lt;/p&gt;
-&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/rayburn-energy-station-a-cooperatives-answer-t...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/a-pioneering-approach-to-building-new-generation-resources/" target="_blank" rel="noopener">A Pioneering Approach to Building New Generation Resources</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:33:56 +0000</p>
-              <p>&lt;p&gt;A North Dakota–based membership cooperative teamed with a major infrastructure engineering and construction group to build a new natural gas–fired power station, supporting an urgent need for power generation capacity in the region.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/a-pioneering-a...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/in-the-thar-desert-pakistan-proves-its-indigenous-coal-can-be-a-reliable-power-resource/" target="_blank" rel="noopener">In the Thar Desert, Pakistan Proves Its Indigenous Coal Can Be a Reliable Power Resource</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:33:26 +0000</p>
-              <p>&lt;p&gt;Engro Powergen Thar Limited turned an untapped desert coalfield into Pakistan’s cheapest power—and a template for energy independence. Pakistan entered the second half of the 2010s in chronic power&lt;/p&gt;
-&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/in-the-thar-desert-pakistan-proves-its-indigenous...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/from-18-forced-outages-to-zero-missed-starts-how-cps-energys-arthur-von-rosenberg-plant-rebuilt-its-reliability/" target="_blank" rel="noopener">From 18 Forced Outages to Zero Missed Starts: How CPS Energy’s Arthur von Rosenberg Plant Rebuilt Its Reliability</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:33:07 +0000</p>
-              <p>&lt;p&gt;A deliberate shift from reactive maintenance to a reliability-centered operating culture cut the 500-MW combined cycle plant’s forced outage rate by 90%—and delivered perfect availability through Texas’s&lt;/p&gt;
-&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/from-18-forced-outages-to-zero-missed-start...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/innovation-powers-a-countrys-energy-transition/" target="_blank" rel="noopener">Innovation Powers a Country’s Energy Transition</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:32:55 +0000</p>
-              <p>&lt;p&gt;Vietnam’s growing economy and need for more electricity is being served by the country’s first power plant to be powered by liquefied natural gas (LNG). The Nhon Trach 3 and 4 expansion project is a finalist for a POWER Top Plant award for gas-fired generation.&lt;/p&gt;
-&lt;p&gt;The post &lt;a href=&quot;https://ww...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/seatriums-floating-remote-controlled-der-platform-sends-first-electrons-to-singapores-grid/" target="_blank" rel="noopener">Seatrium’s Floating, Remote-Controlled DER Platform Sends First Electrons to Singapore’s Grid</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:32:38 +0000</p>
-              <p>&lt;p&gt;Seatrium Limited, the Singapore-based offshore, marine, and energy engineering group formed in 2023 from the merger of Sembcorp Marine and Keppel Offshore &amp; Marine, delivered its first electrons from its&lt;/p&gt;
-&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/seatriums-floating-remote-controlled-der-pl...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/speed-as-strategy-rabigh-reinforcement-delivers-1179-mw-on-an-accelerated-timeline/" target="_blank" rel="noopener">Speed as Strategy:  Rabigh Reinforcement Delivers 1,179 MW on an Accelerated Timeline</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:32:22 +0000</p>
-              <p>&lt;p&gt;Facing potential supply constraints along the Makkah-Jeddah corridor, Saudi Arabia’s power sector compressed a combined cycle schedule by months driven by early alignment, staged authorization, and&lt;/p&gt;
-&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/speed-as-strategy-rabigh-reinforcement-delivers-1...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.powermag.com/timmerman-power-plant-unit-1-a-fast-track-blueprint-for-flexible-power-in-texas/" target="_blank" rel="noopener">Timmerman Power Plant Unit 1: A Fast-Track Blueprint for Flexible Power in Texas</a></h3>
-              <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:32:12 +0000</p>
-              <p>&lt;p&gt;The Lower Colorado River Authority’s 190-MW reciprocating engine plant in Maxwell, Texas, went from contract award to commercial operation in about two years—a schedule that demanded unconventional&lt;/p&gt;
-&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/timmerman-power-plant-unit-1-a-fast-track-bluepri...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/aep-secures-13-gw-of-gas-turbines-as-generation-central-to-growth-plans/826808/" target="_blank" rel="noopener">AEP secures 13 GW of gas turbines as generation ‘central’ to growth plans</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 09:44:56 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/XAPLSBxN1TTbHzNdAz52kdNz_No89W5dz7211JTjAb4/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xNDU0MDU2MDk1LmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Turbines are “a scarce resource and will become increasingly more valuabl...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/dte-rate-stability-data-center-projects-large-load-pipeline/826803/" target="_blank" rel="noopener">DTE ties rate stability to data center projects as large-load pipeline remains steady</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 08:43:44 -0400</p>
-              <p>&lt;p&gt;The company’s $30 billion electric utility capital investment plan was unchanged from the first quarter, officials said during the second-quarter earnings call.&lt;/p&gt;...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/pjm-backstop-capacity-auction-ferc-data-centers/826792/" target="_blank" rel="noopener">PJM files backstop auction plan at FERC to meet capacity shortfall</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 08:22:40 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/yQbmQfHXh8WGXdveKU-mIxANihOtz9ZEpGDudzdO-3A/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMTYxODUwNjkxXzEuanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The proposal aims to fill a capacity shortfall driven by surging data cen...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/spons/how-pge-scaled-home-energy-reports-into-wide-ranging-energy-reduction-and/826315/" target="_blank" rel="noopener">How PG&amp;E scaled home energy reports into wide-ranging energy reduction and bill savings</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 05:00:00 -0400</p>
-              <p>&lt;p&gt;Learn how this approach can support savings, affordability and peak flexibility.&lt;/p&gt;...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/spons/converging-geopolitical-and-enterprise-risks-in-energy-what-leaders-need-t/825738/" target="_blank" rel="noopener">Converging geopolitical and enterprise risks in energy: What leaders need to anticipate now</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 05:00:00 -0400</p>
-              <p>&lt;p&gt;Geopolitical developments are significantly reshaping North American energy risk and requiring leaders to adapt operations and strategies.&lt;/p&gt;...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/spons/leading-the-agentic-grid-transformation/826181/" target="_blank" rel="noopener">Leading the agentic grid transformation</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 05:00:00 -0400</p>
-              <p>&lt;p&gt;The strategic priorities shaping the future of intelligent utility operations.&lt;/p&gt;...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/california-utilities-credit-downgrades-wildfire-liability-edison/826678/" target="_blank" rel="noopener">Edison CEO: California utilities face credit downgrades without wildfire reforms</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Fri, 31 Jul 2026 11:00:00 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/GpidSbyNqBIQq26J4KMKFI1KASRSLv2OVwHfVRYmNgc/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMjc3MDE0MTEyX0FXWVVNZVMuanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;With four weeks left in the legislative session, CEO Pedro Pizarr...</p>
-            </div>
-            
-            <div class="story">
-              <h3><a href="https://www.utilitydive.com/news/xcel-energy-on-track-retail-sales-growth-this-year-executives-say/826705/" target="_blank" rel="noopener">Xcel Energy on track for 3% retail sales growth this year, executives say</a></h3>
-              <p class="meta">Utility Dive - Latest News &middot; Fri, 31 Jul 2026 08:30:38 -0400</p>
-              <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/jdEQG5pYAzFg0KgRgQdu8iYOyKTSKERN4vqK5t5chWg/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9tb250aWNlbGxvLmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The company has a 2026-2030 base capital investment plan of $60 billion and line of sight...</p>
-            </div>
-            
-  <footer>An independent industry resource brought to you by JGV Creative</footer>
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="masthead-title"><a href="index.html">Power Industry News</a></p>
+    <p class="masthead-tagline">Grid intelligence for utility, protection, and plant professionals</p>
+    <nav class="catnav"><a class="home" href="index.html">Home</a>
+<a class="active" href="category_failures.html">Failures</a>
+<a class="" href="category_protection.html">Protection</a>
+<a class="" href="category_growth.html">Growth</a>
+<a class="" href="category_standards.html">Standards</a>
+<a class="" href="category_insurance.html">Insurance</a>
+<a class="" href="category_installation_and_upgrades.html">Installation and Upgrades</a></nav>
+  </div>
+</header>
+<div class="diagram-rule"></div>
+<main>
+
+<h1 style="border-bottom:3px solid #b3781f; padding-bottom:10px; margin-top:0;">Failures</h1>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/energy-security-during-uncertainty-why-hydrogen-power-matters-more-than-ever/" target="_blank" rel="noopener">Energy Security During Uncertainty: Why Hydrogen Power Matters More Than Ever</a></h3>
+  <p class="meta">POWER Magazine &middot; Tue, 04 Aug 2026 16:56:58 +0000</p>
+  <p>&lt;p&gt;The global energy landscape is experiencing increased uncertainty. Recent geopolitical tensions have created volatility in oil and gas markets, highlighted vulnerabilities in global supply chains, and renewed attention on energy security. While these events often dominate headlines, the effects e&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/resilience-and-digital-transformation-spearhead-the-energy-infrastructure-transition/" target="_blank" rel="noopener">Resilience and Digital Transformation Spearhead the Energy Infrastructure Transition</a></h3>
+  <p class="meta">POWER Magazine &middot; Tue, 04 Aug 2026 16:04:01 +0000</p>
+  <p>&lt;p&gt;The transition to sustainable energy infrastructure has been experiencing steady progress in recent years across the globe, while simultaneously undergoing constant fluctuation. Actual progress is influenced by a wide variety of factors, such as the drivers behind participants’ motivations and th&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/" target="_blank" rel="noopener">Battery-eligible New Jersey VPP program begins to take shape</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 12:50:30 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/GfvJWRDFXcbmzet0Q0EOew6RscAgeF3ON7iX-kX0tqE/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9TaGVycmlsbC5qcGc=.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Utility-owned storage could help mitigate grid congestion, a utility manager said at a July s&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/electrical-manufacturers-state-regulators-back-700m-microgrid-bill/826868/" target="_blank" rel="noopener">$700M microgrid bill has state energy office, electrical manufacturer support</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 11:07:30 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/t84mxgyKKIiONc9NZYVdXdmZ8NuFSTH9PBNlR2lr4_8/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9QZXRlcldlbGNoLmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The bill would make microgrids and distributed energy resources eligible for state energy&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/americas-permitting-crisis-lives-at-city-hall-residential-battery-storage-solar/825670/" target="_blank" rel="noopener">America’s permitting crisis lives at City Hall</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 10:50:18 -0400</p>
+  <p>&lt;p&gt;Every month a city spends re-reviewing a battery it has already certified safe is time wasted when that resource could be adding capacity to the grid or lowering a family&#x27;s bill, writes Base Power COO Justin Lopas.&lt;/p&gt;&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/eversource-energy-earnings-transmission-roe-offshore-wind/826928/" target="_blank" rel="noopener">Eversource Q2 income plunges on transmission ROE, offshore wind charges</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 09:35:56 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/8j6IGnj-hNM-zvzntHtCXJp3hlN0KytotaMkN4W14Yk/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xMzU4MTQ1NzA2LmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Jefferies analysts cast doubt on Connecticut Light and Power’s $1 billion&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/" target="_blank" rel="noopener">Southern Co. contracted large load rises to 17 GW</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 09:20:14 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/6XY2OXmAksFSxuJVFRAuxVSE7tVgjglv55Q9S8JYSMo/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9DaHJpc19Xb21hY2suanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. T&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/texas-approves-ai-data-center-co-location-next-to-wind-farm-with-curtailme/826617/" target="_blank" rel="noopener">Texas approves AI data center co-location next to wind farm, with curtailment caveats</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Thu, 30 Jul 2026 12:57:06 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/7EkdNb1KhZmA6eR5sqHhxysHOKnvjsfktBA3xkA6UtQ/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMjU0Mjc0OTA2LmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;A final order in the case could offer an early template for other large b&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/the-power-sectors-new-constraint-isnt-demand-its-everything-else/" target="_blank" rel="noopener">The Power Sector’s New Constraint Isn’t Demand—It’s Everything Else</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 22:38:28 +0000</p>
+  <p>&lt;p&gt;For most of the last two decades, the anxiety in power planning was about demand: would consumption grow fast enough to justify new capacity, and how would an aging fleet keep pace? That question has inverted. Demand is no longer the uncertain variable—it is the one thing forecasters are confiden&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/understanding-nerc-impact-ratings-and-compliance-timing-for-generation-control-facilities/" target="_blank" rel="noopener">Understanding NERC Impact Ratings and Compliance Timing for Generation Control Facilities</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 22:36:05 +0000</p>
+  <p>&lt;p&gt;For power generation operators navigating the complex landscape of North American Electric Reliability Corporation (NERC) compliance, two critical questions frequently arise: when does a generation control facility become a Low Impact BES (Bulk Electric System) Control Center, and when does it es&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/minutes-to-exploit-months-to-recover/" target="_blank" rel="noopener">Minutes to Exploit—Months to Recover</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 20:51:21 +0000</p>
+  <p>&lt;p&gt;Critical infrastructure operators should view recent incidents where artificial intelligence (AI) agents escaped containment from test environments and executed successful cyberattacks on a relatively sophisticated production infrastructure as near-misses. This challenge is urgent precisely becau&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/scalable-grid-ready-storage-how-connector-design-is-shaping-the-next-generation-of-energy-systems/" target="_blank" rel="noopener">Scalable, Grid-Ready Storage: How Connector Design Is Shaping the Next Generation of Energy Systems</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 18:09:50 +0000</p>
+  <p>&lt;p&gt;As utility-scale battery energy storage systems (BESS) scale from megawatts to gigawatts, the engineering complexity grows exponentially. Higher-voltage architectures and denser rack configurations are pushing the limits of conventional component design and exposing gaps that can compromise syste&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/" target="_blank" rel="noopener">Dominion offshore wind project cost rises nearly $300M</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 12:07:45 -0400</p>
+  <p>&lt;p&gt;The increase is due to revised network upgrade costs assigned by the PJM Interconnection, tariffs imposed by the Trump administration in April and updated turbine installation projections, executives said.&lt;/p&gt;&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/is-the-power-project-crunch-upending-the-owner-epc-model/" target="_blank" rel="noopener">Is the Power Project Crunch Upending the Owner—EPC Model?</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:34:13 +0000</p>
+  <p>&lt;p&gt;Developers and contractors at a recent event described how the generation buildout is forcing earlier engineering, procurement, and construction contractor involvement; deeper supply-chain tracking; repeatable&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/is-the-power-project-crunch-upending-&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/rayburn-energy-station-a-cooperatives-answer-to-texas-sized-risk/" target="_blank" rel="noopener">Rayburn Energy Station: A Cooperative’s Answer to Texas-Sized Risk</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:34:04 +0000</p>
+  <p>&lt;p&gt;For Rayburn Electric Cooperative, ownership of the 758-MW combined cycle plant in Sherman, Texas, means stable rates, hardened reliability through heat waves and winter storms, and a hedge against the&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/rayburn-energy-station-a-cooperatives-answer-t&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/a-pioneering-approach-to-building-new-generation-resources/" target="_blank" rel="noopener">A Pioneering Approach to Building New Generation Resources</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:33:56 +0000</p>
+  <p>&lt;p&gt;A North Dakota–based membership cooperative teamed with a major infrastructure engineering and construction group to build a new natural gas–fired power station, supporting an urgent need for power generation capacity in the region.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/a-pioneering-a&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/in-the-thar-desert-pakistan-proves-its-indigenous-coal-can-be-a-reliable-power-resource/" target="_blank" rel="noopener">In the Thar Desert, Pakistan Proves Its Indigenous Coal Can Be a Reliable Power Resource</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:33:26 +0000</p>
+  <p>&lt;p&gt;Engro Powergen Thar Limited turned an untapped desert coalfield into Pakistan’s cheapest power—and a template for energy independence. Pakistan entered the second half of the 2010s in chronic power&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/in-the-thar-desert-pakistan-proves-its-indigenous&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/from-18-forced-outages-to-zero-missed-starts-how-cps-energys-arthur-von-rosenberg-plant-rebuilt-its-reliability/" target="_blank" rel="noopener">From 18 Forced Outages to Zero Missed Starts: How CPS Energy’s Arthur von Rosenberg Plant Rebuilt Its Reliability</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:33:07 +0000</p>
+  <p>&lt;p&gt;A deliberate shift from reactive maintenance to a reliability-centered operating culture cut the 500-MW combined cycle plant’s forced outage rate by 90%—and delivered perfect availability through Texas’s&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/from-18-forced-outages-to-zero-missed-start&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/innovation-powers-a-countrys-energy-transition/" target="_blank" rel="noopener">Innovation Powers a Country’s Energy Transition</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:32:55 +0000</p>
+  <p>&lt;p&gt;Vietnam’s growing economy and need for more electricity is being served by the country’s first power plant to be powered by liquefied natural gas (LNG). The Nhon Trach 3 and 4 expansion project is a finalist for a POWER Top Plant award for gas-fired generation.&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://ww&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/seatriums-floating-remote-controlled-der-platform-sends-first-electrons-to-singapores-grid/" target="_blank" rel="noopener">Seatrium’s Floating, Remote-Controlled DER Platform Sends First Electrons to Singapore’s Grid</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:32:38 +0000</p>
+  <p>&lt;p&gt;Seatrium Limited, the Singapore-based offshore, marine, and energy engineering group formed in 2023 from the merger of Sembcorp Marine and Keppel Offshore &amp; Marine, delivered its first electrons from its&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/seatriums-floating-remote-controlled-der-pl&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/speed-as-strategy-rabigh-reinforcement-delivers-1179-mw-on-an-accelerated-timeline/" target="_blank" rel="noopener">Speed as Strategy:  Rabigh Reinforcement Delivers 1,179 MW on an Accelerated Timeline</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:32:22 +0000</p>
+  <p>&lt;p&gt;Facing potential supply constraints along the Makkah-Jeddah corridor, Saudi Arabia’s power sector compressed a combined cycle schedule by months driven by early alignment, staged authorization, and&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/speed-as-strategy-rabigh-reinforcement-delivers-1&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.powermag.com/timmerman-power-plant-unit-1-a-fast-track-blueprint-for-flexible-power-in-texas/" target="_blank" rel="noopener">Timmerman Power Plant Unit 1: A Fast-Track Blueprint for Flexible Power in Texas</a></h3>
+  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:32:12 +0000</p>
+  <p>&lt;p&gt;The Lower Colorado River Authority’s 190-MW reciprocating engine plant in Maxwell, Texas, went from contract award to commercial operation in about two years—a schedule that demanded unconventional&lt;/p&gt;
+&lt;p&gt;The post &lt;a href=&quot;https://www.powermag.com/timmerman-power-plant-unit-1-a-fast-track-bluepri&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/aep-secures-13-gw-of-gas-turbines-as-generation-central-to-growth-plans/826808/" target="_blank" rel="noopener">AEP secures 13 GW of gas turbines as generation ‘central’ to growth plans</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 09:44:56 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/XAPLSBxN1TTbHzNdAz52kdNz_No89W5dz7211JTjAb4/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xNDU0MDU2MDk1LmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;Turbines are “a scarce resource and will become increasingly more valuabl&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/dte-rate-stability-data-center-projects-large-load-pipeline/826803/" target="_blank" rel="noopener">DTE ties rate stability to data center projects as large-load pipeline remains steady</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 08:43:44 -0400</p>
+  <p>&lt;p&gt;The company’s $30 billion electric utility capital investment plan was unchanged from the first quarter, officials said during the second-quarter earnings call.&lt;/p&gt;&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/pjm-backstop-capacity-auction-ferc-data-centers/826792/" target="_blank" rel="noopener">PJM files backstop auction plan at FERC to meet capacity shortfall</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 08:22:40 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/yQbmQfHXh8WGXdveKU-mIxANihOtz9ZEpGDudzdO-3A/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMTYxODUwNjkxXzEuanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The proposal aims to fill a capacity shortfall driven by surging data cen&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/spons/how-pge-scaled-home-energy-reports-into-wide-ranging-energy-reduction-and/826315/" target="_blank" rel="noopener">How PG&amp;E scaled home energy reports into wide-ranging energy reduction and bill savings</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 05:00:00 -0400</p>
+  <p>&lt;p&gt;Learn how this approach can support savings, affordability and peak flexibility.&lt;/p&gt;&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/spons/converging-geopolitical-and-enterprise-risks-in-energy-what-leaders-need-t/825738/" target="_blank" rel="noopener">Converging geopolitical and enterprise risks in energy: What leaders need to anticipate now</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 05:00:00 -0400</p>
+  <p>&lt;p&gt;Geopolitical developments are significantly reshaping North American energy risk and requiring leaders to adapt operations and strategies.&lt;/p&gt;&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/spons/leading-the-agentic-grid-transformation/826181/" target="_blank" rel="noopener">Leading the agentic grid transformation</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 05:00:00 -0400</p>
+  <p>&lt;p&gt;The strategic priorities shaping the future of intelligent utility operations.&lt;/p&gt;&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/california-utilities-credit-downgrades-wildfire-liability-edison/826678/" target="_blank" rel="noopener">Edison CEO: California utilities face credit downgrades without wildfire reforms</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Fri, 31 Jul 2026 11:00:00 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/GpidSbyNqBIQq26J4KMKFI1KASRSLv2OVwHfVRYmNgc/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0yMjc3MDE0MTEyX0FXWVVNZVMuanBn.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;With four weeks left in the legislative session, CEO Pedro Pizarr&hellip;</p>
+</div>
+<div class="story" style="--accent:#b3781f">
+  <h3><a href="https://www.utilitydive.com/news/xcel-energy-on-track-retail-sales-growth-this-year-executives-say/826705/" target="_blank" rel="noopener">Xcel Energy on track for 3% retail sales growth this year, executives say</a></h3>
+  <p class="meta">Utility Dive - Latest News &middot; Fri, 31 Jul 2026 08:30:38 -0400</p>
+  <p>&lt;figure&gt;&lt;div&gt;&lt;img src=&quot;https://imgproxy.divecdn.com/jdEQG5pYAzFg0KgRgQdu8iYOyKTSKERN4vqK5t5chWg/g:ce/rs:fill:1600:900:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9tb250aWNlbGxvLmpwZw==.webp&quot; /&gt;&lt;/div&gt;&lt;/figure&gt;&lt;p&gt;The company has a 2026-2030 base capital investment plan of $60 billion and line of sight&hellip;</p>
+</div>
+<footer class="site-footer">An independent industry resource brought to you by JGV Creative</footer>
+</main>
 </body>
 </html>
