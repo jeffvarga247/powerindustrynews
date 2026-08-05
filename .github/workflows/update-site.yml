@@ -4,11 +4,13 @@ name: Update News Site
 on:
   schedule:
     - cron: '0 * * * *'   # every hour, on the hour (UTC time)
+    - cron: '0 6 * * 1'   # Mondays 06:00 UTC -- the trade show alert run
   workflow_dispatch: {}     # adds a "Run workflow" button in the Actions tab
 
 # Let the workflow commit the updated site back to the repo
 permissions:
   contents: write
+  issues: write
 
 jobs:
   update:
@@ -35,10 +37,23 @@ jobs:
           rm -rf docs
           cp -r site docs
 
+      - name: Open a trade show sponsorship alert issue
+        # Only fires when aggregate.py wrote alert.md, i.e. an event has just
+        # entered the 120-180 day sponsor window. Runs Mondays only so a
+        # qualifying event does not open a new issue every single hour.
+        if: hashFiles('alert.md') != '' && github.event.schedule == '0 6 * * 1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "Trade shows entering the sponsor window" \
+            --body-file alert.md
+
       - name: Commit and push the updated site
         run: |
           git config user.name "news-aggregator-bot"
           git config user.email "actions@github.com"
           git add docs story_store.json story_classifications.json
+          git rm --cached alert.md --ignore-unmatch >/dev/null 2>&1 || true
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update news site"
           git push
