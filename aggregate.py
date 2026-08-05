@@ -1176,10 +1176,12 @@ def render_story_cards(stories, color):
                 'Check back after the next update.</div>')
     cards = []
     for s in stories[:MAX_STORIES_PER_CATEGORY]:
+        clean_title = strip_html(s['title'])
+        clean_summary = strip_html(s['summary'])
         cards.append(f"""<div class="story" style="--accent:{color['accent']}">
-  <h3><a href="{html.escape(s['link'])}" target="_blank" rel="noopener">{html.escape(s['title'])}</a></h3>
+  <h3><a href="{html.escape(s['link'])}" target="_blank" rel="noopener">{html.escape(clean_title)}</a></h3>
   <p class="meta">{html.escape(s['source'])} &middot; {html.escape(s['published'])}</p>
-  <p>{html.escape(s['summary'])}&hellip;</p>
+  <p>{html.escape(clean_summary)}&hellip;</p>
 </div>""")
     return "\n".join(cards)
 
@@ -1516,11 +1518,11 @@ def build_search_index(store, tradeshows, featured_articles):
         label = leaf_label(leaf_key)
         for s in stories:
             index.append({
-                "title": s["title"],
+                "title": strip_html(s["title"]),
                 "url": s["link"],
                 "category": label,
                 "source": s.get("source", ""),
-                "summary": s.get("summary", "")[:160],
+                "summary": strip_html(s.get("summary", ""))[:160],
             })
     for e in tradeshows:
         index.append({
