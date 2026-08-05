@@ -124,6 +124,8 @@ EXHIBIT_LEAD_DAYS = 75
 # --- Advertise / legal pages -------------------------------------------------
 BUSINESS_NAME = "Varga Creative"
 GOVERNING_STATE = "Texas"
+# Kept for your reference only -- deliberately NOT rendered on any public
+# page, since a plain address gets harvested by spam crawlers.
 CONTACT_EMAIL = "contactSET@proton.me"
 
 # Paste your Google Form's embed URL here once you've created it (Google
@@ -286,15 +288,15 @@ def get_category_description(category):
 
 SHARED_CSS = """
 :root {
-    --ink: #e6e9ec;          /* primary text on dark */
-    --paper: #0f1216;        /* page background -- deep graphite, not pure black */
-    --paper-raised: #171b21; /* cards / raised surfaces */
-    --line: #2a313a;         /* hairlines and borders */
-    --muted: #949ca6;        /* secondary text */
-    --body-dim: #c2c8cf;     /* body copy inside cards */
-    --copper: #3d9bff;       /* primary accent (was copper) */
-    --accent-solid: #148bf5; /* solid fills / icon blue */
-    --masthead: #161b22;     /* header band, lifted off the page */
+    --ink: #eaf2fb;          /* primary text */
+    --paper: #10263f;        /* page background -- deep blue, same hue as the tiles */
+    --paper-raised: #16334f; /* cards / raised surfaces */
+    --line: #27496e;         /* hairlines and borders */
+    --muted: #9fb6ce;        /* secondary text */
+    --body-dim: #cfdeee;     /* body copy inside cards */
+    --copper: #6fb6ff;       /* primary accent -- lighter blue, readable on navy */
+    --accent-solid: #148bf5; /* the tile blue, for solid fills */
+    --masthead: #0c1e33;     /* header band, deeper than the page */
 }
 
 * { box-sizing: border-box; }
@@ -347,17 +349,19 @@ header.masthead {
 }
 
 .masthead-logo-row img.brand-logo {
-    height: 44px;
+    height: 88px;          /* doubled */
     width: auto;
     display: block;
 }
+
+.masthead-logo-row .search-wrap { margin-left: auto; }
 
 .masthead-tagline {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
     color: var(--muted);
     letter-spacing: 0.5px;
-    margin: 4px 0 18px 0;
+    margin: 2px 0 12px 0;
     text-transform: uppercase;
 }
 
@@ -380,11 +384,11 @@ nav.catnav {
 
 nav.catnav a {
     text-decoration: none;
-    color: #e9e3d2;
+    color: #dbe8f6;
     padding: 7px 11px;
-    border: 1px solid #3a3f46;
+    border: 1px solid #2d5480;
     border-bottom: none;
-    background: #23282f;
+    background: #163558;
     text-transform: uppercase;
     white-space: nowrap;
 }
@@ -1259,7 +1263,7 @@ def category_icon_img(name, cls="cat-icon"):
     fname = CATEGORY_ICONS.get(name)
     if not fname:
         return f'<span class="cat-icon-fallback">{html.escape(name)}</span>'
-    return (f'<img class="{cls}" src="assets/icons/{fname}" '
+    return (f'<img class="{cls}" src="assets/{fname}" '
             f'alt="{html.escape(name)}" width="96" height="96" loading="lazy">')
 
 
@@ -1329,15 +1333,13 @@ def page_shell(title, description, canonical_path, body_html, nav_html,
       <a class="brand" href="index.html">
         <img class="brand-logo" src="assets/logo-lockup.png" alt="{html.escape(SITE_NAME)} logo">
       </a>
-    </div>
-    <p class="masthead-tagline">{html.escape(SITE_TAGLINE)}</p>
-    <div class="masthead-row">
-      {f'<nav class="catnav">{nav_html}</nav>' if nav_html else ""}
       <div class="search-wrap">
         <input type="search" id="site-search" placeholder="Search stories, events, articles...">
         <div id="search-results"></div>
       </div>
     </div>
+    <p class="masthead-tagline">{html.escape(SITE_TAGLINE)}</p>
+    {f'<div class="masthead-row"><nav class="catnav">{nav_html}</nav></div>' if nav_html else ""}
   </div>
 </header>
 <div class="diagram-rule"></div>
@@ -1560,11 +1562,13 @@ def render_advertise_page(all_categories):
                      f'width="100%" height="900" frameborder="0">Loading '
                      f'form&hellip;</iframe>')
     else:
+        # Deliberately no mailto: link here -- a plain address on a public
+        # page gets harvested by spam crawlers within days. Until the Google
+        # Form URL is set in ADVERTISE_FORM_EMBED_URL, show a neutral notice.
         form_html = (
-            '<div class="empty-state">The inquiry form isn&rsquo;t connected '
-            f'yet. Email <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a> '
-            'with your name, email address, and phone number, and we&rsquo;ll '
-            'follow up with rates and available placements.</div>'
+            '<div class="empty-state">The advertising inquiry form is being '
+            'set up and will be available here shortly. Please check back '
+            'soon.</div>'
         )
 
     body = f"""<h1 style="border-bottom:3px solid var(--copper); padding-bottom:10px; margin-top:0;">Advertise With Us</h1>
@@ -1599,7 +1603,7 @@ def render_terms_page(all_categories):
 <h2>Governing Law</h2>
 <p>These terms are governed by the laws of the State of {html.escape(GOVERNING_STATE)}, without regard to conflict-of-law principles.</p>
 <h2>Contact</h2>
-<p>Questions about these terms? Email <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>.</p>
+<p>Questions about these terms? Use the <a href="advertise.html">contact form</a>.</p>
 </div>"""
 
     return page_shell("Terms of Service", description, "terms.html", body, nav_html)
@@ -1622,7 +1626,7 @@ def render_privacy_page(all_categories):
 <h2>Changes to This Policy</h2>
 <p>We may update this policy from time to time. Changes will be posted on this page.</p>
 <h2>Contact</h2>
-<p>Questions about this policy? Email <a href="mailto:{CONTACT_EMAIL}">{CONTACT_EMAIL}</a>.</p>
+<p>Questions about this policy? Use the <a href="advertise.html">contact form</a>.</p>
 </div>"""
 
     return page_shell("Privacy Policy", description, "privacy.html", body, nav_html)
