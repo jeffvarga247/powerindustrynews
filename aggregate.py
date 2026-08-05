@@ -1,36 +1,26 @@
 """
 News Aggregator
 ----------------
-Reads feeds_config.json, sorts stories into the categories you defined
-(filtering each story against per-category/subcategory keyword lists so
-only relevant stories land in each bucket), skips stories it has already
-posted before, and builds a simple static website (HTML files).
+Reads a flat list of RSS feeds from feeds_config.json, fetches every story
+from every feed, and uses Claude (Haiku 4.5, via the Anthropic API) to
+classify each new story into one of the categories/subcategories defined
+in CATEGORY_DEFINITIONS below -- or leaves it out entirely if it doesn't
+clearly fit any of them. Classifications are cached in
+story_classifications.json so a story is only ever classified once, no
+matter how many times the workflow runs.
 
-feeds_config.json format -- two kinds of top-level categories:
+feeds_config.json format -- just a flat list of feed URLs:
+    { "feeds": ["https://example.com/feed1", "https://example.com/feed2"] }
 
-  Simple category (single bucket):
-    "Failures": {
-      "feeds": ["https://example.com/feed"],
-      "keywords": ["outage", "failure", "fault"],
-      "exclude_keywords": []            <- optional, omit if not needed
-    }
+The category structure itself (which top-level categories exist, which
+ones are split into subcategories, and exactly what each one covers) is
+defined in code below, in TOP_LEVEL_STRUCTURE and CATEGORY_DEFINITIONS --
+edit those if you want to add/change/remove a category.
 
-  Compound category (broken into subcategories, e.g. Installations,
-  Standards):
-    "Installations": {
-      "subcategories": {
-        "Transmission and Distribution": {
-          "feeds": [...], "keywords": [...]
-        },
-        "Generation": {
-          "feeds": [...], "keywords": [...]
-        }
-      }
-    }
-
-A story is only kept in a bucket if its title/summary contains at least
-one of that bucket's keywords (and none of its exclude_keywords, if any).
-No keyword match anywhere -> the story just doesn't appear on the site.
+Requires an ANTHROPIC_API_KEY environment variable (set as a GitHub
+Actions secret in production) to run classification. If it's missing,
+the run continues but skips classifying any new stories (a warning is
+printed) -- existing already-classified stories still render fine.
 
 Also builds:
   - a Trade Shows page from tradeshows_config.json (manually maintained,
@@ -50,7 +40,7 @@ Also builds:
     GitHub Actions workflow wipes docs/ and rebuilds it from site/ each time
 
 HOW TO RUN:
-    python3 aggregate.py
+    ANTHROPIC_API_KEY=sk-ant-... python3 aggregate.py
 
 OUTPUT:
     site/index.html          <- homepage
@@ -66,7 +56,8 @@ OUTPUT:
     site/robots.txt
     site/CNAME
     site/assets/             <- copied from your repo's assets/ folder
-    story_store.json         <- memory file so news stories aren't repeated
+    story_store.json               <- memory file so stories aren't repeated
+    story_classifications.json     <- memory file: story id -> assigned category
 """
 
 import json
@@ -74,6 +65,8 @@ import os
 import re
 import html
 import shutil
+import urllib.request
+import urllib.error
 from datetime import datetime, timezone, date
 
 import feedparser
@@ -83,7 +76,8 @@ CONFIG_FILE = "feeds_config.json"
 TRADESHOWS_FILE = "tradeshows_config.json"
 FEATURED_DIR = "featured_articles"
 ASSETS_SRC_DIR = "assets"
-STORE_FILE = "story_store.json"   # persistent archive of stories per bucket
+STORE_FILE = "story_store.json"                       # persistent archive of stories per bucket
+CLASSIFICATION_CACHE_FILE = "story_classifications.json"  # story id -> assigned category (or null)
 OUTPUT_DIR = "site"
 
 MAX_STORIES_PER_CATEGORY = 30     # how many stories to show per category page
@@ -117,6 +111,86 @@ CONTACT_EMAIL = "contactSET@proton.me"
 ADVERTISE_FORM_EMBED_URL = ""
 
 # ---------------------------------------------------------------------------
+# AI classification (Claude Haiku 4.5) -- replaces keyword filtering
+# ---------------------------------------------------------------------------
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+CLASSIFIER_MODEL = "claude-haiku-4-5-20251001"
+CLASSIFIER_BATCH_SIZE = 40   # stories per API call -- keeps each request small and cheap
+
+# The category structure the site actually renders. "compound" categories
+# get split into subcategory sections on their own page (Installations,
+# Standards); simple categories are a single page/bucket.
+TOP_LEVEL_STRUCTURE = {
+    "Failures": {"compound": False},
+    "Protection": {"compound": False},
+    "Installations": {"compound": True, "subcategories": ["Transmission and Distribution", "Generation"]},
+    "Standards": {"compound": True, "subcategories": ["Safety Standards", "Grid/Regulatory Compliance", "Technical Standards"]},
+    "Insurance": {"compound": False},
+}
+
+# The exact definition of each leaf category (top-level name for simple
+# categories, "Parent::Subcategory" for subcategories of a compound one).
+# This is what gets sent to Claude for classification -- be as specific
+# as you want here, including what to explicitly exclude.
+CATEGORY_DEFINITIONS = {
+    "Failures": (
+        "Equipment or system failures in the electrical power industry: "
+        "transformer failures, breaker failures, cable faults, blackouts, "
+        "major grid outages, relay misoperations, and root-cause/post-mortem "
+        "analyses of such failures. Only include a story if it is actually "
+        "ABOUT a failure event -- do not include stories that merely mention "
+        "the word 'failure' in passing (e.g. a company avoiding failure, or "
+        "an unrelated 'failure to meet earnings')."
+    ),
+    "Protection": (
+        "Equipment-level protection technology for power systems: "
+        "transformer fire prevention systems, fast/rapid depressurization "
+        "systems, explosion prevention systems, protective relay "
+        "coordination, and protection scheme design/upgrades. Do NOT "
+        "include broader grid-level protection, grid security, or "
+        "cybersecurity stories -- those do not belong here even if they use "
+        "the word 'protection'."
+    ),
+    "Installations::Transmission and Distribution": (
+        "Sales-lead-relevant news for equipment vendors about new or "
+        "retrofit transmission and distribution equipment installations: "
+        "new substations being built or upgraded, transformers, "
+        "switchgear, circuit breakers, transmission lines, distribution "
+        "grid upgrades. This is about specific T&D equipment installation "
+        "projects, not whole new generation facilities."
+    ),
+    "Installations::Generation": (
+        "Sales-lead-relevant news for vendors about new power generation "
+        "facilities being built: wind farms, solar farms, gas plants, "
+        "nuclear plants, hydro plants, battery storage facilities -- from "
+        "groundbreaking through commissioning. This is about new "
+        "generation facilities, not transmission/distribution equipment."
+    ),
+    "Standards::Safety Standards": (
+        "News about electrical safety codes and worker safety standards, "
+        "such as NFPA 70E and arc flash safety requirements."
+    ),
+    "Standards::Grid/Regulatory Compliance": (
+        "News about mandatory regulatory compliance requirements for "
+        "utilities and the grid, such as NERC CIP, FERC rulings, and "
+        "reliability standard mandates."
+    ),
+    "Standards::Technical Standards": (
+        "News about engineering technical standard revisions and updates, "
+        "such as IEEE and IEC standard changes."
+    ),
+    "Insurance": (
+        "News specifically about the insurability of power generation "
+        "companies and their infrastructure -- insurers declining to "
+        "cover, restricting coverage, non-renewing policies, or otherwise "
+        "pulling back from insuring power generation assets. This is NOT "
+        "general insurance industry news -- it must be specifically about "
+        "power generation companies/infrastructure struggling to get or "
+        "keep insurance coverage."
+    ),
+}
+
+# ---------------------------------------------------------------------------
 # Design system
 # ---------------------------------------------------------------------------
 CATEGORY_PALETTE = [
@@ -127,6 +201,7 @@ CATEGORY_PALETTE = [
     {"accent": "#6b4f8a", "tint": "#ede8f2"},  # insurance violet
     {"accent": "#b3781f", "tint": "#f5ece0"},  # copper / installation amber
 ]
+
 
 
 def category_color(category):
@@ -400,15 +475,18 @@ input#site-search:focus { border-color: var(--copper); }
 .ad-banner {
     max-width: 880px;
     margin: 18px auto 0 auto;
-    padding: 14px 20px;
+    padding: 40px 20px;
     text-align: center;
     border: 1px dashed var(--line);
     background: var(--paper-raised);
     color: var(--muted);
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ---------- layout ---------- */
@@ -560,6 +638,11 @@ main {
 .story p:last-child, .event-card p:last-child {
     margin: 0;
     color: #3a3630;
+}
+
+.story, .event-card, .story *, .event-card * {
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .empty-state {
@@ -734,63 +817,125 @@ def slugify(text):
 
 
 # ---------------------------------------------------------------------------
-# feeds_config.json normalization + keyword filtering
+# feeds_config.json loading (flat feed list) + AI classification
 # ---------------------------------------------------------------------------
-def normalize_config(raw_config):
-    """Normalize feeds_config.json into a uniform internal structure.
-
-    Returns an ordered dict: top_category -> either
-      {"compound": False, "feeds": [...], "keywords": [...], "exclude_keywords": [...]}
-    or
-      {"compound": True, "subcategories": {sub_name: {"feeds":[...], "keywords":[...], "exclude_keywords":[...]}}}
-
-    Also accepts the old flat list-of-feeds format for backwards
-    compatibility (treated as a simple category with no keyword filter).
-    """
-    normalized = {}
-    for name, val in raw_config.items():
-        if isinstance(val, list):
-            normalized[name] = {
-                "compound": False,
-                "feeds": val,
-                "keywords": [],
-                "exclude_keywords": [],
-            }
-        elif isinstance(val, dict) and "subcategories" in val:
-            subs = {}
-            for sub_name, sub_val in val["subcategories"].items():
-                subs[sub_name] = {
-                    "feeds": sub_val.get("feeds", []),
-                    "keywords": sub_val.get("keywords", []),
-                    "exclude_keywords": sub_val.get("exclude_keywords", []),
-                }
-            normalized[name] = {"compound": True, "subcategories": subs}
-        elif isinstance(val, dict):
-            normalized[name] = {
-                "compound": False,
-                "feeds": val.get("feeds", []),
-                "keywords": val.get("keywords", []),
-                "exclude_keywords": val.get("exclude_keywords", []),
-            }
-    return normalized
+def load_feed_urls(raw_config):
+    """feeds_config.json is just {"feeds": [url, url, ...]}. Also accepts
+    the old per-category dict/list format for backwards compatibility by
+    flattening every feed URL out of it, deduplicated."""
+    urls = set()
+    if isinstance(raw_config, dict) and "feeds" in raw_config and isinstance(raw_config["feeds"], list):
+        urls.update(raw_config["feeds"])
+    else:
+        # legacy nested formats -- just pull every feed URL out of them
+        for val in raw_config.values():
+            if isinstance(val, list):
+                urls.update(val)
+            elif isinstance(val, dict):
+                urls.update(val.get("feeds", []))
+                for sub in val.get("subcategories", {}).values():
+                    urls.update(sub.get("feeds", []))
+    return sorted(urls)
 
 
-def keyword_matches(text, keywords, exclude_keywords=None):
-    """A story is kept only if it contains one of `keywords` (case
-    insensitive substring match) and none of `exclude_keywords`. An empty
-    keyword list means "no filter" -- everything passes (used for legacy
-    plain feed lists with no keywords defined)."""
-    text_lower = text.lower()
-    if exclude_keywords:
-        for kw in exclude_keywords:
-            if kw and kw.lower() in text_lower:
-                return False
-    if not keywords:
-        return True
-    for kw in keywords:
-        if kw and kw.lower() in text_lower:
-            return True
-    return False
+def _call_anthropic(prompt):
+    body = json.dumps({
+        "model": CLASSIFIER_MODEL,
+        "max_tokens": 2000,
+        "messages": [{"role": "user", "content": prompt}],
+    }).encode("utf-8")
+
+    req = urllib.request.Request(
+        "https://api.anthropic.com/v1/messages",
+        data=body,
+        headers={
+            "Content-Type": "application/json",
+            "x-api-key": ANTHROPIC_API_KEY,
+            "anthropic-version": "2023-06-01",
+        },
+        method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        data = json.loads(resp.read().decode("utf-8"))
+    return "".join(
+        block.get("text", "") for block in data.get("content", [])
+        if block.get("type") == "text"
+    )
+
+
+def _parse_json_response(text):
+    text = text.strip()
+    if text.startswith("```"):
+        text = text.strip("`")
+        if text.lower().startswith("json"):
+            text = text[4:]
+    return json.loads(text)
+
+
+def classify_stories_with_ai(stories, category_definitions):
+    """Ask Claude Haiku to assign each story to the single best-fit leaf
+    category (or None) from category_definitions. Returns a dict of
+    story_id -> leaf_key (or None). Stories are sent in small batches to
+    keep each request cheap and reliable, and a failed batch is simply
+    skipped (those stories get retried automatically on the next run,
+    since they won't be in the classification cache yet)."""
+    if not stories:
+        return {}
+    if not ANTHROPIC_API_KEY:
+        print("  Warning: ANTHROPIC_API_KEY is not set -- skipping AI "
+              "classification. No new stories will be categorized until "
+              "this is configured.")
+        return {}
+
+    categories_block = "\n".join(
+        f'- "{key}": {desc}' for key, desc in category_definitions.items()
+    )
+
+    results = {}
+    batches = [stories[i:i + CLASSIFIER_BATCH_SIZE] for i in range(0, len(stories), CLASSIFIER_BATCH_SIZE)]
+    for batch_num, batch in enumerate(batches, 1):
+        story_lines = "\n".join(
+            f'{i}. [{s["id"]}] TITLE: {s["title"]}  SUMMARY: {s["summary"][:200]}'
+            for i, s in enumerate(batch)
+        )
+        prompt = f"""You are sorting power-industry news stories into a fixed set of categories for a trade news website. Here are the categories and exactly what each one covers:
+
+{categories_block}
+
+For each story below, decide which ONE category it best fits, or "None" if it doesn't clearly fit any of them. Be strict: a story that only briefly mentions a category's topic in passing does not count -- the story needs to actually be about that topic.
+
+Stories:
+{story_lines}
+
+Respond with ONLY a JSON array, no other text before or after it, in this exact form:
+[{{"id": "<story id, copied exactly>", "category": "<one of the category keys above, or None>"}}]
+"""
+        try:
+            text = _call_anthropic(prompt)
+            parsed = _parse_json_response(text)
+            for item in parsed:
+                sid = item.get("id")
+                cat = item.get("category")
+                if sid is None:
+                    continue
+                results[sid] = cat if cat and cat != "None" and cat in category_definitions else None
+            print(f"  Classified batch {batch_num}/{len(batches)} ({len(batch)} stories)")
+        except Exception as e:
+            print(f"  Warning: AI classification failed for batch {batch_num}/{len(batches)}: {e}")
+            continue
+
+    return results
+
+
+HTML_TAG_RE = re.compile(r"<[^>]+>")
+
+
+def strip_html(text):
+    """Remove HTML tags (e.g. <figure><img src="...">) from RSS summaries
+    and collapse whitespace, so raw markup/long image URLs never show up
+    as literal unbroken text on the story cards."""
+    no_tags = HTML_TAG_RE.sub(" ", text)
+    return re.sub(r"\s+", " ", no_tags).strip()
 
 
 def fetch_stories_from_feeds(feed_urls):
@@ -811,10 +956,10 @@ def fetch_stories_from_feeds(feed_urls):
             if not story_id:
                 continue
 
-            title = entry.get("title", "Untitled")
+            title = strip_html(entry.get("title", "Untitled"))
             link = entry.get("link", "#")
             summary = entry.get("summary", "")
-            summary_text = html.unescape(summary)
+            summary_text = strip_html(html.unescape(summary))
             source_title = parsed.feed.get("title", "Unknown source")
             published = entry.get("published", "")
 
@@ -1440,46 +1585,53 @@ def copy_assets_and_cname():
 def main():
     print("Starting news aggregation run...")
     raw_config = load_json(CONFIG_FILE, {})
-    if not raw_config:
-        print(f"ERROR: {CONFIG_FILE} not found or empty. Add your feeds there first.")
+    feed_urls = load_feed_urls(raw_config)
+    if not feed_urls:
+        print(f"ERROR: no feed URLs found in {CONFIG_FILE}. Add your feeds there first.")
         return
-    config = normalize_config(raw_config)
 
-    store = load_json(STORE_FILE, {})
+    store = load_json(STORE_FILE, {})                             # leaf_key -> list of stories
+    classification_cache = load_json(CLASSIFICATION_CACHE_FILE, {})  # story id -> leaf_key or None
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-    story_counts = {}
+    top_level_names = list(TOP_LEVEL_STRUCTURE.keys())
     page_paths = ["index.html"]
-    top_level_names = list(config.keys())
 
-    for name, cfg in config.items():
-        if cfg["compound"]:
-            print(f"Fetching category: {name} (compound, {len(cfg['subcategories'])} subcategories)")
+    # --- fetch every feed once, dedupe by story id ---
+    print(f"Fetching {len(feed_urls)} feed(s)...")
+    all_stories = fetch_stories_from_feeds(feed_urls)
+    story_by_id = {s["id"]: s for s in all_stories}
+    print(f"  {len(story_by_id)} total stories currently in the feeds")
+
+    # --- classify only stories we haven't classified before ---
+    new_stories = [s for s in story_by_id.values() if s["id"] not in classification_cache]
+    print(f"Classifying {len(new_stories)} new story(ies) with AI...")
+    new_classifications = classify_stories_with_ai(new_stories, CATEGORY_DEFINITIONS)
+    classification_cache.update(new_classifications)
+    save_json(CLASSIFICATION_CACHE_FILE, classification_cache)
+
+    # --- bucket every known story (old + new) into its leaf category ---
+    buckets = {leaf_key: {s["id"]: s for s in stories} for leaf_key, stories in store.items()}
+    for sid, story in story_by_id.items():
+        leaf_key = classification_cache.get(sid)
+        if not leaf_key:
+            continue
+        buckets.setdefault(leaf_key, {})[sid] = story
+
+    story_counts = {}
+    for name, info in TOP_LEVEL_STRUCTURE.items():
+        if info["compound"]:
             sub_stories_for_page = {}
             total_count = 0
-            for sub_name, sub_cfg in cfg["subcategories"].items():
+            for sub_name in info["subcategories"]:
                 leaf_key = f"{name}::{sub_name}"
-                existing = store.get(leaf_key, [])
-                existing_ids = {s["id"] for s in existing}
-
-                fetched_raw = fetch_stories_from_feeds(sub_cfg["feeds"])
-                fetched = [
-                    s for s in fetched_raw
-                    if keyword_matches(f"{s['title']} {s['summary']}", sub_cfg["keywords"], sub_cfg["exclude_keywords"])
-                ]
-                new_count = sum(1 for s in fetched if s["id"] not in existing_ids)
-
-                merged = {s["id"]: s for s in existing}
-                for s in fetched:
-                    merged[s["id"]] = s
-                merged_list = list(merged.values())
+                merged_list = list(buckets.get(leaf_key, {}).values())
                 merged_list.sort(key=lambda s: s["published"], reverse=True)
                 merged_list = merged_list[:200]
                 store[leaf_key] = merged_list
-
                 sub_stories_for_page[sub_name] = merged_list
                 total_count += len(merged_list)
-                print(f"  {sub_name}: {new_count} new this run, {len(merged_list)} total shown")
+                print(f"  {name} -> {sub_name}: {len(merged_list)} stories")
 
             page_html = render_compound_category_page(name, sub_stories_for_page, top_level_names)
             fname = f"category_{slugify(name)}.html"
@@ -1489,33 +1641,19 @@ def main():
             story_counts[name] = total_count
 
         else:
-            print(f"Fetching category: {name} ({len(cfg['feeds'])} feed(s))")
-            existing = store.get(name, [])
-            existing_ids = {s["id"] for s in existing}
-
-            fetched_raw = fetch_stories_from_feeds(cfg["feeds"])
-            fetched = [
-                s for s in fetched_raw
-                if keyword_matches(f"{s['title']} {s['summary']}", cfg["keywords"], cfg["exclude_keywords"])
-            ]
-            new_count = sum(1 for s in fetched if s["id"] not in existing_ids)
-
-            merged = {s["id"]: s for s in existing}
-            for s in fetched:
-                merged[s["id"]] = s
-            merged_list = list(merged.values())
+            leaf_key = name
+            merged_list = list(buckets.get(leaf_key, {}).values())
             merged_list.sort(key=lambda s: s["published"], reverse=True)
             merged_list = merged_list[:200]
-            store[name] = merged_list
+            store[leaf_key] = merged_list
 
             page_html = render_category_page(name, merged_list, top_level_names)
             fname = f"category_{slugify(name)}.html"
             with open(os.path.join(OUTPUT_DIR, fname), "w", encoding="utf-8") as f:
                 f.write(page_html)
             page_paths.append(fname)
-
             story_counts[name] = len(merged_list)
-            print(f"  -> {new_count} new stories this run, {len(merged_list)} total shown")
+            print(f"  {name}: {len(merged_list)} stories")
 
     save_json(STORE_FILE, store)
 
