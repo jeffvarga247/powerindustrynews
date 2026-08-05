@@ -95,7 +95,24 @@ BASE_URL = "https://powerindustry.news"   # no trailing slash
 # a sponsor-supported trade site retain professional trust over time.
 SPONSOR_DISCLOSURE_HTML = 'An independent industry resource brought to you by JGV Creative'
 
-TRADE_SHOWS_LABEL = "Trade Shows"
+TRADE_SHOWS_LABEL = "Tradeshows"
+
+# Category artwork. These tiles carry the category NAME in the image itself,
+# so pages deliberately do not repeat the label as visible text -- the name is
+# still exposed to search engines and screen readers via alt text.
+CATEGORY_ICONS = {
+    "Failures": "failures.png",
+    "Protections": "protection.png",
+    "Installations": "installations.png",
+    "Standards": "standards.png",
+    "Insurance": "insurance.png",
+    "Tradeshows": "trade-shows.png",
+    "Featured": "featured.png",
+}
+
+# Categories were renamed to match the icon artwork; stored classifications
+# using the old names are rewritten so those stories keep their category.
+CATEGORY_RENAMES = {"Protection": "Protections", "Trade Shows": "Tradeshows"}
 
 # How many days out a trade show needs to be for it to count as "still
 # open to sign up as an exhibitor" in the Trade Shows page's Exhibit
@@ -126,7 +143,7 @@ CLASSIFIER_BATCH_SIZE = 25   # stories per API call -- keeps each request small 
 # Standards); simple categories are a single page/bucket.
 TOP_LEVEL_STRUCTURE = {
     "Failures": {"compound": False},
-    "Protection": {"compound": False},
+    "Protections": {"compound": False},
     "Installations": {"compound": True, "subcategories": ["Transmission and Distribution", "Generation"]},
     "Standards": {"compound": True, "subcategories": ["Safety Standards", "Grid/Regulatory Compliance", "Technical Standards"]},
     "Insurance": {"compound": False},
@@ -146,7 +163,7 @@ CATEGORY_DEFINITIONS = {
         "the word 'failure' in passing (e.g. a company avoiding failure, or "
         "an unrelated 'failure to meet earnings')."
     ),
-    "Protection": (
+    "Protections": (
         "Equipment-level protection technology for power systems: "
         "transformer fire prevention systems, fast/rapid depressurization "
         "systems, explosion prevention systems, protective relay "
@@ -198,12 +215,12 @@ CATEGORY_DEFINITIONS = {
 # Design system
 # ---------------------------------------------------------------------------
 CATEGORY_PALETTE = [
-    {"accent": "#b3421f", "tint": "#f6e9e4"},  # rust / failure red
-    {"accent": "#2b5f8a", "tint": "#e6edf2"},  # steel blue / protection
-    {"accent": "#3f7a4f", "tint": "#e9f0e9"},  # growth green
-    {"accent": "#5c5347", "tint": "#efece6"},  # graphite / standards
-    {"accent": "#6b4f8a", "tint": "#ede8f2"},  # insurance violet
-    {"accent": "#b3781f", "tint": "#f5ece0"},  # copper / installation amber
+    {"accent": "#ff6f4d", "tint": "#2a1a15"},  # failures -- ember orange
+    {"accent": "#4da3e0", "tint": "#14212b"},  # protection -- steel blue
+    {"accent": "#5cb872", "tint": "#152318"},  # installations -- green
+    {"accent": "#9aa5b1", "tint": "#1c2027"},  # standards -- graphite
+    {"accent": "#a58ae0", "tint": "#201a2b"},  # insurance -- violet
+    {"accent": "#3d9bff", "tint": "#12202e"},  # primary blue
 ]
 
 
@@ -269,12 +286,15 @@ def get_category_description(category):
 
 SHARED_CSS = """
 :root {
-    --ink: #1b1f24;
-    --paper: #f7f5f0;
-    --paper-raised: #ffffff;
-    --line: #ddd7c8;
-    --muted: #706a5c;
-    --copper: #b3781f;
+    --ink: #e6e9ec;          /* primary text on dark */
+    --paper: #0f1216;        /* page background -- deep graphite, not pure black */
+    --paper-raised: #171b21; /* cards / raised surfaces */
+    --line: #2a313a;         /* hairlines and borders */
+    --muted: #949ca6;        /* secondary text */
+    --body-dim: #c2c8cf;     /* body copy inside cards */
+    --copper: #3d9bff;       /* primary accent (was copper) */
+    --accent-solid: #148bf5; /* solid fills / icon blue */
+    --masthead: #161b22;     /* header band, lifted off the page */
 }
 
 * { box-sizing: border-box; }
@@ -300,8 +320,9 @@ a { color: inherit; }
 
 /* ---------- masthead ---------- */
 header.masthead {
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--masthead);
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
     padding: 22px 24px 0 24px;
 }
 
@@ -334,7 +355,7 @@ header.masthead {
 .masthead-tagline {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
-    color: #c8bfa8;
+    color: var(--muted);
     letter-spacing: 0.5px;
     margin: 4px 0 18px 0;
     text-transform: uppercase;
@@ -369,16 +390,16 @@ nav.catnav a {
 }
 
 nav.catnav a.home {
-    background: var(--copper);
-    border-color: var(--copper);
-    color: #1b1f24;
+    background: var(--accent-solid);
+    border-color: var(--accent-solid);
+    color: #06121f;
     font-weight: 700;
 }
 
 nav.catnav a.active {
-    background: var(--paper);
-    color: var(--ink);
-    border-color: var(--paper);
+    background: transparent;
+    color: var(--copper);
+    border-color: var(--copper);
     font-weight: 700;
 }
 
@@ -397,7 +418,7 @@ input#site-search {
     outline: none;
 }
 
-input#site-search::placeholder { color: #7d7767; }
+input#site-search::placeholder { color: #7c848d; }
 input#site-search:focus { border-color: var(--copper); }
 
 #search-results {
@@ -509,7 +530,7 @@ main {
 }
 
 .category-intro {
-    color: #3a3630;
+    color: var(--body-dim);
     margin: 6px 0 26px 0;
     max-width: 68ch;
 }
@@ -550,7 +571,7 @@ main {
 
 .spotlight-card p, .callout-card p {
     margin: 0 0 6px 0;
-    color: #3a3630;
+    color: var(--body-dim);
     font-size: 15px;
 }
 
@@ -594,12 +615,78 @@ main {
 
 .cat-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(27, 31, 36, 0.10);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
 }
 
-.cat-card h2 {
-    font-size: 20px;
-    margin: 0 0 10px 0;
+.cat-card {
+    text-align: center;
+    padding: 18px 14px 14px 14px;
+}
+
+.cat-icon { width: 96px; height: 96px; display: block; margin: 0 auto 10px auto; }
+.cat-icon-head { width: 88px; height: 88px; display: block; margin: 0 0 14px 0; }
+
+.cat-heading {
+    border-bottom: 3px solid var(--accent, var(--copper));
+    padding-bottom: 12px;
+    margin: 0 0 18px 0;
+}
+
+/* Visually hidden, still read by screen readers and indexed by search. */
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ---------- next event strip (compact, full width) ---------- */
+.next-event {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 880px;
+    margin: 0 auto 20px auto;
+    padding: 10px 16px;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent-solid);
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.12s ease;
+}
+
+.next-event:hover { border-color: var(--copper); }
+
+.next-event-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-solid);
+    white-space: nowrap;
+}
+
+.next-event-name {
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.next-event-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--muted);
+}
+
+.next-event-arrow { margin-left: auto; color: var(--copper); }
+
+@media (max-width: 520px) {
+    .next-event-arrow { display: none; }
 }
 
 .cat-card p {
@@ -634,13 +721,13 @@ main {
   display: inline-block;
   margin-left: 0.5rem;
   padding: 0.1rem 0.4rem;
-  border: 1px solid var(--accent, #b3781f);
+  border: 1px solid var(--accent, var(--copper));
   border-radius: 3px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: var(--accent, #b3781f);
+  color: var(--accent, var(--copper));
   vertical-align: middle;
 }
 
@@ -654,7 +741,7 @@ main {
 
 .story p:last-child, .event-card p:last-child {
     margin: 0;
-    color: #3a3630;
+    color: var(--body-dim);
 }
 
 .story, .event-card, .story *, .event-card * {
@@ -887,6 +974,22 @@ def _parse_json_response(text):
         if text.lower().startswith("json"):
             text = text[4:]
     return json.loads(text)
+
+
+def migrate_classification_cache(cache):
+    changed = 0
+    for sid, entry in cache.items():
+        old = cache_category(entry)
+        if old in CATEGORY_RENAMES:
+            new = CATEGORY_RENAMES[old]
+            if isinstance(entry, dict):
+                entry["category"] = new
+            else:
+                cache[sid] = new
+            changed += 1
+    if changed:
+        print(f"  Migrated {changed} classification(s) to renamed categories")
+    return cache
 
 
 def cache_category(entry):
@@ -1150,6 +1253,21 @@ def parse_featured_articles():
 # ---------------------------------------------------------------------------
 # Shared page shell: nav, SEO head tags, footer
 # ---------------------------------------------------------------------------
+def category_icon_img(name, cls="cat-icon"):
+    """The tile art carries the category name, so alt text repeats it for
+    search engines and screen readers rather than being purely decorative."""
+    fname = CATEGORY_ICONS.get(name)
+    if not fname:
+        return f'<span class="cat-icon-fallback">{html.escape(name)}</span>'
+    return (f'<img class="{cls}" src="assets/icons/{fname}" '
+            f'alt="{html.escape(name)}" width="96" height="96" loading="lazy">')
+
+
+def category_page_heading(category):
+    return (f'<div class="cat-heading">{category_icon_img(category, "cat-icon-head")}'
+            f'<h1 class="sr-only">{html.escape(category)}</h1></div>')
+
+
 def render_nav(all_categories, active_category=None):
     links = ['<a class="home" href="index.html">Home</a>']
     for c in all_categories:
@@ -1214,7 +1332,7 @@ def page_shell(title, description, canonical_path, body_html, nav_html,
     </div>
     <p class="masthead-tagline">{html.escape(SITE_TAGLINE)}</p>
     <div class="masthead-row">
-      <nav class="catnav">{nav_html}</nav>
+      {f'<nav class="catnav">{nav_html}</nav>' if nav_html else ""}
       <div class="search-wrap">
         <input type="search" id="site-search" placeholder="Search stories, events, articles...">
         <div id="search-results"></div>
@@ -1276,7 +1394,7 @@ def render_category_page(category, stories, all_categories):
         "isPartOf": {"@type": "WebSite", "name": SITE_NAME, "url": BASE_URL},
     }
 
-    body = f"""<h1 style="border-bottom:3px solid {color['accent']}; padding-bottom:10px; margin-top:0;">{html.escape(category)}</h1>
+    body = f"""{category_page_heading(category)}
 <p class="category-intro">{html.escape(description)}</p>
 {items_html}"""
 
@@ -1316,7 +1434,7 @@ def render_compound_category_page(parent, sub_stories, all_categories):
         "isPartOf": {"@type": "WebSite", "name": SITE_NAME, "url": BASE_URL},
     }
 
-    body = f"""<h1 style="border-bottom:3px solid {top_color['accent']}; padding-bottom:10px; margin-top:0;">{html.escape(parent)}</h1>
+    body = f"""{category_page_heading(parent)}
 <p class="category-intro">{html.escape(description)}</p>
 {''.join(sections)}"""
 
@@ -1355,7 +1473,7 @@ def render_tradeshows_page(events, all_categories):
         "url": f"{BASE_URL}/category_trade_shows.html",
     }
 
-    body = f"""<h1 style="border-bottom:3px solid {color['accent']}; padding-bottom:10px; margin-top:0;">Trade Shows</h1>
+    body = f"""{category_page_heading(TRADE_SHOWS_LABEL)}
 <p class="category-intro">{html.escape(description)}</p>
 <section class="subcategory-block">
   <h2 style="border-bottom:2px solid {color['accent']}; padding-bottom:8px;">Attend</h2>
@@ -1418,7 +1536,7 @@ def render_featured_archive_page(articles, all_categories):
 </a>""")
         items_html = f'<div class="archive-list">{"".join(rows)}</div>'
 
-    body = f"""<h1 style="border-bottom:3px solid var(--copper); padding-bottom:10px; margin-top:0;">Featured Articles</h1>
+    body = f"""{category_page_heading("Featured")}
 <p class="category-intro">{html.escape(description)}</p>
 {items_html}"""
 
@@ -1528,13 +1646,14 @@ def render_index_page(top_level_names, story_counts, last_updated, tradeshows, f
 </div>""")
 
     next_event = next_upcoming_tradeshow(tradeshows)
+    next_event_html = ""
     if next_event:
-        feature_blocks.append(f"""<div class="callout-card">
-  <p class="eyebrow">Next Event</p>
-  <h2>{html.escape(next_event.get('name','Untitled Event'))}</h2>
-  <p class="event-meta">{html.escape(format_event_dates(next_event))} &middot; {html.escape(next_event.get('location','Location TBD'))}</p>
-  <a class="readmore" href="{html.escape(next_event.get('link','#'))}" target="_blank" rel="noopener">Event details &rarr;</a>
-</div>""")
+        next_event_html = f"""<a class="next-event" href="{html.escape(next_event.get('link','#'))}" target="_blank" rel="noopener">
+  <span class="next-event-tag">Next Event</span>
+  <span class="next-event-name">{html.escape(next_event.get('name','Untitled Event'))}</span>
+  <span class="next-event-meta">{html.escape(format_event_dates(next_event))} &middot; {html.escape(next_event.get('location','Location TBD'))}</span>
+  <span class="next-event-arrow">&rarr;</span>
+</a>"""
 
     row_class = "feature-row has-both" if len(feature_blocks) == 2 else "feature-row"
     feature_row_html = f'<div class="{row_class}">{"".join(feature_blocks)}</div>' if feature_blocks else ""
@@ -1545,23 +1664,28 @@ def render_index_page(top_level_names, story_counts, last_updated, tradeshows, f
         color = category_color(c)
         count = story_counts.get(c, 0)
         cards.append(f"""<a class="cat-card" style="--accent:{color['accent']}" href="category_{slugify(c)}.html">
-  <h2>{html.escape(c)}</h2>
+  {category_icon_img(c)}
+  <span class="sr-only">{html.escape(c)}</span>
   <p>{count} stories tracked</p>
 </a>""")
 
     ts_color = category_color(TRADE_SHOWS_LABEL)
     cards.append(f"""<a class="cat-card" style="--accent:{ts_color['accent']}" href="category_trade_shows.html">
-  <h2>Trade Shows</h2>
+  {category_icon_img(TRADE_SHOWS_LABEL)}
+  <span class="sr-only">{html.escape(TRADE_SHOWS_LABEL)}</span>
   <p>{len(tradeshows)} events listed</p>
 </a>""")
 
-    body = f"""{feature_row_html}
+    body = f"""{next_event_html}
+{feature_row_html}
 <div class="cat-grid">
 {''.join(cards)}
 </div>"""
 
     updated_line = f'<p class="updated">Last updated: {html.escape(last_updated)}</p>'
-    nav_html = render_nav(all_categories, active_category=None)
+    # The homepage shows the category tiles below, so a nav bar would only
+    # repeat them. Interior pages still render it -- it is their only way out.
+    nav_html = ""
 
     structured_data = {
         "@context": "https://schema.org",
@@ -1677,6 +1801,42 @@ def _load_known_stories(path):
     return raw  # already flat
 
 
+ALERT_WINDOW_MIN_DAYS = 120   # start pitching this far out
+ALERT_WINDOW_MAX_DAYS = 180   # ...and stop once the event is nearer than this
+
+
+def write_tradeshow_alert(tradeshows):
+    """Write alert.md listing events entering the sponsorship-outreach window.
+    The GitHub Action turns this into an issue, which GitHub emails to you.
+    Writes nothing when no event qualifies, so no empty issues get opened."""
+    due = []
+    for e in tradeshows:
+        d = days_until(e.get("start_date", ""))
+        if d is not None and ALERT_WINDOW_MIN_DAYS <= d <= ALERT_WINDOW_MAX_DAYS:
+            due.append((d, e))
+    if not due:
+        if os.path.exists("alert.md"):
+            os.remove("alert.md")
+        print("  No trade shows in the sponsor-outreach window")
+        return False
+
+    due.sort()
+    lines = ["These events are entering the window where sponsor and exhibitor "
+             "packages are usually still open.", ""]
+    for d, e in due:
+        lines.append(f"### {e.get('name', 'Untitled Event')}")
+        lines.append(f"- **Starts in:** {d} days ({format_event_dates(e)})")
+        lines.append(f"- **Location:** {e.get('location', 'TBD')}")
+        lines.append(f"- **Event page:** {e.get('link', 'n/a')}")
+        contact = e.get("sponsorship_contact")
+        lines.append(f"- **Sponsorship contact:** {contact if contact else 'not on file yet'}")
+        lines.append("")
+    with open("alert.md", "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+    print(f"  {len(due)} trade show(s) entering the sponsor window -> alert.md")
+    return True
+
+
 def main():
     print("Starting news aggregation run...")
     raw_config = load_json(CONFIG_FILE, {})
@@ -1686,7 +1846,7 @@ def main():
         return
 
     previously_known = _load_known_stories(STORE_FILE)                 # story id -> story dict
-    classification_cache = load_json(CLASSIFICATION_CACHE_FILE, {})    # story id -> leaf_key or None
+    classification_cache = migrate_classification_cache(load_json(CLASSIFICATION_CACHE_FILE, {}))    # story id -> leaf_key or None
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     top_level_names = list(TOP_LEVEL_STRUCTURE.keys())
@@ -1780,6 +1940,7 @@ def main():
     # --- trade shows ---
     print("Building Trade Shows page...")
     tradeshows = load_tradeshows()
+    write_tradeshow_alert(tradeshows)
     ts_html = render_tradeshows_page(tradeshows, top_level_names)
     with open(os.path.join(OUTPUT_DIR, "category_trade_shows.html"), "w", encoding="utf-8") as f:
         f.write(ts_html)
