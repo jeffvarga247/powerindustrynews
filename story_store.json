@@ -1249,5 +1249,19 @@
       "source": "Utility Dive - Latest News",
       "published": "Fri, 31 Jul 2026 07:57:09 -0400"
     }
-  ]
+  ],
+  "Installations::Transmission and Distribution": [],
+  "Installations::Generation": [
+    {
+      "id": "https://www.renewableenergyworld.com/?p=80798140259",
+      "title": "Mocean Energy targets wave-powered offshore data centers",
+      "link": "https://www.renewableenergyworld.com/hydro-power/tidal-wave-energy/mocean-energy-targets-wave-powered-offshore-data-centers/",
+      "summary": "Scotland-based Mocean Energy plans to move data centers out to sea with power from wave energy, solar PV and battery storage.",
+      "source": "Factor This™",
+      "published": "Fri, 31 Jul 2026 19:48:00 +0000"
+    }
+  ],
+  "Standards::Safety Standards": [],
+  "Standards::Grid/Regulatory Compliance": [],
+  "Standards::Technical Standards": []
 }

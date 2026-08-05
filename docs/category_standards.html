@@ -6,20 +6,20 @@
 <title>Standards News | Power Industry News</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://powerindustry.news/category_standards.html">
-<meta name="description" content="NERC, IEEE, and industry standards updates relevant to electrical power system safety, protection, and reliability compliance.">
+<meta name="description" content="Safety codes, regulatory compliance, and technical engineering standards relevant to electrical power system safety, protection, and reliability.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Power Industry News">
 <meta property="og:title" content="Standards News | Power Industry News">
-<meta property="og:description" content="NERC, IEEE, and industry standards updates relevant to electrical power system safety, protection, and reliability compliance.">
+<meta property="og:description" content="Safety codes, regulatory compliance, and technical engineering standards relevant to electrical power system safety, protection, and reliability.">
 <meta property="og:url" content="https://powerindustry.news/category_standards.html">
 <meta property="og:image" content="https://powerindustry.news/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Standards News | Power Industry News">
-<meta name="twitter:description" content="NERC, IEEE, and industry standards updates relevant to electrical power system safety, protection, and reliability compliance.">
+<meta name="twitter:description" content="Safety codes, regulatory compliance, and technical engineering standards relevant to electrical power system safety, protection, and reliability.">
 <meta name="twitter:image" content="https://powerindustry.news/assets/og-image.png">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Standards News", "description": "NERC, IEEE, and industry standards updates relevant to electrical power system safety, protection, and reliability compliance.", "url": "https://powerindustry.news/category_standards.html", "isPartOf": {"@type": "WebSite", "name": "Power Industry News", "url": "https://powerindustry.news"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Standards News", "description": "Safety codes, regulatory compliance, and technical engineering standards relevant to electrical power system safety, protection, and reliability.", "url": "https://powerindustry.news/category_standards.html", "isPartOf": {"@type": "WebSite", "name": "Power Industry News", "url": "https://powerindustry.news"}}</script>
 <style>
 :root {
     --ink: #1b1f24;
@@ -228,18 +228,33 @@ input#site-search:focus { border-color: var(--copper); }
 .diagram-rule::before { left: 6%; }
 .diagram-rule::after { right: 6%; }
 
+/* ---------- advertisement banner ---------- */
+.ad-banner {
+    max-width: 880px;
+    margin: 18px auto 0 auto;
+    padding: 14px 20px;
+    text-align: center;
+    border: 1px dashed var(--line);
+    background: var(--paper-raised);
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 /* ---------- layout ---------- */
 main {
     max-width: 880px;
     margin: 0 auto;
-    padding: 40px 24px 60px 24px;
+    padding: 24px 24px 60px 24px;
 }
 
 .updated {
     color: var(--muted);
     font-size: 12px;
     letter-spacing: 0.3px;
-    margin: 0 0 28px 0;
+    margin: 16px 0 28px 0;
     text-transform: uppercase;
 }
 
@@ -332,17 +347,9 @@ main {
     box-shadow: 0 6px 16px rgba(27, 31, 36, 0.10);
 }
 
-.cat-card .eyebrow {
-    font-size: 11px;
-    color: var(--accent, var(--copper));
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
 .cat-card h2 {
     font-size: 20px;
-    margin: 8px 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
 .cat-card p {
@@ -396,6 +403,16 @@ main {
     font-size: 13px;
 }
 
+/* ---------- subcategory sections (Installations, Standards, Trade Shows) --- */
+.subcategory-block {
+    margin-bottom: 40px;
+}
+
+.subcategory-block h2 {
+    font-size: 22px;
+    margin: 0 0 8px 0;
+}
+
 /* ---------- featured article page ---------- */
 .article-body {
     font-size: 18px;
@@ -433,6 +450,15 @@ main {
     text-transform: uppercase;
 }
 
+/* ---------- advertise page ---------- */
+.advertise-form {
+    margin-top: 10px;
+}
+
+.advertise-form iframe {
+    border: 1px solid var(--line);
+}
+
 /* ---------- footer ---------- */
 footer.site-footer {
     border-top: 1px solid var(--line);
@@ -443,8 +469,17 @@ footer.site-footer {
     letter-spacing: 0.2px;
 }
 
+.footer-links {
+    margin: 6px 0 0 0;
+}
+
+.footer-links a {
+    color: var(--muted);
+    text-decoration: underline;
+}
+
 @media (max-width: 520px) {
-    main { padding: 28px 16px 48px 16px; }
+    main { padding: 20px 16px 48px 16px; }
     input#site-search { width: 150px; }
     #search-results { width: 280px; }
 }
@@ -463,10 +498,10 @@ footer.site-footer {
       <nav class="catnav"><a class="home" href="index.html">Home</a>
 <a class="" href="category_failures.html">Failures</a>
 <a class="" href="category_protection.html">Protection</a>
-<a class="" href="category_growth.html">Growth</a>
+<a class="" href="category_installations.html">Installations</a>
 <a class="active" href="category_standards.html">Standards</a>
 <a class="" href="category_insurance.html">Insurance</a>
-<a class="" href="category_installation_and_upgrades.html">Installation and Upgrades</a>
+<a href="advertise.html">Advertise With Us</a>
 <a href="featured_archive.html">Featured</a></nav>
       <div class="search-wrap">
         <input type="search" id="site-search" placeholder="Search stories, events, articles...">
@@ -476,161 +511,28 @@ footer.site-footer {
   </div>
 </header>
 <div class="diagram-rule"></div>
+<div class="ad-banner">Your advertisement could be here</div>
 <main>
 
 <h1 style="border-bottom:3px solid #3f7a4f; padding-bottom:10px; margin-top:0;">Standards</h1>
-<p class="category-intro">NERC, IEEE, and industry standards updates relevant to electrical power system safety, protection, and reliability compliance.</p>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/data-center-power-fluctuation" target="_blank" rel="noopener">Power Buffer Protects Grid From Data Centers’ Wild Load Swings</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Wed, 29 Apr 2026 14:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/staff-working-behind-computers-in-the-control-center.jpg?id=66648750&amp;width=1200&amp;height=800&amp;coordinates=62%2C0%2C63%2C0&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;As more AI data centers come on line, concerns are rising about their effects on the grid, and it’s not just the &hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/rare-earth-free-magnets" target="_blank" rel="noopener">Why the Ideal Magnet Remains Out of Reach</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Wed, 29 Apr 2026 12:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/photo-of-a-technician-working-on-a-cylindrical-machine-containing-brass-colored-components.jpg?id=66525633&amp;width=1200&amp;height=800&amp;coordinates=0%2C208%2C0%2C209&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;All over the world, researchers are working on an urgent and surprisingly&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/electric-hgv" target="_blank" rel="noopener">Inside the Software Making Electric Heavy Trucks Practical</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Wed, 27 May 2026 12:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/a-compact-autonomous-delivery-truck-turning-onto-a-thruway.jpg?id=66769171&amp;width=1200&amp;height=800&amp;coordinates=62%2C0%2C63%2C0&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;The &lt;a href=&quot;https://spectrum.ieee.org/tag/electric-vehicles&quot; target=&quot;_self&quot;&gt;electric vehicle&lt;/a&gt; (EV) mark&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/supercapacitor-electrodes-bourbon-waste" target="_blank" rel="noopener">Bourbon Waste Could Provide Next-Gen Supercapacitor Components</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Wed, 25 Mar 2026 13:43:26 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/an-adult-man-in-safety-goggles-and-gloves-holding-up-a-beaker-filled-with-opaque-bourbon-waste.jpg?id=65400140&amp;width=1200&amp;height=800&amp;coordinates=0%2C208%2C0%2C209&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;Kentucky’s bourbon industry produces &lt;a href=&quot;https://ambrook.com/off&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/ferc-data-center-policy" target="_blank" rel="noopener">U.S. Pushes Grid Operators to Connect Data Centers Faster</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Wed, 24 Jun 2026 12:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/elevated-view-of-a-rooftop-cooling-system-with-a-dozen-industrial-fans.jpg?id=67009428&amp;width=1200&amp;height=800&amp;coordinates=0%2C208%2C0%2C209&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;The United States’ top energy regulator has ordered grid operators to either overhaul how the&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/sodium-ion-battery-peak-energy" target="_blank" rel="noopener">Sodium-Ion Batteries Get Another Shot at Success in the U.S.</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Wed, 22 Jul 2026 15:00:02 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/a-sodium-ion-prismatic-cell-battery-pack.jpg?id=67517723&amp;width=1200&amp;height=800&amp;coordinates=62%2C0%2C63%2C0&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;Despite setbacks in sodium-ion battery development in the U.S., the startup Peak Energy says it can be the one to finally ach&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://content.knowledgehub.wiley.com/energy-in-motion-unlocking-the-interconnected-grid-of-tomorrow/" target="_blank" rel="noopener">Building an Interregional Transmission Overlay for a Resilient U.S. Grid</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Wed, 22 Apr 2026 10:00:02 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/stylized-red-wsp-logo-on-a-dark-teal-background.png?id=65565498&amp;width=980&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;Examining how a U.S. Interregional Transmission Overlay could address aging grid infrastructure, surging demand, and renewable integration challenges.&lt;/p&gt;&lt;p&gt;&lt;&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid" target="_blank" rel="noopener">Puerto Rico Upgrades Remote Microgrid With Clean Hydrogen</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Wed, 15 Jul 2026 14:00:02 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/a-trailer-size-refrigerated-container-plugged-into-a-row-of-solar-panels-in-a-sunny-field.jpg?id=67155059&amp;width=1200&amp;height=800&amp;coordinates=62%2C0%2C63%2C0&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;On the nights after Hurricane Maria ravaged Puerto Rico’s power grid in 2017&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/distribution-grid-modernization" target="_blank" rel="noopener">What It Takes for Future-Ready Power Distribution</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Wed, 03 Jun 2026 11:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/utility-workers-inspect-electrical-equipment-beside-a-service-truck-on-a-grassy-site.jpg?id=66649065&amp;width=1200&amp;height=800&amp;coordinates=0%2C0%2C0%2C1&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;&lt;em&gt;This sponsored article is brought to you by &lt;a href=&quot;https://www.bv.com/en-US/p&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/ai-energy-systems-melbourne" target="_blank" rel="noopener">As AI Reshapes Global Energy Systems, Melbourne Leads Through Engineering Collaboration</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Wed, 01 Jul 2026 16:01:27 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/glowing-digital-network-map-of-australia-and-surrounding-asia-pacific-region.png?id=66945530&amp;width=1200&amp;height=800&amp;coordinates=58%2C0%2C59%2C0&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;&lt;em&gt;This article is brought to you by &lt;a href=&quot;https://www.melbournecb.com.au/?utm_source&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/lucid-motors-robotaxi" target="_blank" rel="noopener">The Lucid Lunar Is a Robotaxi for Two Passengers</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Tue, 31 Mar 2026 13:30:03 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/a-two-seat-electric-vehicle-without-doors.jpg?id=65413393&amp;width=1200&amp;height=800&amp;coordinates=0%2C208%2C0%2C209&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;Check out the interior of the &lt;a href=&quot;https://spectrum.ieee.org/tag/self-driving&quot; target=&quot;_self&quot;&gt;self-driving ca&lt;/a&gt;r in &hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/data-center-dc" target="_blank" rel="noopener">Data Centers Are Transitioning From AC to DC</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Tue, 24 Mar 2026 16:00:05 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/nvidia-s-high-compute-density-racks.jpg?id=65397940&amp;width=1200&amp;height=800&amp;coordinates=0%2C208%2C0%2C209&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;Last week’s &lt;a href=&quot;https://www.nvidia.com/gtc/&quot; target=&quot;_blank&quot;&gt;Nvidia GTC&lt;/a&gt; conference highlighted new &lt;a href=&quot;https://spe&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/united-states-power-grid-capacity" target="_blank" rel="noopener">Why the U.S. Uses Only Half of Its Grid Capacity</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Tue, 23 Jun 2026 13:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/collage-of-obscured-person-with-power-grid-diagrams-and-demand-peak-shift-charts.png?id=66957832&amp;width=1200&amp;height=800&amp;coordinates=0%2C22%2C0%2C23&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;By most accounts, the United States appears poised to fall woefully short of meeting &hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/hershey-electric-railway-cuba" target="_blank" rel="noopener">The Forgotten History of Hershey’s Electric Railway in Cuba</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Tue, 21 Apr 2026 13:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/black-and-white-photo-of-a-train-station-platform-with-people-on-it.jpg?id=65558846&amp;width=1200&amp;height=800&amp;coordinates=0%2C87%2C0%2C87&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;Why does a chocolatier build a railroad? For Milton S. Hershey, it was a logical response to a sug&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/gigascale-ai-datacenter-power" target="_blank" rel="noopener">Neutralizing the Gigascale Problem: How to Solve the Physical Power Paradox of Extreme AI Training Loads</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Tue, 12 May 2026 17:15:15 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/three-tall-white-ampace-battery-modules-on-display-stands-at-a-trade-show.jpg?id=66700587&amp;width=1200&amp;height=800&amp;coordinates=0%2C0%2C0%2C0&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;&lt;em&gt;This sponsored article is brought to you by &lt;a href=&quot;https://ampacepower.com/&quot; target=&quot;_bl&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/distributed-inference-data-centers" target="_blank" rel="noopener">Your Next AI Query May Travel Where the Power Is</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Tue, 12 May 2026 12:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/illustration-of-a-stylized-ai-search-bar-and-nested-rectangles.jpg?id=66667694&amp;width=1200&amp;height=800&amp;coordinates=62%2C0%2C63%2C0&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;The rise of electricity-guzzling data centers has forced the artificial intelligence industry to get cr&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://events.bizzabo.com/860041" target="_blank" rel="noopener">Transmission Hardware Corona Performance and HVDC Submarine Cable EM Fields</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Thu, 30 Apr 2026 10:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/comsol-logo.png?id=27157944&amp;width=980&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;Laboratory or in-field measurements are often considered the gold standard for certain aspects of power system design; however, measurement approaches always have limitations. Simulation can hel&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/ai-designed-thermoelectric-generator" target="_blank" rel="noopener">AI Designs Thermoelectric Generators 10,000 Times Faster Than We Can</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Thu, 23 Apr 2026 11:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/an-n-p-pair-consisting-of-two-silver-columns-of-material-sits-in-a-gold-vise-like-device-copper-colored-ribbons-come-from-bel.jpg?id=65560088&amp;width=1200&amp;height=800&amp;coordinates=62%2C0%2C63%2C0&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;&lt;em&gt;&lt;/em&gt;Waste heat is everywhere: car e&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/800-vdc-for-data-centers" target="_blank" rel="noopener">Grid Operators Weigh High-Voltage DC Power for Data Centers</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Thu, 16 Jul 2026 10:00:02 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/an-800-vdc-power-supply-system.jpg?id=67154763&amp;width=1200&amp;height=800&amp;coordinates=0%2C83%2C0%2C84&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;Data center developers and hyperscalers are experimenting with &lt;a href=&quot;https://spectrum.ieee.org/data-center-dc&quot; target=&quot;_self&quot;&gt;800 vo&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/applied-materials-epic-center" target="_blank" rel="noopener">Accelerating Chipmaking Innovation for the Energy-Efficient AI Era</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Thu, 14 May 2026 10:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/modern-glass-office-complex-labeled-epic-center-with-trees-and-walkways-outside.jpg?id=66659351&amp;width=1200&amp;height=800&amp;coordinates=0%2C13%2C0%2C13&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;&lt;em&gt;This sponsored article is brought to you by &lt;a href=&quot;https://www.appliedmaterials.&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/sardinia-renewable-energy-conflict" target="_blank" rel="noopener">Sardinia’s Ancient Reasons for Rejecting a Clean Energy Future</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Thu, 07 May 2026 13:00:00 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/bucolic-landscape-featuring-pastureland-covered-in-stones-arranged-in-circular-and-straight-formations-and-nearby-wind-turbines.jpg?id=66686187&amp;width=1200&amp;height=800&amp;coordinates=0%2C112%2C0%2C112&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;&lt;em&gt;&lt;/em&gt;&lt;strong&gt;“Why are you here?”&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/fusion-reactor-tokamak-cfs-arc" target="_blank" rel="noopener">Fusion Startup’s Commercial Reactor Design Gets a Big Boost</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Thu, 04 Jun 2026 14:46:59 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/3d-aerial-rendering-of-a-commercial-fusion-power-plant.jpg?id=66859591&amp;width=1200&amp;height=800&amp;coordinates=62%2C0%2C63%2C0&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;Nuclear fusion reactors offer the hope of vast, clean energy from the same process that powers stars. But despi&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/second-life-ev-batteries" target="_blank" rel="noopener">Retired EV Batteries Get Second Life on the Grid</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Thu, 02 Jul 2026 14:54:34 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/a-large-graveled-lot-filled-with-rows-of-battery-storage-units.jpg?id=67081935&amp;width=1200&amp;height=800&amp;coordinates=0%2C83%2C0%2C84&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;Spent batteries from older electric vehicles are starting to pile up, but a handful of companies are re&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/tidal-energy-underwater-kite-power" target="_blank" rel="noopener">Underwater Kites Harvest Power From Slow-Moving Tides</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Mon, 29 Jun 2026 16:04:07 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/a-man-reaches-out-of-a-raft-to-touch-the-dorsal-fin-like-structure-of-a-device-resembling-an-aquatic-airplane.jpg?id=67049738&amp;width=1200&amp;height=800&amp;coordinates=0%2C83%2C0%2C84&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt; Off-grid coastal communities that rely on weather-depen&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://content.knowledgehub.wiley.com/power-systems-studies-with-simulink-and-simscape-electrical/" target="_blank" rel="noopener">Modeling and Simulation Approaches for Modern Power System Studies</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Mon, 27 Apr 2026 10:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/mathworks-logo-with-3d-wave-symbol-and-text-mathworks.png?id=26851519&amp;width=980&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;This webinar covers power system modeling and simulation across multiple timescales, from quasi-static 8760 analysis through EMT studies, fault classifi&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/led-light-pollution" target="_blank" rel="noopener">We’re Squandering LEDs’ Potential to Save Our Night Skies</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Mon, 20 Jul 2026 13:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/nighttime-view-of-the-river-thames-with-modern-vauxhall-and-nine-elms-skyscraper-cluster-glowing-in-the-background-and-the-illum.jpg?id=67480571&amp;width=1200&amp;height=800&amp;coordinates=62%2C0%2C63%2C0&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p class=&quot;shortcode-media shortcode-medi&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/plug-in-solar-power" target="_blank" rel="noopener">Utilities Aren’t Ready for the Balcony Solar Revolution</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Mon, 20 Jul 2026 12:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/a-solar-panel-secured-to-an-apartments-balcony-railing-on-a-sunny-day.jpg?id=67501758&amp;width=1200&amp;height=800&amp;coordinates=156%2C0%2C156%2C0&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;The stroke of a pen in Utah set off a solar chain reaction across the United States. Last Marc&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/william-heronemus-wind-energy" target="_blank" rel="noopener">This 1976 University Experiment Spun Up the U.S. Wind Industry</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Mon, 15 Jun 2026 13:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/a-man-and-a-woman-wearing-dressy-winter-coats-watch-a-crew-of-informally-dressed-men-working-on-the-construction-of-a-wind-turbi.jpg?id=66894045&amp;width=1200&amp;height=800&amp;coordinates=62%2C0%2C63%2C0&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;&lt;strong&gt;A half century ago, &lt;/strong&gt;&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/renewable-energy-resistance" target="_blank" rel="noopener">Why Sardinians Are Fighting the Renewable Energy Transition</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Mon, 01 Jun 2026 11:06:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/five-workers-in-reflective-safety-gear-and-helmets-standing-in-an-underground-tunnel.jpg?id=66832214&amp;width=1200&amp;height=800&amp;coordinates=0%2C83%2C0%2C84&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;“Not in my backyard” is the rallying cry of citizens everywhere resisting project&hellip;</p>
-</div>
-<div class="story" style="--accent:#3f7a4f">
-  <h3><a href="https://spectrum.ieee.org/battery-powered-air-conditioning" target="_blank" rel="noopener">Battery-Powered Air Conditioners Take a Load Off the Grid</a></h3>
-  <p class="meta">IEEE Spectrum &middot; Fri, 26 Jun 2026 11:00:01 +0000</p>
-  <p>&lt;img src=&quot;https://spectrum.ieee.org/media-library/a-woman-plugging-a-13-by-14-inch-power-bank-into-her-windows-air-conditioning-unit.jpg?id=67010865&amp;width=1200&amp;height=800&amp;coordinates=0%2C208%2C0%2C209&quot; /&gt;&lt;br /&gt;&lt;br /&gt;&lt;p&gt;Next month, when summer heat and winter cold near their peak in each of Earth’s h&hellip;</p>
-</div>
-<footer class="site-footer">An independent industry resource brought to you by JGV Creative</footer>
+<p class="category-intro">Safety codes, regulatory compliance, and technical engineering standards relevant to electrical power system safety, protection, and reliability.</p>
+<section class="subcategory-block">
+  <h2 style="border-bottom:2px solid #b3421f; padding-bottom:8px;">Safety Standards</h2>
+  <p class="category-intro">NFPA 70E, arc flash, and worker safety code updates.</p>
+  <div class="empty-state">No new stories yet. Check back after the next update.</div>
+</section><section class="subcategory-block">
+  <h2 style="border-bottom:2px solid #3f7a4f; padding-bottom:8px;">Grid/Regulatory Compliance</h2>
+  <p class="category-intro">NERC CIP, FERC rulings, and mandatory utility compliance requirements.</p>
+  <div class="empty-state">No new stories yet. Check back after the next update.</div>
+</section><section class="subcategory-block">
+  <h2 style="border-bottom:2px solid #b3781f; padding-bottom:8px;">Technical Standards</h2>
+  <p class="category-intro">IEEE, IEC, and other engineering specification updates and revisions.</p>
+  <div class="empty-state">No new stories yet. Check back after the next update.</div>
+</section>
+<footer class="site-footer">
+  <p>An independent industry resource brought to you by JGV Creative</p>
+  <p class="footer-links"><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
+</footer>
 </main>
 
 <script>

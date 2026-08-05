@@ -228,18 +228,33 @@ input#site-search:focus { border-color: var(--copper); }
 .diagram-rule::before { left: 6%; }
 .diagram-rule::after { right: 6%; }
 
+/* ---------- advertisement banner ---------- */
+.ad-banner {
+    max-width: 880px;
+    margin: 18px auto 0 auto;
+    padding: 14px 20px;
+    text-align: center;
+    border: 1px dashed var(--line);
+    background: var(--paper-raised);
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 /* ---------- layout ---------- */
 main {
     max-width: 880px;
     margin: 0 auto;
-    padding: 40px 24px 60px 24px;
+    padding: 24px 24px 60px 24px;
 }
 
 .updated {
     color: var(--muted);
     font-size: 12px;
     letter-spacing: 0.3px;
-    margin: 0 0 28px 0;
+    margin: 16px 0 28px 0;
     text-transform: uppercase;
 }
 
@@ -332,17 +347,9 @@ main {
     box-shadow: 0 6px 16px rgba(27, 31, 36, 0.10);
 }
 
-.cat-card .eyebrow {
-    font-size: 11px;
-    color: var(--accent, var(--copper));
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
 .cat-card h2 {
     font-size: 20px;
-    margin: 8px 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
 .cat-card p {
@@ -396,6 +403,16 @@ main {
     font-size: 13px;
 }
 
+/* ---------- subcategory sections (Installations, Standards, Trade Shows) --- */
+.subcategory-block {
+    margin-bottom: 40px;
+}
+
+.subcategory-block h2 {
+    font-size: 22px;
+    margin: 0 0 8px 0;
+}
+
 /* ---------- featured article page ---------- */
 .article-body {
     font-size: 18px;
@@ -433,6 +450,15 @@ main {
     text-transform: uppercase;
 }
 
+/* ---------- advertise page ---------- */
+.advertise-form {
+    margin-top: 10px;
+}
+
+.advertise-form iframe {
+    border: 1px solid var(--line);
+}
+
 /* ---------- footer ---------- */
 footer.site-footer {
     border-top: 1px solid var(--line);
@@ -443,8 +469,17 @@ footer.site-footer {
     letter-spacing: 0.2px;
 }
 
+.footer-links {
+    margin: 6px 0 0 0;
+}
+
+.footer-links a {
+    color: var(--muted);
+    text-decoration: underline;
+}
+
 @media (max-width: 520px) {
-    main { padding: 28px 16px 48px 16px; }
+    main { padding: 20px 16px 48px 16px; }
     input#site-search { width: 150px; }
     #search-results { width: 280px; }
 }
@@ -463,11 +498,11 @@ footer.site-footer {
       <nav class="catnav"><a class="home" href="index.html">Home</a>
 <a class="" href="category_failures.html">Failures</a>
 <a class="" href="category_protection.html">Protection</a>
-<a class="" href="category_growth.html">Growth</a>
+<a class="" href="category_installations.html">Installations</a>
 <a class="" href="category_standards.html">Standards</a>
 <a class="" href="category_insurance.html">Insurance</a>
-<a class="" href="category_installation_and_upgrades.html">Installation and Upgrades</a>
 <a class="" href="category_trade_shows.html">Trade Shows</a>
+<a href="advertise.html">Advertise With Us</a>
 <a href="featured_archive.html">Featured</a></nav>
       <div class="search-wrap">
         <input type="search" id="site-search" placeholder="Search stories, events, articles...">
@@ -477,8 +512,9 @@ footer.site-footer {
   </div>
 </header>
 <div class="diagram-rule"></div>
+<div class="ad-banner">Your advertisement could be here</div>
 <main>
-<p class="updated">Last updated: 2026-08-05 00:04 UTC</p>
+<p class="updated">Last updated: 2026-08-05 00:26 UTC</p>
 <div class="feature-row"><div class="callout-card">
   <p class="eyebrow">Next Event</p>
   <h2>CIGRE Paris Session</h2>
@@ -487,36 +523,29 @@ footer.site-footer {
 </div></div>
 <div class="cat-grid">
 <a class="cat-card" style="--accent:#b3781f" href="category_failures.html">
-  <p class="eyebrow">Category</p>
   <h2>Failures</h2>
   <p>33 stories tracked</p>
 </a><a class="cat-card" style="--accent:#2b5f8a" href="category_protection.html">
-  <p class="eyebrow">Category</p>
   <h2>Protection</h2>
   <p>30 stories tracked</p>
-</a><a class="cat-card" style="--accent:#b3781f" href="category_growth.html">
-  <p class="eyebrow">Category</p>
-  <h2>Growth</h2>
-  <p>29 stories tracked</p>
+</a><a class="cat-card" style="--accent:#2b5f8a" href="category_installations.html">
+  <h2>Installations</h2>
+  <p>1 stories tracked</p>
 </a><a class="cat-card" style="--accent:#3f7a4f" href="category_standards.html">
-  <p class="eyebrow">Category</p>
   <h2>Standards</h2>
-  <p>30 stories tracked</p>
+  <p>0 stories tracked</p>
 </a><a class="cat-card" style="--accent:#b3421f" href="category_insurance.html">
-  <p class="eyebrow">Category</p>
   <h2>Insurance</h2>
   <p>0 stories tracked</p>
-</a><a class="cat-card" style="--accent:#6b4f8a" href="category_installation_and_upgrades.html">
-  <p class="eyebrow">Category</p>
-  <h2>Installation and Upgrades</h2>
-  <p>33 stories tracked</p>
 </a><a class="cat-card" style="--accent:#6b4f8a" href="category_trade_shows.html">
-  <p class="eyebrow">Category</p>
   <h2>Trade Shows</h2>
   <p>5 events listed</p>
 </a>
 </div>
-<footer class="site-footer">An independent industry resource brought to you by JGV Creative</footer>
+<footer class="site-footer">
+  <p>An independent industry resource brought to you by JGV Creative</p>
+  <p class="footer-links"><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
+</footer>
 </main>
 
 <script>

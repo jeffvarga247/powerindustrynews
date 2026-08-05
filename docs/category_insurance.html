@@ -6,20 +6,20 @@
 <title>Insurance News | Power Industry News</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="canonical" href="https://powerindustry.news/category_insurance.html">
-<meta name="description" content="Risk and insurability perspectives for electrical power generation and utility infrastructure assets.">
+<meta name="description" content="Insurability of power generation companies and their infrastructure -- coverage denials, non-renewals, and insurers pulling back from power industry risk.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Power Industry News">
 <meta property="og:title" content="Insurance News | Power Industry News">
-<meta property="og:description" content="Risk and insurability perspectives for electrical power generation and utility infrastructure assets.">
+<meta property="og:description" content="Insurability of power generation companies and their infrastructure -- coverage denials, non-renewals, and insurers pulling back from power industry risk.">
 <meta property="og:url" content="https://powerindustry.news/category_insurance.html">
 <meta property="og:image" content="https://powerindustry.news/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Insurance News | Power Industry News">
-<meta name="twitter:description" content="Risk and insurability perspectives for electrical power generation and utility infrastructure assets.">
+<meta name="twitter:description" content="Insurability of power generation companies and their infrastructure -- coverage denials, non-renewals, and insurers pulling back from power industry risk.">
 <meta name="twitter:image" content="https://powerindustry.news/assets/og-image.png">
 <link rel="icon" href="assets/favicon.ico">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Insurance News", "description": "Risk and insurability perspectives for electrical power generation and utility infrastructure assets.", "url": "https://powerindustry.news/category_insurance.html", "isPartOf": {"@type": "WebSite", "name": "Power Industry News", "url": "https://powerindustry.news"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Insurance News", "description": "Insurability of power generation companies and their infrastructure -- coverage denials, non-renewals, and insurers pulling back from power industry risk.", "url": "https://powerindustry.news/category_insurance.html", "isPartOf": {"@type": "WebSite", "name": "Power Industry News", "url": "https://powerindustry.news"}}</script>
 <style>
 :root {
     --ink: #1b1f24;
@@ -228,18 +228,33 @@ input#site-search:focus { border-color: var(--copper); }
 .diagram-rule::before { left: 6%; }
 .diagram-rule::after { right: 6%; }
 
+/* ---------- advertisement banner ---------- */
+.ad-banner {
+    max-width: 880px;
+    margin: 18px auto 0 auto;
+    padding: 14px 20px;
+    text-align: center;
+    border: 1px dashed var(--line);
+    background: var(--paper-raised);
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 /* ---------- layout ---------- */
 main {
     max-width: 880px;
     margin: 0 auto;
-    padding: 40px 24px 60px 24px;
+    padding: 24px 24px 60px 24px;
 }
 
 .updated {
     color: var(--muted);
     font-size: 12px;
     letter-spacing: 0.3px;
-    margin: 0 0 28px 0;
+    margin: 16px 0 28px 0;
     text-transform: uppercase;
 }
 
@@ -332,17 +347,9 @@ main {
     box-shadow: 0 6px 16px rgba(27, 31, 36, 0.10);
 }
 
-.cat-card .eyebrow {
-    font-size: 11px;
-    color: var(--accent, var(--copper));
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
 .cat-card h2 {
     font-size: 20px;
-    margin: 8px 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
 .cat-card p {
@@ -396,6 +403,16 @@ main {
     font-size: 13px;
 }
 
+/* ---------- subcategory sections (Installations, Standards, Trade Shows) --- */
+.subcategory-block {
+    margin-bottom: 40px;
+}
+
+.subcategory-block h2 {
+    font-size: 22px;
+    margin: 0 0 8px 0;
+}
+
 /* ---------- featured article page ---------- */
 .article-body {
     font-size: 18px;
@@ -433,6 +450,15 @@ main {
     text-transform: uppercase;
 }
 
+/* ---------- advertise page ---------- */
+.advertise-form {
+    margin-top: 10px;
+}
+
+.advertise-form iframe {
+    border: 1px solid var(--line);
+}
+
 /* ---------- footer ---------- */
 footer.site-footer {
     border-top: 1px solid var(--line);
@@ -443,8 +469,17 @@ footer.site-footer {
     letter-spacing: 0.2px;
 }
 
+.footer-links {
+    margin: 6px 0 0 0;
+}
+
+.footer-links a {
+    color: var(--muted);
+    text-decoration: underline;
+}
+
 @media (max-width: 520px) {
-    main { padding: 28px 16px 48px 16px; }
+    main { padding: 20px 16px 48px 16px; }
     input#site-search { width: 150px; }
     #search-results { width: 280px; }
 }
@@ -463,10 +498,10 @@ footer.site-footer {
       <nav class="catnav"><a class="home" href="index.html">Home</a>
 <a class="" href="category_failures.html">Failures</a>
 <a class="" href="category_protection.html">Protection</a>
-<a class="" href="category_growth.html">Growth</a>
+<a class="" href="category_installations.html">Installations</a>
 <a class="" href="category_standards.html">Standards</a>
 <a class="active" href="category_insurance.html">Insurance</a>
-<a class="" href="category_installation_and_upgrades.html">Installation and Upgrades</a>
+<a href="advertise.html">Advertise With Us</a>
 <a href="featured_archive.html">Featured</a></nav>
       <div class="search-wrap">
         <input type="search" id="site-search" placeholder="Search stories, events, articles...">
@@ -476,12 +511,16 @@ footer.site-footer {
   </div>
 </header>
 <div class="diagram-rule"></div>
+<div class="ad-banner">Your advertisement could be here</div>
 <main>
 
 <h1 style="border-bottom:3px solid #b3421f; padding-bottom:10px; margin-top:0;">Insurance</h1>
-<p class="category-intro">Risk and insurability perspectives for electrical power generation and utility infrastructure assets.</p>
+<p class="category-intro">Insurability of power generation companies and their infrastructure -- coverage denials, non-renewals, and insurers pulling back from power industry risk.</p>
 <div class="empty-state">No new stories yet. Check back after the next update.</div>
-<footer class="site-footer">An independent industry resource brought to you by JGV Creative</footer>
+<footer class="site-footer">
+  <p>An independent industry resource brought to you by JGV Creative</p>
+  <p class="footer-links"><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
+</footer>
 </main>
 
 <script>
