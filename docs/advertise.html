@@ -231,15 +231,18 @@ input#site-search:focus { border-color: var(--copper); }
 .ad-banner {
     max-width: 880px;
     margin: 18px auto 0 auto;
-    padding: 14px 20px;
+    padding: 40px 20px;
     text-align: center;
     border: 1px dashed var(--line);
     background: var(--paper-raised);
     color: var(--muted);
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ---------- layout ---------- */
@@ -391,6 +394,11 @@ main {
 .story p:last-child, .event-card p:last-child {
     margin: 0;
     color: #3a3630;
+}
+
+.story, .event-card, .story *, .event-card * {
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .empty-state {
