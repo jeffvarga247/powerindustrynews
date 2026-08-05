@@ -58,5 +58,17 @@
   "https://www.utilitydive.com/news/aep-secures-13-gw-of-gas-turbines-as-generation-central-to-growth-plans/826808/": "Installations::Generation",
   "https://www.utilitydive.com/news/dte-rate-stability-data-center-projects-large-load-pipeline/826803/": null,
   "https://www.utilitydive.com/news/pjm-backstop-capacity-auction-ferc-data-centers/826792/": null,
-  "https://www.utilitydive.com/spons/leading-the-agentic-grid-transformation/826181/": null
+  "https://www.utilitydive.com/spons/leading-the-agentic-grid-transformation/826181/": null,
+  "https://www.utilitydive.com/news/pseg-data-center-pjm-bilateral-contract-reliability/827045/": {
+    "category": null,
+    "lang": "en",
+    "title_en": "",
+    "summary_en": ""
+  },
+  "https://www.utilitydive.com/news/texas-hits-pause-data-center-interconnections/827046/": {
+    "category": null,
+    "lang": "en",
+    "title_en": "",
+    "summary_en": ""
+  }
 }

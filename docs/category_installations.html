@@ -22,12 +22,15 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Installations News", "description": "Sales leads for vendors: new and retrofit transmission and distribution equipment installs, plus new generation facilities being built, around the world.", "url": "https://powerindustry.news/category_installations.html", "isPartOf": {"@type": "WebSite", "name": "Power Industry News", "url": "https://powerindustry.news"}}</script>
 <style>
 :root {
-    --ink: #1b1f24;
-    --paper: #f7f5f0;
-    --paper-raised: #ffffff;
-    --line: #ddd7c8;
-    --muted: #706a5c;
-    --copper: #b3781f;
+    --ink: #e6e9ec;          /* primary text on dark */
+    --paper: #0f1216;        /* page background -- deep graphite, not pure black */
+    --paper-raised: #171b21; /* cards / raised surfaces */
+    --line: #2a313a;         /* hairlines and borders */
+    --muted: #949ca6;        /* secondary text */
+    --body-dim: #c2c8cf;     /* body copy inside cards */
+    --copper: #3d9bff;       /* primary accent (was copper) */
+    --accent-solid: #148bf5; /* solid fills / icon blue */
+    --masthead: #161b22;     /* header band, lifted off the page */
 }
 
 * { box-sizing: border-box; }
@@ -53,8 +56,9 @@ a { color: inherit; }
 
 /* ---------- masthead ---------- */
 header.masthead {
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--masthead);
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
     padding: 22px 24px 0 24px;
 }
 
@@ -87,7 +91,7 @@ header.masthead {
 .masthead-tagline {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
-    color: #c8bfa8;
+    color: var(--muted);
     letter-spacing: 0.5px;
     margin: 4px 0 18px 0;
     text-transform: uppercase;
@@ -122,16 +126,16 @@ nav.catnav a {
 }
 
 nav.catnav a.home {
-    background: var(--copper);
-    border-color: var(--copper);
-    color: #1b1f24;
+    background: var(--accent-solid);
+    border-color: var(--accent-solid);
+    color: #06121f;
     font-weight: 700;
 }
 
 nav.catnav a.active {
-    background: var(--paper);
-    color: var(--ink);
-    border-color: var(--paper);
+    background: transparent;
+    color: var(--copper);
+    border-color: var(--copper);
     font-weight: 700;
 }
 
@@ -150,7 +154,7 @@ input#site-search {
     outline: none;
 }
 
-input#site-search::placeholder { color: #7d7767; }
+input#site-search::placeholder { color: #7c848d; }
 input#site-search:focus { border-color: var(--copper); }
 
 #search-results {
@@ -262,7 +266,7 @@ main {
 }
 
 .category-intro {
-    color: #3a3630;
+    color: var(--body-dim);
     margin: 6px 0 26px 0;
     max-width: 68ch;
 }
@@ -303,7 +307,7 @@ main {
 
 .spotlight-card p, .callout-card p {
     margin: 0 0 6px 0;
-    color: #3a3630;
+    color: var(--body-dim);
     font-size: 15px;
 }
 
@@ -347,12 +351,78 @@ main {
 
 .cat-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(27, 31, 36, 0.10);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
 }
 
-.cat-card h2 {
-    font-size: 20px;
-    margin: 0 0 10px 0;
+.cat-card {
+    text-align: center;
+    padding: 18px 14px 14px 14px;
+}
+
+.cat-icon { width: 96px; height: 96px; display: block; margin: 0 auto 10px auto; }
+.cat-icon-head { width: 88px; height: 88px; display: block; margin: 0 0 14px 0; }
+
+.cat-heading {
+    border-bottom: 3px solid var(--accent, var(--copper));
+    padding-bottom: 12px;
+    margin: 0 0 18px 0;
+}
+
+/* Visually hidden, still read by screen readers and indexed by search. */
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ---------- next event strip (compact, full width) ---------- */
+.next-event {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 880px;
+    margin: 0 auto 20px auto;
+    padding: 10px 16px;
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent-solid);
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.12s ease;
+}
+
+.next-event:hover { border-color: var(--copper); }
+
+.next-event-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-solid);
+    white-space: nowrap;
+}
+
+.next-event-name {
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.next-event-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--muted);
+}
+
+.next-event-arrow { margin-left: auto; color: var(--copper); }
+
+@media (max-width: 520px) {
+    .next-event-arrow { display: none; }
 }
 
 .cat-card p {
@@ -383,6 +453,19 @@ main {
 }
 
 .story h3 a:hover, .event-card h3 a:hover { color: var(--accent, var(--copper)); }
+.lang-tag {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--accent, var(--copper));
+  border-radius: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--accent, var(--copper));
+  vertical-align: middle;
+}
 
 .story .meta, .event-card .meta {
     color: var(--muted);
@@ -394,7 +477,7 @@ main {
 
 .story p:last-child, .event-card p:last-child {
     margin: 0;
-    color: #3a3630;
+    color: var(--body-dim);
 }
 
 .story, .event-card, .story *, .event-card * {
@@ -505,7 +588,7 @@ footer.site-footer {
     <div class="masthead-row">
       <nav class="catnav"><a class="home" href="index.html">Home</a>
 <a class="" href="category_failures.html">Failures</a>
-<a class="" href="category_protection.html">Protection</a>
+<a class="" href="category_protections.html">Protections</a>
 <a class="active" href="category_installations.html">Installations</a>
 <a class="" href="category_standards.html">Standards</a>
 <a class="" href="category_insurance.html">Insurance</a>
@@ -522,98 +605,83 @@ footer.site-footer {
 <div class="ad-banner">Your advertisement could be here</div>
 <main>
 
-<h1 style="border-bottom:3px solid #2b5f8a; padding-bottom:10px; margin-top:0;">Installations</h1>
+<div class="cat-heading"><img class="cat-icon-head" src="assets/icons/installations.png" alt="Installations" width="96" height="96" loading="lazy"><h1 class="sr-only">Installations</h1></div>
 <p class="category-intro">Sales leads for vendors: new and retrofit transmission and distribution equipment installs, plus new generation facilities being built, around the world.</p>
 <section class="subcategory-block">
-  <h2 style="border-bottom:2px solid #2b5f8a; padding-bottom:8px;">Transmission and Distribution</h2>
+  <h2 style="border-bottom:2px solid #4da3e0; padding-bottom:8px;">Transmission and Distribution</h2>
   <p class="category-intro">New substations, transmission lines, transformers, switchgear, and distribution equipment -- new builds and retrofits.</p>
-  <div class="story" style="--accent:#2b5f8a">
+  <div class="story" style="--accent:#4da3e0">
   <h3><a href="https://content.knowledgehub.wiley.com/energy-in-motion-unlocking-the-interconnected-grid-of-tomorrow/" target="_blank" rel="noopener">Building an Interregional Transmission Overlay for a Resilient U.S. Grid</a></h3>
   <p class="meta">IEEE Spectrum &middot; Wed, 22 Apr 2026 10:00:02 +0000</p>
   <p>Examining how a U.S. Interregional Transmission Overlay could address aging grid infrastructure, surging demand, and renewable integration challenges. What Attendees will Learn Why the current regional grid structure is approaching its limits — Explore how coal-fired generation retirements, renewabl&hellip;</p>
 </div>
-<div class="story" style="--accent:#2b5f8a">
+<div class="story" style="--accent:#4da3e0">
   <h3><a href="https://spectrum.ieee.org/distribution-grid-modernization" target="_blank" rel="noopener">What It Takes for Future-Ready Power Distribution</a></h3>
   <p class="meta">IEEE Spectrum &middot; Wed, 03 Jun 2026 11:00:01 +0000</p>
   <p>This sponsored article is brought to you by Black &amp; Veatch . The biggest challenge facing utilities today isn’t what it seems. It’s not demand, even as load growth accelerates. It’s not extreme weather, even as “major events” become routine. It’s not cybersecurity, even as connections expand across&hellip;</p>
 </div>
 </section><section class="subcategory-block">
-  <h2 style="border-bottom:2px solid #6b4f8a; padding-bottom:8px;">Generation</h2>
+  <h2 style="border-bottom:2px solid #a58ae0; padding-bottom:8px;">Generation</h2>
   <p class="category-intro">New wind, solar, gas, nuclear, hydro, and battery storage facilities under construction.</p>
-  <div class="story" style="--accent:#6b4f8a">
+  <div class="story" style="--accent:#a58ae0">
   <h3><a href="https://spectrum.ieee.org/sodium-ion-battery-peak-energy" target="_blank" rel="noopener">Sodium-Ion Batteries Get Another Shot at Success in the U.S.</a></h3>
   <p class="meta">IEEE Spectrum &middot; Wed, 22 Jul 2026 15:00:02 +0000</p>
   <p>Despite setbacks in sodium-ion battery development in the U.S., the startup Peak Energy says it can be the one to finally achieve the ambitious application of using the tech to store energy for the grid. When U.S. start-ups Natron Energy and Bedrock Materials shut down sodium-ion battery operations&hellip;</p>
 </div>
-<div class="story" style="--accent:#6b4f8a">
+<div class="story" style="--accent:#a58ae0">
   <h3><a href="https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid" target="_blank" rel="noopener">Puerto Rico Upgrades Remote Microgrid With Clean Hydrogen</a></h3>
   <p class="meta">IEEE Spectrum &middot; Wed, 15 Jul 2026 14:00:02 +0000</p>
   <p>On the nights after Hurricane Maria ravaged Puerto Rico’s power grid in 2017, former Puerto Rican energy regulator Javier Rúa-Jovet remembers watching the sky warp along the horizon as thousands of fossil fuel-powered generators spewed emissions into the atmosphere. The “whole society” was running o&hellip;</p>
 </div>
-<div class="story" style="--accent:#6b4f8a">
+<div class="story" style="--accent:#a58ae0">
   <h3><a href="https://www.powermag.com/nebraska-public-power-district-breaks-ground-on-694-mw-princeton-road-station/" target="_blank" rel="noopener">Nebraska Public Power District Breaks Ground on 694-MW Princeton Road Station</a></h3>
   <p class="meta">POWER Magazine &middot; Tue, 04 Aug 2026 21:26:19 +0000</p>
   <p>Nebraska Public Power District (NPPD) marked the start of construction on Princeton Road Station with a groundbreaking ceremony the morning of July 17, drawing state and local officials, community stakeholders, and NPPD staff to the site just north of Hallam, Nebraska. The 694-MW dual-fuel facility&hellip;</p>
 </div>
-<div class="story" style="--accent:#6b4f8a">
+<div class="story" style="--accent:#a58ae0">
   <h3><a href="https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/" target="_blank" rel="noopener">Battery-eligible New Jersey VPP program begins to take shape</a></h3>
   <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 12:50:30 -0400</p>
   <p>Utility-owned storage could help mitigate grid congestion, a utility manager said at a July stakeholder meeting. Another said customer-centric program design is crucial to reducing attrition.&hellip;</p>
 </div>
-<div class="story" style="--accent:#6b4f8a">
+<div class="story" style="--accent:#a58ae0">
   <h3><a href="https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/" target="_blank" rel="noopener">Southern Co. contracted large load rises to 17 GW</a></h3>
   <p class="meta">Utility Dive - Latest News &middot; Tue, 04 Aug 2026 09:20:14 -0400</p>
   <p>Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. The contract includes 1 GW of “flexible demand response” for peak shaving — the first such flexibility provision the company has codified with a data center customer.&hellip;</p>
 </div>
-<div class="story" style="--accent:#6b4f8a">
+<div class="story" style="--accent:#a58ae0">
   <h3><a href="https://spectrum.ieee.org/fusion-reactor-tokamak-cfs-arc" target="_blank" rel="noopener">Fusion Startup’s Commercial Reactor Design Gets a Big Boost</a></h3>
   <p class="meta">IEEE Spectrum &middot; Thu, 04 Jun 2026 14:46:59 +0000</p>
   <p>Nuclear fusion reactors offer the hope of vast, clean energy from the same process that powers stars. But despite decades of research, a fusion reactor that can supply practical amounts of power has proven elusive. Now startup Commonwealth Fusion Systems has revealed in depth what it says is the mos&hellip;</p>
 </div>
-<div class="story" style="--accent:#6b4f8a">
+<div class="story" style="--accent:#a58ae0">
   <h3><a href="https://spectrum.ieee.org/second-life-ev-batteries" target="_blank" rel="noopener">Retired EV Batteries Get Second Life on the Grid</a></h3>
   <p class="meta">IEEE Spectrum &middot; Thu, 02 Jul 2026 14:54:34 +0000</p>
   <p>Spent batteries from older electric vehicles are starting to pile up, but a handful of companies are repurposing them in a novel way: as energy storage for the grid. These batteries are retired from EVs after their capacity falls to 70 to 80 percent; that’s too low to satisfy drivers, but leaves eno&hellip;</p>
 </div>
-<div class="story" style="--accent:#6b4f8a">
+<div class="story" style="--accent:#a58ae0">
   <h3><a href="https://spectrum.ieee.org/tidal-energy-underwater-kite-power" target="_blank" rel="noopener">Underwater Kites Harvest Power From Slow-Moving Tides</a></h3>
   <p class="meta">IEEE Spectrum &middot; Mon, 29 Jun 2026 16:04:07 +0000</p>
   <p>Off-grid coastal communities that rely on weather-dependent solar and expensive diesel to meet their energy needs may soon have a new addition to their power production portfolio: tidal energy. Researchers from SRI International, a research institute in Menlo Park, Calif., are testing a buoyant kite&hellip;</p>
 </div>
-<div class="story" style="--accent:#6b4f8a">
+<div class="story" style="--accent:#a58ae0">
   <h3><a href="https://www.powermag.com/scalable-grid-ready-storage-how-connector-design-is-shaping-the-next-generation-of-energy-systems/" target="_blank" rel="noopener">Scalable, Grid-Ready Storage: How Connector Design Is Shaping the Next Generation of Energy Systems</a></h3>
   <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 18:09:50 +0000</p>
   <p>As utility-scale battery energy storage systems (BESS) scale from megawatts to gigawatts, the engineering complexity grows exponentially. Higher-voltage architectures and denser rack configurations are pushing the limits of conventional component design and exposing gaps that can compromise system p&hellip;</p>
 </div>
-<div class="story" style="--accent:#6b4f8a">
+<div class="story" style="--accent:#a58ae0">
   <h3><a href="https://www.renewableenergyworld.com/energy-business/new-project-development/what-is-superhot-geothermal-deep-rock-to-baseload-power-explained/" target="_blank" rel="noopener">What is ‘superhot’ geothermal? Deep rock to baseload power, explained</a></h3>
   <p class="meta">Factor This™ &middot; Mon, 03 Aug 2026 15:00:32 +0000</p>
   <p>Co-founder of Quaise Energy, Matt Houde, explains how his company is tackling the challenges of scaling superhot geothermal energy, which promises 24/7 baseload power.&hellip;</p>
 </div>
-<div class="story" style="--accent:#6b4f8a">
+<div class="story" style="--accent:#a58ae0">
   <h3><a href="https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/" target="_blank" rel="noopener">Dominion offshore wind project cost rises nearly $300M</a></h3>
   <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 12:07:45 -0400</p>
   <p>The increase is due to revised network upgrade costs assigned by the PJM Interconnection, tariffs imposed by the Trump administration in April and updated turbine installation projections, executives said.&hellip;</p>
 </div>
-<div class="story" style="--accent:#6b4f8a">
+<div class="story" style="--accent:#a58ae0">
   <h3><a href="https://www.powermag.com/rayburn-energy-station-a-cooperatives-answer-to-texas-sized-risk/" target="_blank" rel="noopener">Rayburn Energy Station: A Cooperative’s Answer to Texas-Sized Risk</a></h3>
   <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:34:04 +0000</p>
   <p>For Rayburn Electric Cooperative, ownership of the 758-MW combined cycle plant in Sherman, Texas, means stable rates, hardened reliability through heat waves and winter storms, and a hedge against the The post Rayburn Energy Station: A Cooperative’s Answer to Texas-Sized Risk appeared first on POWER&hellip;</p>
-</div>
-<div class="story" style="--accent:#6b4f8a">
-  <h3><a href="https://www.renewableenergyworld.com/energy-business/new-project-development/theyre-choosin-texas-factor-this-brief/" target="_blank" rel="noopener">They’re choosin’ Texas | Factor This Brief</a></h3>
-  <p class="meta">Factor This™ &middot; Mon, 03 Aug 2026 09:55:00 +0000</p>
-  <p>As data centers flock to Texas, Georgia Power installs a battery at an existing solar site, Antora Energy raises $550M, a key southeast Asian PV project comes online quickly, ComEd expands rooftop solar deployment, and Minnesota Power moves a little earth.&hellip;</p>
-</div>
-<div class="story" style="--accent:#6b4f8a">
-  <h3><a href="https://www.utilitydive.com/news/aep-secures-13-gw-of-gas-turbines-as-generation-central-to-growth-plans/826808/" target="_blank" rel="noopener">AEP secures 13 GW of gas turbines as generation ‘central’ to growth plans</a></h3>
-  <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 09:44:56 -0400</p>
-  <p>Turbines are “a scarce resource and will become increasingly more valuable,” AEP’s Bill Fehrman said. “We&#x27;re going to continue to be aggressive in our positions on this.”&hellip;</p>
-</div>
-<div class="story" style="--accent:#6b4f8a">
-  <h3><a href="https://www.renewableenergyworld.com/hydro-power/tidal-wave-energy/mocean-energy-targets-wave-powered-offshore-data-centers/" target="_blank" rel="noopener">Mocean Energy targets wave-powered offshore data centers</a></h3>
-  <p class="meta">Factor This™ &middot; Fri, 31 Jul 2026 19:48:00 +0000</p>
-  <p>Scotland-based Mocean Energy plans to move data centers out to sea with power from wave energy, solar PV and battery storage.&hellip;</p>
 </div>
 </section>
 <footer class="site-footer">
