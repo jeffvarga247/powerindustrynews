@@ -80,7 +80,11 @@ STORE_FILE = "story_store.json"                       # persistent archive of st
 CLASSIFICATION_CACHE_FILE = "story_classifications.json"  # story id -> assigned category (or null)
 OUTPUT_DIR = "site"
 
-MAX_STORIES_PER_CATEGORY = 30     # how many stories to show per category page
+# Each category keeps a rolling window of its most recent stories. A story
+# stays on its category page -- even after it scrolls out of the live RSS
+# feed -- until this many NEWER stories have pushed it off the bottom.
+STORIES_PER_CATEGORY = 12
+MAX_STORIES_PER_CATEGORY = STORIES_PER_CATEGORY   # display cap (same window)
 
 SITE_NAME = "Power Industry News"
 SITE_TAGLINE = "Grid intelligence for utility, protection, and plant professionals"
@@ -115,7 +119,7 @@ ADVERTISE_FORM_EMBED_URL = ""
 # ---------------------------------------------------------------------------
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 CLASSIFIER_MODEL = "claude-haiku-4-5-20251001"
-CLASSIFIER_BATCH_SIZE = 40   # stories per API call -- keeps each request small and cheap
+CLASSIFIER_BATCH_SIZE = 25   # stories per API call -- keeps each request small and cheap
 
 # The category structure the site actually renders. "compound" categories
 # get split into subcategory sections on their own page (Installations,
@@ -626,6 +630,19 @@ main {
 }
 
 .story h3 a:hover, .event-card h3 a:hover { color: var(--accent, var(--copper)); }
+.lang-tag {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid var(--accent, #b3781f);
+  border-radius: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--accent, #b3781f);
+  vertical-align: middle;
+}
 
 .story .meta, .event-card .meta {
     color: var(--muted);
@@ -841,7 +858,7 @@ def load_feed_urls(raw_config):
 def _call_anthropic(prompt):
     body = json.dumps({
         "model": CLASSIFIER_MODEL,
-        "max_tokens": 2000,
+        "max_tokens": 8000,
         "messages": [{"role": "user", "content": prompt}],
     }).encode("utf-8")
 
@@ -872,13 +889,22 @@ def _parse_json_response(text):
     return json.loads(text)
 
 
+def cache_category(entry):
+    """The classification cache holds either a bare leaf_key/None (the old
+    format) or a dict with category + translation fields (the new format).
+    This returns just the category either way."""
+    if isinstance(entry, dict):
+        return entry.get("category")
+    return entry
+
+
 def classify_stories_with_ai(stories, category_definitions):
     """Ask Claude Haiku to assign each story to the single best-fit leaf
-    category (or None) from category_definitions. Returns a dict of
-    story_id -> leaf_key (or None). Stories are sent in small batches to
-    keep each request cheap and reliable, and a failed batch is simply
-    skipped (those stories get retried automatically on the next run,
-    since they won't be in the classification cache yet)."""
+    category (or None), AND -- for stories not written in English -- to
+    return an English translation of the title and summary plus the source
+    language code. Returns {story_id: {"category":..., "lang":...,
+    "title_en":..., "summary_en":...}}. Batched to keep each request cheap;
+    a failed batch is skipped and retried on the next run."""
     if not stories:
         return {}
     if not ANTHROPIC_API_KEY:
@@ -899,17 +925,23 @@ def classify_stories_with_ai(stories, category_definitions):
             f'ID: {s["id"]}\nTITLE: {s["title"]}\nSUMMARY: {s["summary"][:200]}'
             for s in batch
         )
-        prompt = f"""You are sorting power-industry news stories into a fixed set of categories for a trade news website. Here are the categories and exactly what each one covers:
+        prompt = f"""You are sorting power-industry news stories into a fixed set of categories for a trade news website read by utility engineers and equipment vendors. Here are the categories and exactly what each one covers:
 
 {categories_block}
 
-For each story below, decide which ONE category it best fits, or "None" if it doesn't clearly fit any of them. Be strict: a story that only briefly mentions a category's topic in passing does not count -- the story needs to actually be about that topic.
+These stories come from broad news searches, so MOST of them will be irrelevant and must be assigned "None". Be strict and skeptical:
+- The story must be about a real event or development in the ELECTRICAL POWER industry (utilities, the grid, substations, power plants, power equipment).
+- Assign "None" to: consumer/retail energy tips, stock and earnings coverage, opinion columns, listicles, press-release marketing fluff, car fires or house fires that merely happen near power lines, weather stories that only mention outages in passing, and anything where the category topic is a passing mention rather than the subject.
+- A brief local news report about a real substation or transformer incident IS relevant -- small outlets are a valid source. Judge by the event, not the size of the publication.
+- If you are unsure, choose "None".
 
 Stories:
 {story_lines}
 
-Respond with ONLY a JSON array, no other text before or after it. The "id" value in each object MUST be copied character-for-character from that story's "ID:" line above (it is a URL, not a number) -- do not invent, number, or shorten it:
-[{{"id": "<the exact ID: value from above>", "category": "<one of the category keys above, or None>"}}]
+For each story also report its language. If the title/summary are NOT in English, translate them into clear English. If they ARE already in English, set "lang" to "en" and leave the translation fields as empty strings.
+
+Respond with ONLY a JSON array, no other text before or after it. The "id" value MUST be copied character-for-character from that story's "ID:" line above (it is a URL, not a number) -- do not invent, number, or shorten it:
+[{{"id": "<exact ID from above>", "category": "<one of the category keys above, or None>", "lang": "<ISO 639-1 code, e.g. en, de, ja, es, pt, fr>", "title_en": "<English title, or empty string if already English>", "summary_en": "<English summary, or empty string if already English>"}}]
 """
         try:
             text = _call_anthropic(prompt)
@@ -917,11 +949,18 @@ Respond with ONLY a JSON array, no other text before or after it. The "id" value
             skipped_invalid = 0
             for item in parsed:
                 sid = item.get("id")
-                cat = item.get("category")
                 if sid not in valid_ids:
                     skipped_invalid += 1
                     continue
-                results[sid] = cat if cat and cat != "None" and cat in category_definitions else None
+                cat = item.get("category")
+                cat = cat if cat and cat != "None" and cat in category_definitions else None
+                lang = (item.get("lang") or "en").strip().lower()[:5]
+                results[sid] = {
+                    "category": cat,
+                    "lang": lang,
+                    "title_en": (item.get("title_en") or "").strip(),
+                    "summary_en": (item.get("summary_en") or "").strip(),
+                }
             if skipped_invalid:
                 print(f"  Warning: batch {batch_num}/{len(batches)} returned {skipped_invalid} "
                       f"id(s) that didn't match any story sent -- those stories were skipped "
@@ -958,6 +997,8 @@ def fetch_stories_from_feeds(feed_urls):
         if parsed.bozo and not parsed.entries:
             print(f"  Warning: feed may be broken: {url}")
 
+        is_google_news = "news.google.com" in url
+
         for entry in parsed.entries:
             story_id = entry.get("id") or entry.get("link")
             if not story_id:
@@ -969,6 +1010,29 @@ def fetch_stories_from_feeds(feed_urls):
             summary_text = strip_html(html.unescape(summary))
             source_title = parsed.feed.get("title", "Unknown source")
             published = entry.get("published", "")
+
+            if is_google_news:
+                # Google News wraps the real publisher in <source> and appends
+                # " - Publisher" to every headline; recover the real publisher
+                # name and strip the redundant suffix off the title.
+                publisher = ""
+                src = entry.get("source")
+                if isinstance(src, dict):
+                    publisher = src.get("title", "") or ""
+                if not publisher:
+                    publisher = entry.get("source_title", "") or ""
+                if publisher:
+                    source_title = publisher
+                    if title.endswith(" - " + publisher):
+                        title = title[: -(len(publisher) + 3)].strip()
+                else:
+                    source_title = "Google News"
+                    if " - " in title:
+                        title = title.rsplit(" - ", 1)[0].strip()
+                # Google News summaries are just link markup -- drop them
+                # rather than showing scraped junk on the card.
+                if len(summary_text) < 40 or summary_text.startswith(title[:30]):
+                    summary_text = ""
 
             stories.append({
                 "id": story_id,
@@ -1185,10 +1249,14 @@ def render_story_cards(stories, color):
     for s in stories[:MAX_STORIES_PER_CATEGORY]:
         clean_title = strip_html(s['title'])
         clean_summary = strip_html(s['summary'])
+        lang = (s.get('lang') or '').strip()
+        lang_tag = (f'<span class="lang-tag" title="Original article is in this language">'
+                    f'{html.escape(lang.upper())}</span>') if lang and lang != 'en' else ''
+        summary_html = f"<p>{html.escape(clean_summary)}&hellip;</p>" if clean_summary else ""
         cards.append(f"""<div class="story" style="--accent:{color['accent']}">
-  <h3><a href="{html.escape(s['link'])}" target="_blank" rel="noopener">{html.escape(clean_title)}</a></h3>
+  <h3><a href="{html.escape(s['link'])}" target="_blank" rel="noopener">{html.escape(clean_title)}</a>{lang_tag}</h3>
   <p class="meta">{html.escape(s['source'])} &middot; {html.escape(s['published'])}</p>
-  <p>{html.escape(clean_summary)}&hellip;</p>
+  {summary_html}
 </div>""")
     return "\n".join(cards)
 
@@ -1522,7 +1590,7 @@ def leaf_label(leaf_key):
 def build_search_index(store, classification_cache, tradeshows, featured_articles):
     index = []
     for sid, s in store.items():
-        leaf_key = classification_cache.get(sid) or ""
+        leaf_key = cache_category(classification_cache.get(sid)) or ""
         label = leaf_label(leaf_key)
         index.append({
             "title": strip_html(s["title"]),
@@ -1648,9 +1716,20 @@ def main():
     # take effect, instead of old bucket assignments lingering forever ---
     buckets = {}
     for sid, story in all_known.items():
-        leaf_key = classification_cache.get(sid)
-        if leaf_key:
-            buckets.setdefault(leaf_key, []).append(story)
+        entry = classification_cache.get(sid)
+        leaf_key = cache_category(entry)
+        if not leaf_key:
+            continue
+        # Foreign-language stories display with Claude's English translation
+        # and a language tag; the link still points at the original article.
+        if isinstance(entry, dict) and entry.get("lang", "en") != "en":
+            story = dict(story)
+            story["lang"] = entry.get("lang", "")
+            if entry.get("title_en"):
+                story["title"] = entry["title_en"]
+            if entry.get("summary_en"):
+                story["summary"] = entry["summary_en"]
+        buckets.setdefault(leaf_key, []).append(story)
 
     story_counts = {}
     kept_story_ids = set()
@@ -1662,7 +1741,7 @@ def main():
                 leaf_key = f"{name}::{sub_name}"
                 merged_list = buckets.get(leaf_key, [])
                 merged_list.sort(key=lambda s: s["published"], reverse=True)
-                merged_list = merged_list[:200]
+                merged_list = merged_list[:STORIES_PER_CATEGORY]
                 kept_story_ids.update(s["id"] for s in merged_list)
                 sub_stories_for_page[sub_name] = merged_list
                 total_count += len(merged_list)
@@ -1679,7 +1758,7 @@ def main():
             leaf_key = name
             merged_list = buckets.get(leaf_key, [])
             merged_list.sort(key=lambda s: s["published"], reverse=True)
-            merged_list = merged_list[:200]
+            merged_list = merged_list[:STORIES_PER_CATEGORY]
             kept_story_ids.update(s["id"] for s in merged_list)
 
             page_html = render_category_page(name, merged_list, top_level_names)
