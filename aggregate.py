@@ -131,7 +131,7 @@ CONTACT_EMAIL = "contactSET@proton.me"
 # Paste your Google Form's embed URL here once you've created it (Google
 # Forms -> Send -> the "<>" embed tab -> copy the src="..." URL). Until
 # then, the Advertise page shows a simple mailto fallback instead.
-ADVERTISE_FORM_EMBED_URL = ""
+ADVERTISE_FORM_EMBED_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd371L0E09UK17cddTSCU9iq14JdzX2YnPDztJb9zLA7k0Mkw/viewform?embedded=true"
 
 # ---------------------------------------------------------------------------
 # AI classification (Claude Haiku 4.5) -- replaces keyword filtering
@@ -1559,7 +1559,7 @@ def render_advertise_page(all_categories):
 
     if ADVERTISE_FORM_EMBED_URL:
         form_html = (f'<iframe src="{html.escape(ADVERTISE_FORM_EMBED_URL)}" '
-                     f'width="100%" height="900" frameborder="0">Loading '
+                     f'width="100%" height="1100" frameborder="0">Loading '
                      f'form&hellip;</iframe>')
     else:
         # Deliberately no mailto: link here -- a plain address on a public
