@@ -1519,18 +1519,18 @@ def leaf_label(leaf_key):
     return leaf_key.replace("::", " \u2014 ")
 
 
-def build_search_index(store, tradeshows, featured_articles):
+def build_search_index(store, classification_cache, tradeshows, featured_articles):
     index = []
-    for leaf_key, stories in store.items():
+    for sid, s in store.items():
+        leaf_key = classification_cache.get(sid) or ""
         label = leaf_label(leaf_key)
-        for s in stories:
-            index.append({
-                "title": strip_html(s["title"]),
-                "url": s["link"],
-                "category": label,
-                "source": s.get("source", ""),
-                "summary": strip_html(s.get("summary", ""))[:160],
-            })
+        index.append({
+            "title": strip_html(s["title"]),
+            "url": s["link"],
+            "category": label,
+            "source": s.get("source", ""),
+            "summary": strip_html(s.get("summary", ""))[:160],
+        })
     for e in tradeshows:
         index.append({
             "title": e.get("name", "Untitled Event"),
@@ -1591,6 +1591,24 @@ def copy_assets_and_cname():
         f.write(domain + "\n")
 
 
+def _load_known_stories(path):
+    """Load the persistent story pool as a flat {story_id: story_dict} map.
+    Also transparently migrates the old per-bucket-list format (used before
+    this fix) into the flat format, so no historical data is lost."""
+    raw = load_json(path, {})
+    if not raw:
+        return {}
+    first_value = next(iter(raw.values()))
+    if isinstance(first_value, list):
+        # legacy format: {leaf_key: [story, story, ...]} -- flatten it
+        flat = {}
+        for stories in raw.values():
+            for s in stories:
+                flat[s["id"]] = s
+        return flat
+    return raw  # already flat
+
+
 def main():
     print("Starting news aggregation run...")
     raw_config = load_json(CONFIG_FILE, {})
@@ -1599,8 +1617,8 @@ def main():
         print(f"ERROR: no feed URLs found in {CONFIG_FILE}. Add your feeds there first.")
         return
 
-    store = load_json(STORE_FILE, {})                             # leaf_key -> list of stories
-    classification_cache = load_json(CLASSIFICATION_CACHE_FILE, {})  # story id -> leaf_key or None
+    previously_known = _load_known_stories(STORE_FILE)                 # story id -> story dict
+    classification_cache = load_json(CLASSIFICATION_CACHE_FILE, {})    # story id -> leaf_key or None
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     top_level_names = list(TOP_LEVEL_STRUCTURE.keys())
@@ -1608,36 +1626,44 @@ def main():
 
     # --- fetch every feed once, dedupe by story id ---
     print(f"Fetching {len(feed_urls)} feed(s)...")
-    all_stories = fetch_stories_from_feeds(feed_urls)
-    story_by_id = {s["id"]: s for s in all_stories}
-    print(f"  {len(story_by_id)} total stories currently in the feeds")
+    fetched_stories = fetch_stories_from_feeds(feed_urls)
+    fetched_by_id = {s["id"]: s for s in fetched_stories}
+    print(f"  {len(fetched_by_id)} stories currently live in the feeds")
 
-    # --- classify only stories we haven't classified before ---
-    new_stories = [s for s in story_by_id.values() if s["id"] not in classification_cache]
+    # --- classify only stories we've truly never seen before ---
+    new_stories = [s for sid, s in fetched_by_id.items() if sid not in classification_cache]
     print(f"Classifying {len(new_stories)} new story(ies) with AI...")
     new_classifications = classify_stories_with_ai(new_stories, CATEGORY_DEFINITIONS)
     classification_cache.update(new_classifications)
     save_json(CLASSIFICATION_CACHE_FILE, classification_cache)
 
-    # --- bucket every known story (old + new) into its leaf category ---
-    buckets = {leaf_key: {s["id"]: s for s in stories} for leaf_key, stories in store.items()}
-    for sid, story in story_by_id.items():
+    # Fresh feed data wins over older cached copies of the same story (keeps
+    # titles/summaries current); previously-known stories fill in anything
+    # that has since scrolled off the live RSS feed but is still classified.
+    all_known = dict(previously_known)
+    all_known.update(fetched_by_id)
+
+    # --- rebuild every category completely from the CURRENT classification
+    # cache -- this is what makes a reclassification (or a bug fix) actually
+    # take effect, instead of old bucket assignments lingering forever ---
+    buckets = {}
+    for sid, story in all_known.items():
         leaf_key = classification_cache.get(sid)
-        if not leaf_key:
-            continue
-        buckets.setdefault(leaf_key, {})[sid] = story
+        if leaf_key:
+            buckets.setdefault(leaf_key, []).append(story)
 
     story_counts = {}
+    kept_story_ids = set()
     for name, info in TOP_LEVEL_STRUCTURE.items():
         if info["compound"]:
             sub_stories_for_page = {}
             total_count = 0
             for sub_name in info["subcategories"]:
                 leaf_key = f"{name}::{sub_name}"
-                merged_list = list(buckets.get(leaf_key, {}).values())
+                merged_list = buckets.get(leaf_key, [])
                 merged_list.sort(key=lambda s: s["published"], reverse=True)
                 merged_list = merged_list[:200]
-                store[leaf_key] = merged_list
+                kept_story_ids.update(s["id"] for s in merged_list)
                 sub_stories_for_page[sub_name] = merged_list
                 total_count += len(merged_list)
                 print(f"  {name} -> {sub_name}: {len(merged_list)} stories")
@@ -1651,10 +1677,10 @@ def main():
 
         else:
             leaf_key = name
-            merged_list = list(buckets.get(leaf_key, {}).values())
+            merged_list = buckets.get(leaf_key, [])
             merged_list.sort(key=lambda s: s["published"], reverse=True)
             merged_list = merged_list[:200]
-            store[leaf_key] = merged_list
+            kept_story_ids.update(s["id"] for s in merged_list)
 
             page_html = render_category_page(name, merged_list, top_level_names)
             fname = f"category_{slugify(name)}.html"
@@ -1663,6 +1689,12 @@ def main():
             page_paths.append(fname)
             story_counts[name] = len(merged_list)
             print(f"  {name}: {len(merged_list)} stories")
+
+    # Persist only the full story data we're actually still displaying
+    # somewhere, so this file doesn't grow forever. The classification
+    # cache itself is kept in full (it's tiny) so a story is never
+    # reclassified twice even after it ages out of every category.
+    store = {sid: all_known[sid] for sid in kept_story_ids}
 
     save_json(STORE_FILE, store)
 
@@ -1713,7 +1745,7 @@ def main():
 
     # --- search index, sitemap, robots, assets/CNAME ---
     print("Building search index, sitemap, robots.txt...")
-    build_search_index(store, tradeshows, featured_articles)
+    build_search_index(store, classification_cache, tradeshows, featured_articles)
     build_sitemap(page_paths)
     build_robots()
     copy_assets_and_cname()
