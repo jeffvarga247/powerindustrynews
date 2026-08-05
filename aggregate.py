@@ -894,9 +894,10 @@ def classify_stories_with_ai(stories, category_definitions):
     results = {}
     batches = [stories[i:i + CLASSIFIER_BATCH_SIZE] for i in range(0, len(stories), CLASSIFIER_BATCH_SIZE)]
     for batch_num, batch in enumerate(batches, 1):
-        story_lines = "\n".join(
-            f'{i}. [{s["id"]}] TITLE: {s["title"]}  SUMMARY: {s["summary"][:200]}'
-            for i, s in enumerate(batch)
+        valid_ids = {s["id"] for s in batch}
+        story_lines = "\n\n".join(
+            f'ID: {s["id"]}\nTITLE: {s["title"]}\nSUMMARY: {s["summary"][:200]}'
+            for s in batch
         )
         prompt = f"""You are sorting power-industry news stories into a fixed set of categories for a trade news website. Here are the categories and exactly what each one covers:
 
@@ -907,19 +908,25 @@ For each story below, decide which ONE category it best fits, or "None" if it do
 Stories:
 {story_lines}
 
-Respond with ONLY a JSON array, no other text before or after it, in this exact form:
-[{{"id": "<story id, copied exactly>", "category": "<one of the category keys above, or None>"}}]
+Respond with ONLY a JSON array, no other text before or after it. The "id" value in each object MUST be copied character-for-character from that story's "ID:" line above (it is a URL, not a number) -- do not invent, number, or shorten it:
+[{{"id": "<the exact ID: value from above>", "category": "<one of the category keys above, or None>"}}]
 """
         try:
             text = _call_anthropic(prompt)
             parsed = _parse_json_response(text)
+            skipped_invalid = 0
             for item in parsed:
                 sid = item.get("id")
                 cat = item.get("category")
-                if sid is None:
+                if sid not in valid_ids:
+                    skipped_invalid += 1
                     continue
                 results[sid] = cat if cat and cat != "None" and cat in category_definitions else None
-            print(f"  Classified batch {batch_num}/{len(batches)} ({len(batch)} stories)")
+            if skipped_invalid:
+                print(f"  Warning: batch {batch_num}/{len(batches)} returned {skipped_invalid} "
+                      f"id(s) that didn't match any story sent -- those stories were skipped "
+                      f"and will be retried next run.")
+            print(f"  Classified batch {batch_num}/{len(batches)} ({len(batch) - skipped_invalid}/{len(batch)} stories matched)")
         except Exception as e:
             print(f"  Warning: AI classification failed for batch {batch_num}/{len(batches)}: {e}")
             continue
