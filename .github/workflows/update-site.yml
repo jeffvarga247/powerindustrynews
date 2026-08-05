@@ -26,6 +26,8 @@ jobs:
         run: pip install feedparser markdown
 
       - name: Run the aggregator
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python aggregate.py
 
       - name: Copy site into docs/ (what GitHub Pages actually serves)
@@ -37,6 +39,6 @@ jobs:
         run: |
           git config user.name "news-aggregator-bot"
           git config user.email "actions@github.com"
-          git add docs story_store.json
+          git add docs story_store.json story_classifications.json
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update news site"
           git push
