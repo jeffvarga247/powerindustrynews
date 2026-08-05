@@ -1,7 +1,58 @@
 [
-  {"name": "International Conference of Doble Clients", "start_date": "2026-03-29", "end_date": "2026-04-03", "location": "Boston, MA, USA", "link": "https://www.doble.com/event/2026-international-conference-of-doble-clients/"},
-  {"name": "IEEE PES Transmission & Distribution (T&D) Conference & Exposition", "start_date": "2026-05-04", "end_date": "2026-05-07", "location": "TBD", "link": "https://ieee-pes.org/calendar/2026-ieee-pes-transmission-distribution-conference-expo-td/"},
-  {"name": "IEEE PES General Meeting", "start_date": "2026-07-19", "end_date": "2026-07-23", "location": "Montreal, Canada", "link": "https://ieeetv.ieee.org/2026pes-general_meeting"},
-  {"name": "CIGRE Paris Session", "start_date": "2026-08-23", "end_date": "2026-08-28", "location": "Palais des Congres, Paris, France", "link": "https://session.cigre.org/"},
-  {"name": "CIGRE Canada Conference & Exhibition", "start_date": "", "end_date": "", "location": "TBD", "link": "https://www.cigre.org/"}
+  {
+    "name": "International Conference of Doble Clients",
+    "start_date": "2026-03-29",
+    "end_date": "2026-04-03",
+    "location": "Boston, MA, USA",
+    "link": "https://www.doble.com/event/2026-international-conference-of-doble-clients/",
+    "sponsorship_contact": "No published sponsorship address - contact via doble.com"
+  },
+  {
+    "name": "IEEE PES Transmission & Distribution (T&D) Conference & Exposition",
+    "start_date": "2026-05-04",
+    "end_date": "2026-05-07",
+    "location": "TBD",
+    "link": "https://ieee-pes.org/calendar/2026-ieee-pes-transmission-distribution-conference-expo-td/",
+    "sponsorship_contact": "Not yet published"
+  },
+  {
+    "name": "IEEE PES General Meeting",
+    "start_date": "2026-07-19",
+    "end_date": "2026-07-23",
+    "location": "Montreal, Canada",
+    "link": "https://ieeetv.ieee.org/2026pes-general_meeting",
+    "sponsorship_contact": "Jenny Brown / Nadia Duchantier / Roseanne Jones via pes-gm.org contact form; 2027 packages open Feb 2027"
+  },
+  {
+    "name": "CIGRE Paris Session",
+    "start_date": "2026-08-23",
+    "end_date": "2026-08-28",
+    "location": "Palais des Congres, Paris, France",
+    "link": "https://session.cigre.org/",
+    "sponsorship_contact": "info@pro4events.com / Marion.caumont@pro4events.com (Pro4events - exhibition)"
+  },
+  {
+    "name": "CIGRE Canada Conference & Exhibition",
+    "start_date": "2026-09-21",
+    "end_date": "2026-09-24",
+    "location": "TELUS Convention Centre, Calgary, Alberta, Canada",
+    "link": "https://www.cigre-exhibition.com/canada2026/",
+    "sponsorship_contact": "Portal: cigre.ca/2026 (event now branded CIGRE Energy Forum)"
+  },
+  {
+    "name": "International Conference of Doble Clients",
+    "start_date": "2027-02-28",
+    "end_date": "2027-03-05",
+    "location": "Boston, MA, USA",
+    "link": "https://www.doble.com/event/2027-international-conference-of-doble-clients/",
+    "sponsorship_contact": "No published sponsorship address - contact via doble.com"
+  },
+  {
+    "name": "IEEE PES General Meeting",
+    "start_date": "2027-07-25",
+    "end_date": "2027-07-29",
+    "location": "San Francisco, CA, USA",
+    "link": "https://pes-gm.org/",
+    "sponsorship_contact": "Jenny Brown / Nadia Duchantier / Roseanne Jones via pes-gm.org contact form; 2027 packages open Feb 2027"
+  }
 ]
