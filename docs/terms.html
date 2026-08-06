@@ -87,7 +87,66 @@ header.masthead {
     display: block;
 }
 
-.masthead-logo-row .search-wrap { margin-left: auto; }
+.masthead-logo-row .search-wrap { margin-left: 12px; }
+
+/* Pushes the button + search to the right of the logo. On narrow screens the
+   row wraps instead of shrinking the controls. */
+.masthead-logo-row .advertise-btn { margin-left: auto; }
+
+.advertise-btn {
+    display: inline-block;
+    padding: 9px 16px;
+    background: var(--accent-solid);
+    color: #06121f;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: filter 0.12s ease;
+}
+
+.advertise-btn:hover { filter: brightness(1.12); }
+
+/* ---------- reference link row (Standards page) ---------- */
+.ref-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 22px 0;
+}
+
+.ref-links-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+.ref-links a {
+    display: inline-block;
+    padding: 5px 11px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--paper-raised);
+    color: var(--copper);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
+    transition: border-color 0.12s ease;
+}
+
+.ref-links a:hover { border-color: var(--copper); }
+
+@media (max-width: 700px) {
+    .masthead-logo-row { flex-wrap: wrap; row-gap: 10px; }
+    .masthead-logo-row .advertise-btn { margin-left: 0; }
+    .masthead-logo-row .search-wrap { margin-left: 0; }
+}
 
 .masthead-tagline {
     font-family: 'IBM Plex Mono', monospace;
@@ -269,7 +328,7 @@ main {
 .category-intro {
     color: var(--body-dim);
     margin: 6px 0 26px 0;
-    max-width: 68ch;
+    max-width: 80ch;   /* fills more of the column, still inside a readable line length */
 }
 
 /* ---------- spotlight / callout cards (homepage) ---------- */
@@ -584,6 +643,7 @@ footer.site-footer {
       <a class="brand" href="index.html">
         <img class="brand-logo" src="assets/logo-lockup.png" alt="Power Industry News logo">
       </a>
+      
       <div class="search-wrap">
         <input type="search" id="site-search" placeholder="Search stories, events, articles...">
         <div id="search-results"></div>

@@ -88,7 +88,66 @@ header.masthead {
     display: block;
 }
 
-.masthead-logo-row .search-wrap { margin-left: auto; }
+.masthead-logo-row .search-wrap { margin-left: 12px; }
+
+/* Pushes the button + search to the right of the logo. On narrow screens the
+   row wraps instead of shrinking the controls. */
+.masthead-logo-row .advertise-btn { margin-left: auto; }
+
+.advertise-btn {
+    display: inline-block;
+    padding: 9px 16px;
+    background: var(--accent-solid);
+    color: #06121f;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: filter 0.12s ease;
+}
+
+.advertise-btn:hover { filter: brightness(1.12); }
+
+/* ---------- reference link row (Standards page) ---------- */
+.ref-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 22px 0;
+}
+
+.ref-links-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+.ref-links a {
+    display: inline-block;
+    padding: 5px 11px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--paper-raised);
+    color: var(--copper);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
+    transition: border-color 0.12s ease;
+}
+
+.ref-links a:hover { border-color: var(--copper); }
+
+@media (max-width: 700px) {
+    .masthead-logo-row { flex-wrap: wrap; row-gap: 10px; }
+    .masthead-logo-row .advertise-btn { margin-left: 0; }
+    .masthead-logo-row .search-wrap { margin-left: 0; }
+}
 
 .masthead-tagline {
     font-family: 'IBM Plex Mono', monospace;
@@ -270,7 +329,7 @@ main {
 .category-intro {
     color: var(--body-dim);
     margin: 6px 0 26px 0;
-    max-width: 68ch;
+    max-width: 80ch;   /* fills more of the column, still inside a readable line length */
 }
 
 /* ---------- spotlight / callout cards (homepage) ---------- */
@@ -585,6 +644,7 @@ footer.site-footer {
       <a class="brand" href="index.html">
         <img class="brand-logo" src="assets/logo-lockup.png" alt="Power Industry News logo">
       </a>
+      
       <div class="search-wrap">
         <input type="search" id="site-search" placeholder="Search stories, events, articles...">
         <div id="search-results"></div>
@@ -606,11 +666,29 @@ footer.site-footer {
 <main>
 
 <div class="cat-heading"><img class="cat-icon-head" src="assets/standards.png" alt="Standards" width="96" height="96" loading="lazy"><h1 class="sr-only">Standards</h1></div>
+<div class="ref-links">
+  <span class="ref-links-label">Reference:</span>
+  <a href="https://www.nerc.com/" target="_blank" rel="noopener">NERC</a>
+  <a href="https://www.nerc.com/pa/Stand/Pages/CIPStandards.aspx" target="_blank" rel="noopener">NERC CIP</a>
+  <a href="https://www.ferc.gov/" target="_blank" rel="noopener">FERC</a>
+  <a href="https://www.nfpa.org/codes-and-standards/nfpa-70e-standard-development/70e" target="_blank" rel="noopener">NFPA 70E</a>
+  <a href="https://standards.ieee.org/" target="_blank" rel="noopener">IEEE Standards</a>
+  <a href="https://www.iec.ch/" target="_blank" rel="noopener">IEC</a>
+</div>
 <p class="category-intro">Safety codes, regulatory compliance, and technical engineering standards relevant to electrical power system safety, protection, and reliability.</p>
 <section class="subcategory-block">
   <h2 style="border-bottom:2px solid #ff6f4d; padding-bottom:8px;">Safety Standards</h2>
   <p class="category-intro">NFPA 70E, arc flash, and worker safety code updates.</p>
-  <div class="empty-state">No new stories yet. Check back after the next update.</div>
+  <div class="story" style="--accent:#ff6f4d">
+  <h3><a href="https://electrical-engineering-portal.com/electrical-thumb-rules-for-staying-safe-and-alive" target="_blank" rel="noopener">Electrical thumb rules for staying safe and alive</a></h3>
+  <p class="meta">Safety - Technical Articles | EEP - Electrical Engineering Portal &middot; Wed, 27 Nov 2024 14:55:36 +0000</p>
+  <p>How can one stay safe and alive while working in a power system? That’s a good question; however, there are a dozen answers. But let’s start with the first answer. The primary concerns about electrical safety are the unseen nature... Read more The post Electrical thumb rules for staying safe and ali&hellip;</p>
+</div>
+<div class="story" style="--accent:#ff6f4d">
+  <h3><a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxPNnJNNEpEa1ZxSWp3dG5xcDQtRXlUZWV6a0o1bzdLZzdyOVJQcE9obXB0MXlYZElkQ2tNWlF3djhJbXprRUdHU0NnRlNqRTc5ZzdXR21iS1lDNEtvUDlzM21QQ2Z6Rk1SWVM3LVRBZmFoQUVfQkxqSEN6UkI3ZElGTjJUcEh1VmtIdnh2OTRXSXZkSDZfelE?oc=5" target="_blank" rel="noopener">Protecting researcher safety one industry standard at a time</a></h3>
+  <p class="meta">Idaho National Laboratory (.gov) &middot; Tue, 05 Oct 2021 07:00:00 GMT</p>
+  
+</div>
 </section><section class="subcategory-block">
   <h2 style="border-bottom:2px solid #5cb872; padding-bottom:8px;">Grid/Regulatory Compliance</h2>
   <p class="category-intro">NERC CIP, FERC rulings, and mandatory utility compliance requirements.</p>
@@ -633,9 +711,34 @@ footer.site-footer {
   <h2 style="border-bottom:2px solid #3d9bff; padding-bottom:8px;">Technical Standards</h2>
   <p class="category-intro">IEEE, IEC, and other engineering specification updates and revisions.</p>
   <div class="story" style="--accent:#3d9bff">
+  <h3><a href="https://electrical-engineering-portal.com/advantages-of-iec-61850" target="_blank" rel="noopener">Advantages Of IEC 61850</a></h3>
+  <p class="meta">IEC Standards - Technical Articles | EEP - Electrical Engineering Portal &middot; Wed, 29 Dec 2010 14:35:59 +0000</p>
+  <p>One of the significant challenges that substation engineers face is justifying substation automation investments. The positive impacts that automation has on operating costs, increased power quality, and reduced outage response are well known. But little attention is paid to how... Read more The pos&hellip;</p>
+</div>
+<div class="story" style="--accent:#3d9bff">
+  <h3><a href="https://electrical-engineering-portal.com/an-overview-of-iec-60076-10-determination-of-sound-levels-of-power-transformers" target="_blank" rel="noopener">An Overview of IEC 60076-10 – Determination Of Sound Levels Of Power Transformers</a></h3>
+  <p class="meta">IEC Standards - Technical Articles | EEP - Electrical Engineering Portal &middot; Wed, 14 Aug 2013 04:27:39 +0000</p>
+  <p>The audible sound radiated by transformers is generated by a combination of magnetostrictive deformation of the core and electromagnetic forces in the windings, tank walls and magnetic shields. Historically, the sound generated by the magnetic field inducing longitudinal vibrations in the... Read mo&hellip;</p>
+</div>
+<div class="story" style="--accent:#3d9bff">
   <h3><a href="https://events.bizzabo.com/860041" target="_blank" rel="noopener">Transmission Hardware Corona Performance and HVDC Submarine Cable EM Fields</a></h3>
   <p class="meta">IEEE Spectrum &middot; Thu, 30 Apr 2026 10:00:01 +0000</p>
   <p>Laboratory or in-field measurements are often considered the gold standard for certain aspects of power system design; however, measurement approaches always have limitations. Simulation can help overcome some of these limitations, including speeding up the design process, reducing design costs, and&hellip;</p>
+</div>
+<div class="story" style="--accent:#3d9bff">
+  <h3><a href="https://electrical-engineering-portal.com/iec-62271-200" target="_blank" rel="noopener">IEC 62271-200 – HV Switchgear And Controlgear</a></h3>
+  <p class="meta">IEC Standards - Technical Articles | EEP - Electrical Engineering Portal &middot; Thu, 09 Dec 2010 13:00:22 +0000</p>
+  <p>Part 200: AC metal-enclosed switchgear and controlgear for rated voltages above 1 kV and up to and including 52 kV Switchgears are important nodal points in modern power distribution. Correspondingly important is their reliable functioning, a clearly defined switching behavior... Read more The post&hellip;</p>
+</div>
+<div class="story" style="--accent:#3d9bff">
+  <h3><a href="https://electrical-engineering-portal.com/uk-electrical-industry-british-standards-bs" target="_blank" rel="noopener">UK Electrical Industry British Standards (BS)</a></h3>
+  <p class="meta">IEC Standards - Technical Articles | EEP - Electrical Engineering Portal &middot; Fri, 20 Jan 2012 05:24:21 +0000</p>
+  <p>These standards are the whole of the prescriptions on the basis of which machines, apparatus, materials and the installations should be designed, manufactured and tested so that efficiency and function safety are ensured – and all according to the UK Electrical... Read more The post UK Electrical In&hellip;</p>
+</div>
+<div class="story" style="--accent:#3d9bff">
+  <h3><a href="https://electrical-engineering-portal.com/en61800-3-iec1800-3-adjustable-speed-electrical-power-drive-systems" target="_blank" rel="noopener">EN61800-3 (IEC1800-3) – Adjustable speed electrical power drive systems</a></h3>
+  <p class="meta">IEC Standards - Technical Articles | EEP - Electrical Engineering Portal &middot; Fri, 14 Jan 2011 16:11:48 +0000</p>
+  <p>The countries of the European Economic Area (EEA) have agreed on common minimum regulatory requirements in order to ensure the free movement of products within the EEA. The CE marking indicates that the product works in conformity with the directives... Read more The post EN61800-3 (IEC1800-3) – Adj&hellip;</p>
 </div>
 </section>
 <footer class="site-footer">

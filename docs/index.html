@@ -88,7 +88,66 @@ header.masthead {
     display: block;
 }
 
-.masthead-logo-row .search-wrap { margin-left: auto; }
+.masthead-logo-row .search-wrap { margin-left: 12px; }
+
+/* Pushes the button + search to the right of the logo. On narrow screens the
+   row wraps instead of shrinking the controls. */
+.masthead-logo-row .advertise-btn { margin-left: auto; }
+
+.advertise-btn {
+    display: inline-block;
+    padding: 9px 16px;
+    background: var(--accent-solid);
+    color: #06121f;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: filter 0.12s ease;
+}
+
+.advertise-btn:hover { filter: brightness(1.12); }
+
+/* ---------- reference link row (Standards page) ---------- */
+.ref-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 22px 0;
+}
+
+.ref-links-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+.ref-links a {
+    display: inline-block;
+    padding: 5px 11px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--paper-raised);
+    color: var(--copper);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
+    transition: border-color 0.12s ease;
+}
+
+.ref-links a:hover { border-color: var(--copper); }
+
+@media (max-width: 700px) {
+    .masthead-logo-row { flex-wrap: wrap; row-gap: 10px; }
+    .masthead-logo-row .advertise-btn { margin-left: 0; }
+    .masthead-logo-row .search-wrap { margin-left: 0; }
+}
 
 .masthead-tagline {
     font-family: 'IBM Plex Mono', monospace;
@@ -270,7 +329,7 @@ main {
 .category-intro {
     color: var(--body-dim);
     margin: 6px 0 26px 0;
-    max-width: 68ch;
+    max-width: 80ch;   /* fills more of the column, still inside a readable line length */
 }
 
 /* ---------- spotlight / callout cards (homepage) ---------- */
@@ -585,6 +644,7 @@ footer.site-footer {
       <a class="brand" href="index.html">
         <img class="brand-logo" src="assets/logo-lockup.png" alt="Power Industry News logo">
       </a>
+      <a class="advertise-btn" href="advertise.html">Advertise With Us</a>
       <div class="search-wrap">
         <input type="search" id="site-search" placeholder="Search stories, events, articles...">
         <div id="search-results"></div>
@@ -597,7 +657,7 @@ footer.site-footer {
 <div class="diagram-rule"></div>
 <div class="ad-banner">Your advertisement could be here</div>
 <main>
-<p class="updated">Last updated: 2026-08-06 15:20 UTC</p>
+<p class="updated">Last updated: 2026-08-06 21:58 UTC</p>
 <a class="next-event" href="https://session.cigre.org/" target="_blank" rel="noopener">
   <span class="next-event-tag">Next Event</span>
   <span class="next-event-name">CIGRE Paris Session</span>
@@ -609,19 +669,19 @@ footer.site-footer {
 <a class="cat-card" style="--accent:#3d9bff" href="category_failures.html">
   <img class="cat-icon" src="assets/failures.png" alt="Failures" width="96" height="96" loading="lazy">
   <span class="sr-only">Failures</span>
-  <p>0 stories tracked</p>
+  <p>2 stories tracked</p>
 </a><a class="cat-card" style="--accent:#5cb872" href="category_protections.html">
   <img class="cat-icon" src="assets/protection.png" alt="Protections" width="96" height="96" loading="lazy">
   <span class="sr-only">Protections</span>
-  <p>0 stories tracked</p>
+  <p>6 stories tracked</p>
 </a><a class="cat-card" style="--accent:#4da3e0" href="category_installations.html">
   <img class="cat-icon" src="assets/installations.png" alt="Installations" width="96" height="96" loading="lazy">
   <span class="sr-only">Installations</span>
-  <p>14 stories tracked</p>
+  <p>15 stories tracked</p>
 </a><a class="cat-card" style="--accent:#5cb872" href="category_standards.html">
   <img class="cat-icon" src="assets/standards.png" alt="Standards" width="96" height="96" loading="lazy">
   <span class="sr-only">Standards</span>
-  <p>4 stories tracked</p>
+  <p>11 stories tracked</p>
 </a><a class="cat-card" style="--accent:#ff6f4d" href="category_insurance.html">
   <img class="cat-icon" src="assets/insurance.png" alt="Insurance" width="96" height="96" loading="lazy">
   <span class="sr-only">Insurance</span>

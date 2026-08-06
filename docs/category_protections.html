@@ -88,7 +88,66 @@ header.masthead {
     display: block;
 }
 
-.masthead-logo-row .search-wrap { margin-left: auto; }
+.masthead-logo-row .search-wrap { margin-left: 12px; }
+
+/* Pushes the button + search to the right of the logo. On narrow screens the
+   row wraps instead of shrinking the controls. */
+.masthead-logo-row .advertise-btn { margin-left: auto; }
+
+.advertise-btn {
+    display: inline-block;
+    padding: 9px 16px;
+    background: var(--accent-solid);
+    color: #06121f;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: filter 0.12s ease;
+}
+
+.advertise-btn:hover { filter: brightness(1.12); }
+
+/* ---------- reference link row (Standards page) ---------- */
+.ref-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 22px 0;
+}
+
+.ref-links-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+.ref-links a {
+    display: inline-block;
+    padding: 5px 11px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--paper-raised);
+    color: var(--copper);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
+    transition: border-color 0.12s ease;
+}
+
+.ref-links a:hover { border-color: var(--copper); }
+
+@media (max-width: 700px) {
+    .masthead-logo-row { flex-wrap: wrap; row-gap: 10px; }
+    .masthead-logo-row .advertise-btn { margin-left: 0; }
+    .masthead-logo-row .search-wrap { margin-left: 0; }
+}
 
 .masthead-tagline {
     font-family: 'IBM Plex Mono', monospace;
@@ -270,7 +329,7 @@ main {
 .category-intro {
     color: var(--body-dim);
     margin: 6px 0 26px 0;
-    max-width: 68ch;
+    max-width: 80ch;   /* fills more of the column, still inside a readable line length */
 }
 
 /* ---------- spotlight / callout cards (homepage) ---------- */
@@ -585,6 +644,7 @@ footer.site-footer {
       <a class="brand" href="index.html">
         <img class="brand-logo" src="assets/logo-lockup.png" alt="Power Industry News logo">
       </a>
+      
       <div class="search-wrap">
         <input type="search" id="site-search" placeholder="Search stories, events, articles...">
         <div id="search-results"></div>
@@ -607,7 +667,36 @@ footer.site-footer {
 
 <div class="cat-heading"><img class="cat-icon-head" src="assets/protection.png" alt="Protections" width="96" height="96" loading="lazy"><h1 class="sr-only">Protections</h1></div>
 <p class="category-intro">Protections news and analysis for electrical power industry safety engineers.</p>
-<div class="empty-state">No new stories yet. Check back after the next update.</div>
+<div class="story" style="--accent:#5cb872">
+  <h3><a href="https://electrical-engineering-portal.com/protection-relay-ansi-standards" target="_blank" rel="noopener">Protection Relay – ANSI Standards</a></h3>
+  <p class="meta">IEC Standards - Technical Articles | EEP - Electrical Engineering Portal &middot; Tue, 22 Feb 2011 05:27:12 +0000</p>
+  <p>In the design of electrical power systems, the ANSI Standard Device Numbers denote what features a protective device supports (such as a relay or circuit breaker). These types of devices protect electrical systems and components from damage when an unwanted... Read more The post Protection Relay – A&hellip;</p>
+</div>
+<div class="story" style="--accent:#5cb872">
+  <h3><a href="https://electrical-engineering-portal.com/trip-signal-trip-circuit-analysis-of-the-132kv-line-1-schematics-pdf-included" target="_blank" rel="noopener">Trip Signal and Trip Circuit Analysis of the 132kV Line-1 (=E01) Schematics (PDF included)</a></h3>
+  <p class="meta">Protection - Technical Articles | EEP - Electrical Engineering Portal &middot; Mon, 27 Jul 2026 06:09:35 +0000</p>
+  <p>The execution of a high-voltage circuit breaker trip is the most critical function within any electrical substation. In the provided schematic document for the 132kV Line-1 (=E01) Relay Panel +RP3, the trip circuits are meticulously designed to ensure absolute reliability,... Read more The post Trip&hellip;</p>
+</div>
+<div class="story" style="--accent:#5cb872">
+  <h3><a href="https://electrical-engineering-portal.com/best-practice-in-substation-oil-containment" target="_blank" rel="noopener">Best Practice in Substation Oil Containment</a></h3>
+  <p class="meta">Transformers - Technical Articles | EEP - Electrical Engineering Portal &middot; Mon, 23 Jun 2025 06:17:53 +0000</p>
+  <p>Numerous firms in emerging sectors offer conceptual substation oil containment solutions that remain unproven yet have been deployed. This has resulted in several installations of containment systems that are functionally ineffective. There have been and continue to be assertions that... Read more T&hellip;</p>
+</div>
+<div class="story" style="--accent:#5cb872">
+  <h3><a href="https://electrical-engineering-portal.com/technical-analysis-bcu-logic-132kv-line-protection-panel-schematics-bay-b102" target="_blank" rel="noopener">Technical Analysis of BCU Logic in 132kV Line Protection Panel Schematics (Bay-B102)</a></h3>
+  <p class="meta">Transmission and Distribution - Technical Articles | EEP - Electrical Engineering Portal &middot; Mon, 22 Jun 2026 05:48:23 +0000</p>
+  <p>The schematic drawings for the 132kV Line-1 Protection Panel (Bay-B102) provide a detailed, component-level view of how digital boolean logic is employed to govern the operation of high-voltage circuit breakers, isolators (disconnect switches), and earth switches. Operating within the framework... R&hellip;</p>
+</div>
+<div class="story" style="--accent:#5cb872">
+  <h3><a href="https://electrical-engineering-portal.com/what-is-interlocking-in-substations" target="_blank" rel="noopener">What is Interlocking in substations, and what is it for?</a></h3>
+  <p class="meta">Safety - Technical Articles | EEP - Electrical Engineering Portal &middot; Mon, 16 Dec 2024 07:56:13 +0000</p>
+  <p>Interlocking in substations is a critical aspect of power system protection and control, designed to ensure the safe and efficient operation of substation equipment. The primary objective of interlocking is to prevent hazardous situations, such as energizing an earthed circuit... Read more The post&hellip;</p>
+</div>
+<div class="story" style="--accent:#5cb872">
+  <h3><a href="https://electrical-engineering-portal.com/132-33kv-31-5mva-transformer-protection-schematics-pdf" target="_blank" rel="noopener">132/33kV, 31.5MVA Transformer Protection Schematics (PDF)</a></h3>
+  <p class="meta">Transformers - Technical Articles | EEP - Electrical Engineering Portal &middot; Mon, 13 Jul 2026 05:30:54 +0000</p>
+  <p>The provided schematics detail the comprehensive control, protection, metering, and operational logic for a 132/33kV, 31.5MVA Power Transformer (Transformer-1), explicitly designed by Schneider Electric for the APTRANSCO Thimmapuram substation. The architecture strictly segregates the high-voltage (&hellip;</p>
+</div>
 <footer class="site-footer">
   <p>An independent industry resource brought to you by JGV Creative</p>
   <p class="footer-links"><a href="terms.html">Terms</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
