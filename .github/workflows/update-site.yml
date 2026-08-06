@@ -3,7 +3,7 @@ name: Update News Site
 # Runs automatically on a schedule, and lets you trigger it manually too
 on:
   schedule:
-    - cron: '0 * * * *'   # every hour, on the hour (UTC time)
+    - cron: '0 */3 * * *' # every 3 hours (UTC) -- hourly runs overlapped each other
     - cron: '0 6 * * 1'   # Mondays 06:00 UTC -- the trade show alert run
   workflow_dispatch: {}     # adds a "Run workflow" button in the Actions tab
 
@@ -12,9 +12,18 @@ permissions:
   contents: write
   issues: write
 
+# Only one run at a time. Without this, an overlapping run reads the same
+# classification cache, re-pays Haiku for stories the other run already did,
+# then overwrites the other run's commit. Cancelling the older run is safe --
+# the newer one re-fetches the same feeds anyway.
+concurrency:
+  group: update-news-site
+  cancel-in-progress: true
+
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 90   # kill a hung run instead of holding a slot for 6 hours
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
