@@ -1,11 +1,11 @@
 {
-  "https://spectrum.ieee.org/second-life-ev-batteries": {
-    "id": "https://spectrum.ieee.org/second-life-ev-batteries",
-    "title": "Retired EV Batteries Get Second Life on the Grid",
-    "link": "https://spectrum.ieee.org/second-life-ev-batteries",
-    "summary": "Spent batteries from older electric vehicles are starting to pile up, but a handful of companies are repurposing them in a novel way: as energy storage for the grid. These batteries are retired from EVs after their capacity falls to 70 to 80 percent; that’s too low to satisfy drivers, but leaves eno",
-    "source": "IEEE Spectrum",
-    "published": "Thu, 02 Jul 2026 14:54:34 +0000"
+  "https://www.powermag.com/?p=266636": {
+    "id": "https://www.powermag.com/?p=266636",
+    "title": "The POWER Interview: NRG’s Case for Bring Your Own Power—and the Labor to Build It",
+    "link": "https://www.powermag.com/the-power-interview-nrgs-case-for-bring-your-own-power-and-the-labor-to-build-it/",
+    "summary": "NRG Energy on Aug. 4 unveiled its first Bring Your Own Power (BYOP) project, a 1.2-GW combined-cycle plant in Texas supported by a 15-year contract with an investment-grade “leading global cloud and artificial-intelligence hyperscaler.” The $3.2 billion facility, backed by a customer parent guarante",
+    "source": "POWER Magazine",
+    "published": "Wed, 05 Aug 2026 15:07:15 +0000"
   },
   "https://www.powermag.com/?p=266182": {
     "id": "https://www.powermag.com/?p=266182",
@@ -15,62 +15,6 @@
     "source": "POWER Magazine",
     "published": "Mon, 03 Aug 2026 22:36:05 +0000"
   },
-  "https://spectrum.ieee.org/sodium-ion-battery-peak-energy": {
-    "id": "https://spectrum.ieee.org/sodium-ion-battery-peak-energy",
-    "title": "Sodium-Ion Batteries Get Another Shot at Success in the U.S.",
-    "link": "https://spectrum.ieee.org/sodium-ion-battery-peak-energy",
-    "summary": "Despite setbacks in sodium-ion battery development in the U.S., the startup Peak Energy says it can be the one to finally achieve the ambitious application of using the tech to store energy for the grid. When U.S. start-ups Natron Energy and Bedrock Materials shut down sodium-ion battery operations ",
-    "source": "IEEE Spectrum",
-    "published": "Wed, 22 Jul 2026 15:00:02 +0000"
-  },
-  "https://www.powermag.com/?p=266463": {
-    "id": "https://www.powermag.com/?p=266463",
-    "title": "Scalable, Grid-Ready Storage: How Connector Design Is Shaping the Next Generation of Energy Systems",
-    "link": "https://www.powermag.com/scalable-grid-ready-storage-how-connector-design-is-shaping-the-next-generation-of-energy-systems/",
-    "summary": "As utility-scale battery energy storage systems (BESS) scale from megawatts to gigawatts, the engineering complexity grows exponentially. Higher-voltage architectures and denser rack configurations are pushing the limits of conventional component design and exposing gaps that can compromise system p",
-    "source": "POWER Magazine",
-    "published": "Mon, 03 Aug 2026 18:09:50 +0000"
-  },
-  "https://www.powermag.com/?p=266636": {
-    "id": "https://www.powermag.com/?p=266636",
-    "title": "The POWER Interview: NRG’s Case for Bring Your Own Power—and the Labor to Build It",
-    "link": "https://www.powermag.com/the-power-interview-nrgs-case-for-bring-your-own-power-and-the-labor-to-build-it/",
-    "summary": "NRG Energy on Aug. 4 unveiled its first Bring Your Own Power (BYOP) project, a 1.2-GW combined-cycle plant in Texas supported by a 15-year contract with an investment-grade “leading global cloud and artificial-intelligence hyperscaler.” The $3.2 billion facility, backed by a customer parent guarante",
-    "source": "POWER Magazine",
-    "published": "Wed, 05 Aug 2026 15:07:15 +0000"
-  },
-  "CBMibkFVX3lxTE1URU5HdGgwc1JudHRZa094ZTJnNVlRNkFSRmZWN0ZzRk9kMkZBVDNHWVRVM1VHbzUyOURkcVN1QmpsaUtkMGhkSmNqSFd2YmxyMDVkc2dTSkhLV1hHM1RFd01qMzlkbUpvNXZBQmJn": {
-    "id": "CBMibkFVX3lxTE1URU5HdGgwc1JudHRZa094ZTJnNVlRNkFSRmZWN0ZzRk9kMkZBVDNHWVRVM1VHbzUyOURkcVN1QmpsaUtkMGhkSmNqSFd2YmxyMDVkc2dTSkhLV1hHM1RFd01qMzlkbUpvNXZBQmJn",
-    "title": "Hedge Fund Holds $1B in PG&E Insurance Claims",
-    "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1URU5HdGgwc1JudHRZa094ZTJnNVlRNkFSRmZWN0ZzRk9kMkZBVDNHWVRVM1VHbzUyOURkcVN1QmpsaUtkMGhkSmNqSFd2YmxyMDVkc2dTSkhLV1hHM1RFd01qMzlkbUpvNXZBQmJn?oc=5",
-    "summary": "",
-    "source": "Claims Journal",
-    "published": "Tue, 15 Jan 2019 08:00:00 GMT"
-  },
-  "https://events.bizzabo.com/860041": {
-    "id": "https://events.bizzabo.com/860041",
-    "title": "Transmission Hardware Corona Performance and HVDC Submarine Cable EM Fields",
-    "link": "https://events.bizzabo.com/860041",
-    "summary": "Laboratory or in-field measurements are often considered the gold standard for certain aspects of power system design; however, measurement approaches always have limitations. Simulation can help overcome some of these limitations, including speeding up the design process, reducing design costs, and",
-    "source": "IEEE Spectrum",
-    "published": "Thu, 30 Apr 2026 10:00:01 +0000"
-  },
-  "https://spectrum.ieee.org/distribution-grid-modernization": {
-    "id": "https://spectrum.ieee.org/distribution-grid-modernization",
-    "title": "What It Takes for Future-Ready Power Distribution",
-    "link": "https://spectrum.ieee.org/distribution-grid-modernization",
-    "summary": "This sponsored article is brought to you by Black & Veatch . The biggest challenge facing utilities today isn’t what it seems. It’s not demand, even as load growth accelerates. It’s not extreme weather, even as “major events” become routine. It’s not cybersecurity, even as connections expand across ",
-    "source": "IEEE Spectrum",
-    "published": "Wed, 03 Jun 2026 11:00:01 +0000"
-  },
-  "https://www.powermag.com/?p=266572": {
-    "id": "https://www.powermag.com/?p=266572",
-    "title": "Nebraska Public Power District Breaks Ground on 694-MW Princeton Road Station",
-    "link": "https://www.powermag.com/nebraska-public-power-district-breaks-ground-on-694-mw-princeton-road-station/",
-    "summary": "Nebraska Public Power District (NPPD) marked the start of construction on Princeton Road Station with a groundbreaking ceremony the morning of July 17, drawing state and local officials, community stakeholders, and NPPD staff to the site just north of Hallam, Nebraska. The 694-MW dual-fuel facility ",
-    "source": "POWER Magazine",
-    "published": "Tue, 04 Aug 2026 21:26:19 +0000"
-  },
   "https://spectrum.ieee.org/ferc-data-center-policy": {
     "id": "https://spectrum.ieee.org/ferc-data-center-policy",
     "title": "U.S. Pushes Grid Operators to Connect Data Centers Faster",
@@ -78,54 +22,6 @@
     "summary": "The United States’ top energy regulator has ordered grid operators to either overhaul how they connect data centers to the grid, or justify their current strategy. The highly anticipated set of directives , issued 18 June by the U.S. Federal Energy Regulatory Commission (FERC) targets six regional t",
     "source": "IEEE Spectrum",
     "published": "Wed, 24 Jun 2026 12:00:01 +0000"
-  },
-  "CBMibEFVX3lxTFBjMUU2eVFDYXdtdExlWTNENm5Ua1p2Sk5ZOURBT0F5WTdNNDdhcTVRNnR0Mlc1MWtDTWRNMmZaRUdvY1B0OWRHMlZGSkdmYk5hVnpHeU5kNTFDS3hzQjFnQU9CbHkyZWo5WnVVYQ": {
-    "id": "CBMibEFVX3lxTFBjMUU2eVFDYXdtdExlWTNENm5Ua1p2Sk5ZOURBT0F5WTdNNDdhcTVRNnR0Mlc1MWtDTWRNMmZaRUdvY1B0OWRHMlZGSkdmYk5hVnpHeU5kNTFDS3hzQjFnQU9CbHkyZWo5WnVVYQ",
-    "title": "Chubb CEO Greenberg: Insurer Has Reshaped Portfolio in Response to California Wildfires",
-    "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBjMUU2eVFDYXdtdExlWTNENm5Ua1p2Sk5ZOURBT0F5WTdNNDdhcTVRNnR0Mlc1MWtDTWRNMmZaRUdvY1B0OWRHMlZGSkdmYk5hVnpHeU5kNTFDS3hzQjFnQU9CbHkyZWo5WnVVYQ?oc=5",
-    "summary": "",
-    "source": "Carrier Management",
-    "published": "Wed, 30 Oct 2019 07:00:00 GMT"
-  },
-  "https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid": {
-    "id": "https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid",
-    "title": "Puerto Rico Upgrades Remote Microgrid With Clean Hydrogen",
-    "link": "https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid",
-    "summary": "On the nights after Hurricane Maria ravaged Puerto Rico’s power grid in 2017, former Puerto Rican energy regulator Javier Rúa-Jovet remembers watching the sky warp along the horizon as thousands of fossil fuel-powered generators spewed emissions into the atmosphere. The “whole society” was running o",
-    "source": "IEEE Spectrum",
-    "published": "Wed, 15 Jul 2026 14:00:02 +0000"
-  },
-  "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/": {
-    "id": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
-    "title": "Southern Co. contracted large load rises to 17 GW",
-    "link": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
-    "summary": "Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. The contract includes 1 GW of “flexible demand response” for peak shaving — the first such flexibility provision the company has codified with a data center customer.",
-    "source": "Utility Dive - Latest News",
-    "published": "Tue, 04 Aug 2026 09:20:14 -0400"
-  },
-  "https://spectrum.ieee.org/fusion-reactor-tokamak-cfs-arc": {
-    "id": "https://spectrum.ieee.org/fusion-reactor-tokamak-cfs-arc",
-    "title": "Fusion Startup’s Commercial Reactor Design Gets a Big Boost",
-    "link": "https://spectrum.ieee.org/fusion-reactor-tokamak-cfs-arc",
-    "summary": "Nuclear fusion reactors offer the hope of vast, clean energy from the same process that powers stars. But despite decades of research, a fusion reactor that can supply practical amounts of power has proven elusive. Now startup Commonwealth Fusion Systems has revealed in depth what it says is the mos",
-    "source": "IEEE Spectrum",
-    "published": "Thu, 04 Jun 2026 14:46:59 +0000"
-  },
-  "CBMiqgFBVV95cUxQOV9BOE1ELVpTMFJ5WTdpclJISVlkUUtQSWtUV21zSDhoV0lDLXVDMWdYTzZxRktzWHBxN0xKQ2lVRDVIT0ZZQV9sSmJnSFVzN0wxdzduX0ZBaDdMUExTeUZiZWxmVXNQbnBMMzl2aGJReUd6MUJCSGFOQlVtUVIyZVJJY3EteW1vOFhDOGgtYm1yWXJUQk55RVFFd0VwSWpwdEEtcjBaUXNZQQ": {
-    "id": "CBMiqgFBVV95cUxQOV9BOE1ELVpTMFJ5WTdpclJISVlkUUtQSWtUV21zSDhoV0lDLXVDMWdYTzZxRktzWHBxN0xKQ2lVRDVIT0ZZQV9sSmJnSFVzN0wxdzduX0ZBaDdMUExTeUZiZWxmVXNQbnBMMzl2aGJReUd6MUJCSGFOQlVtUVIyZVJJY3EteW1vOFhDOGgtYm1yWXJUQk55RVFFd0VwSWpwdEEtcjBaUXNZQQ",
-    "title": "PG&E takes step out of bankruptcy with $11 billion insurance settlement",
-    "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQOV9BOE1ELVpTMFJ5WTdpclJISVlkUUtQSWtUV21zSDhoV0lDLXVDMWdYTzZxRktzWHBxN0xKQ2lVRDVIT0ZZQV9sSmJnSFVzN0wxdzduX0ZBaDdMUExTeUZiZWxmVXNQbnBMMzl2aGJReUd6MUJCSGFOQlVtUVIyZVJJY3EteW1vOFhDOGgtYm1yWXJUQk55RVFFd0VwSWpwdEEtcjBaUXNZQQ?oc=5",
-    "summary": "",
-    "source": "San Francisco Chronicle",
-    "published": "Fri, 13 Sep 2019 07:00:00 GMT"
-  },
-  "https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/": {
-    "id": "https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/",
-    "title": "Dominion offshore wind project cost rises nearly $300M",
-    "link": "https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/",
-    "summary": "The increase is due to revised network upgrade costs assigned by the PJM Interconnection, tariffs imposed by the Trump administration in April and updated turbine installation projections, executives said.",
-    "source": "Utility Dive - Latest News",
-    "published": "Mon, 03 Aug 2026 12:07:45 -0400"
   },
   "https://content.knowledgehub.wiley.com/energy-in-motion-unlocking-the-interconnected-grid-of-tomorrow/": {
     "id": "https://content.knowledgehub.wiley.com/energy-in-motion-unlocking-the-interconnected-grid-of-tomorrow/",
@@ -135,6 +31,46 @@
     "source": "IEEE Spectrum",
     "published": "Wed, 22 Apr 2026 10:00:02 +0000"
   },
+  "https://www.renewableenergyworld.com/?p=80798140236": {
+    "id": "https://www.renewableenergyworld.com/?p=80798140236",
+    "title": "What is ‘superhot’ geothermal? Deep rock to baseload power, explained",
+    "link": "https://www.renewableenergyworld.com/energy-business/new-project-development/what-is-superhot-geothermal-deep-rock-to-baseload-power-explained/",
+    "summary": "Co-founder of Quaise Energy, Matt Houde, explains how his company is tackling the challenges of scaling superhot geothermal energy, which promises 24/7 baseload power.",
+    "source": "Factor This™",
+    "published": "Mon, 03 Aug 2026 15:00:32 +0000"
+  },
+  "https://spectrum.ieee.org/fusion-reactor-tokamak-cfs-arc": {
+    "id": "https://spectrum.ieee.org/fusion-reactor-tokamak-cfs-arc",
+    "title": "Fusion Startup’s Commercial Reactor Design Gets a Big Boost",
+    "link": "https://spectrum.ieee.org/fusion-reactor-tokamak-cfs-arc",
+    "summary": "Nuclear fusion reactors offer the hope of vast, clean energy from the same process that powers stars. But despite decades of research, a fusion reactor that can supply practical amounts of power has proven elusive. Now startup Commonwealth Fusion Systems has revealed in depth what it says is the mos",
+    "source": "IEEE Spectrum",
+    "published": "Thu, 04 Jun 2026 14:46:59 +0000"
+  },
+  "CBMibEFVX3lxTFBjMUU2eVFDYXdtdExlWTNENm5Ua1p2Sk5ZOURBT0F5WTdNNDdhcTVRNnR0Mlc1MWtDTWRNMmZaRUdvY1B0OWRHMlZGSkdmYk5hVnpHeU5kNTFDS3hzQjFnQU9CbHkyZWo5WnVVYQ": {
+    "id": "CBMibEFVX3lxTFBjMUU2eVFDYXdtdExlWTNENm5Ua1p2Sk5ZOURBT0F5WTdNNDdhcTVRNnR0Mlc1MWtDTWRNMmZaRUdvY1B0OWRHMlZGSkdmYk5hVnpHeU5kNTFDS3hzQjFnQU9CbHkyZWo5WnVVYQ",
+    "title": "Chubb CEO Greenberg: Insurer Has Reshaped Portfolio in Response to California Wildfires",
+    "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBjMUU2eVFDYXdtdExlWTNENm5Ua1p2Sk5ZOURBT0F5WTdNNDdhcTVRNnR0Mlc1MWtDTWRNMmZaRUdvY1B0OWRHMlZGSkdmYk5hVnpHeU5kNTFDS3hzQjFnQU9CbHkyZWo5WnVVYQ?oc=5",
+    "summary": "",
+    "source": "Carrier Management",
+    "published": "Wed, 30 Oct 2019 07:00:00 GMT"
+  },
+  "https://spectrum.ieee.org/sodium-ion-battery-peak-energy": {
+    "id": "https://spectrum.ieee.org/sodium-ion-battery-peak-energy",
+    "title": "Sodium-Ion Batteries Get Another Shot at Success in the U.S.",
+    "link": "https://spectrum.ieee.org/sodium-ion-battery-peak-energy",
+    "summary": "Despite setbacks in sodium-ion battery development in the U.S., the startup Peak Energy says it can be the one to finally achieve the ambitious application of using the tech to store energy for the grid. When U.S. start-ups Natron Energy and Bedrock Materials shut down sodium-ion battery operations ",
+    "source": "IEEE Spectrum",
+    "published": "Wed, 22 Jul 2026 15:00:02 +0000"
+  },
+  "https://spectrum.ieee.org/second-life-ev-batteries": {
+    "id": "https://spectrum.ieee.org/second-life-ev-batteries",
+    "title": "Retired EV Batteries Get Second Life on the Grid",
+    "link": "https://spectrum.ieee.org/second-life-ev-batteries",
+    "summary": "Spent batteries from older electric vehicles are starting to pile up, but a handful of companies are repurposing them in a novel way: as energy storage for the grid. These batteries are retired from EVs after their capacity falls to 70 to 80 percent; that’s too low to satisfy drivers, but leaves eno",
+    "source": "IEEE Spectrum",
+    "published": "Thu, 02 Jul 2026 14:54:34 +0000"
+  },
   "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/": {
     "id": "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/",
     "title": "Battery-eligible New Jersey VPP program begins to take shape",
@@ -142,14 +78,6 @@
     "summary": "Utility-owned storage could help mitigate grid congestion, a utility manager said at a July stakeholder meeting. Another said customer-centric program design is crucial to reducing attrition.",
     "source": "Utility Dive - Latest News",
     "published": "Tue, 04 Aug 2026 12:50:30 -0400"
-  },
-  "https://www.powermag.com/?p=266560": {
-    "id": "https://www.powermag.com/?p=266560",
-    "title": "Abbott Orders Full Audit of Texas Data Center Interconnection Queue, Threatens to Deny Grid Access",
-    "link": "https://www.powermag.com/abbott-orders-full-audit-of-texas-data-center-interconnection-queue-threatens-to-deny-grid-access/",
-    "summary": "Texas Governor Greg Abbott has directed the Public Utility Commission of Texas (PUCT) and the Electric Reliability Council of Texas (ERCOT) to conduct a comprehensive audit of every data center advancing through the state’s interconnection queue, warning that projects that fail to disclose ownership",
-    "source": "POWER Magazine",
-    "published": "Tue, 04 Aug 2026 21:05:52 +0000"
   },
   "https://spectrum.ieee.org/tidal-energy-underwater-kite-power": {
     "id": "https://spectrum.ieee.org/tidal-energy-underwater-kite-power",
@@ -159,12 +87,84 @@
     "source": "IEEE Spectrum",
     "published": "Mon, 29 Jun 2026 16:04:07 +0000"
   },
-  "https://www.renewableenergyworld.com/?p=80798140236": {
-    "id": "https://www.renewableenergyworld.com/?p=80798140236",
-    "title": "What is ‘superhot’ geothermal? Deep rock to baseload power, explained",
-    "link": "https://www.renewableenergyworld.com/energy-business/new-project-development/what-is-superhot-geothermal-deep-rock-to-baseload-power-explained/",
-    "summary": "Co-founder of Quaise Energy, Matt Houde, explains how his company is tackling the challenges of scaling superhot geothermal energy, which promises 24/7 baseload power.",
-    "source": "Factor This™",
-    "published": "Mon, 03 Aug 2026 15:00:32 +0000"
+  "https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/": {
+    "id": "https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/",
+    "title": "Dominion offshore wind project cost rises nearly $300M",
+    "link": "https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/",
+    "summary": "The increase is due to revised network upgrade costs assigned by the PJM Interconnection, tariffs imposed by the Trump administration in April and updated turbine installation projections, executives said.",
+    "source": "Utility Dive - Latest News",
+    "published": "Mon, 03 Aug 2026 12:07:45 -0400"
+  },
+  "https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid": {
+    "id": "https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid",
+    "title": "Puerto Rico Upgrades Remote Microgrid With Clean Hydrogen",
+    "link": "https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid",
+    "summary": "On the nights after Hurricane Maria ravaged Puerto Rico’s power grid in 2017, former Puerto Rican energy regulator Javier Rúa-Jovet remembers watching the sky warp along the horizon as thousands of fossil fuel-powered generators spewed emissions into the atmosphere. The “whole society” was running o",
+    "source": "IEEE Spectrum",
+    "published": "Wed, 15 Jul 2026 14:00:02 +0000"
+  },
+  "CBMibkFVX3lxTE1URU5HdGgwc1JudHRZa094ZTJnNVlRNkFSRmZWN0ZzRk9kMkZBVDNHWVRVM1VHbzUyOURkcVN1QmpsaUtkMGhkSmNqSFd2YmxyMDVkc2dTSkhLV1hHM1RFd01qMzlkbUpvNXZBQmJn": {
+    "id": "CBMibkFVX3lxTE1URU5HdGgwc1JudHRZa094ZTJnNVlRNkFSRmZWN0ZzRk9kMkZBVDNHWVRVM1VHbzUyOURkcVN1QmpsaUtkMGhkSmNqSFd2YmxyMDVkc2dTSkhLV1hHM1RFd01qMzlkbUpvNXZBQmJn",
+    "title": "Hedge Fund Holds $1B in PG&E Insurance Claims",
+    "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1URU5HdGgwc1JudHRZa094ZTJnNVlRNkFSRmZWN0ZzRk9kMkZBVDNHWVRVM1VHbzUyOURkcVN1QmpsaUtkMGhkSmNqSFd2YmxyMDVkc2dTSkhLV1hHM1RFd01qMzlkbUpvNXZBQmJn?oc=5",
+    "summary": "",
+    "source": "Claims Journal",
+    "published": "Tue, 15 Jan 2019 08:00:00 GMT"
+  },
+  "CBMiqgFBVV95cUxQOV9BOE1ELVpTMFJ5WTdpclJISVlkUUtQSWtUV21zSDhoV0lDLXVDMWdYTzZxRktzWHBxN0xKQ2lVRDVIT0ZZQV9sSmJnSFVzN0wxdzduX0ZBaDdMUExTeUZiZWxmVXNQbnBMMzl2aGJReUd6MUJCSGFOQlVtUVIyZVJJY3EteW1vOFhDOGgtYm1yWXJUQk55RVFFd0VwSWpwdEEtcjBaUXNZQQ": {
+    "id": "CBMiqgFBVV95cUxQOV9BOE1ELVpTMFJ5WTdpclJISVlkUUtQSWtUV21zSDhoV0lDLXVDMWdYTzZxRktzWHBxN0xKQ2lVRDVIT0ZZQV9sSmJnSFVzN0wxdzduX0ZBaDdMUExTeUZiZWxmVXNQbnBMMzl2aGJReUd6MUJCSGFOQlVtUVIyZVJJY3EteW1vOFhDOGgtYm1yWXJUQk55RVFFd0VwSWpwdEEtcjBaUXNZQQ",
+    "title": "PG&E takes step out of bankruptcy with $11 billion insurance settlement",
+    "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQOV9BOE1ELVpTMFJ5WTdpclJISVlkUUtQSWtUV21zSDhoV0lDLXVDMWdYTzZxRktzWHBxN0xKQ2lVRDVIT0ZZQV9sSmJnSFVzN0wxdzduX0ZBaDdMUExTeUZiZWxmVXNQbnBMMzl2aGJReUd6MUJCSGFOQlVtUVIyZVJJY3EteW1vOFhDOGgtYm1yWXJUQk55RVFFd0VwSWpwdEEtcjBaUXNZQQ?oc=5",
+    "summary": "",
+    "source": "San Francisco Chronicle",
+    "published": "Fri, 13 Sep 2019 07:00:00 GMT"
+  },
+  "https://spectrum.ieee.org/distribution-grid-modernization": {
+    "id": "https://spectrum.ieee.org/distribution-grid-modernization",
+    "title": "What It Takes for Future-Ready Power Distribution",
+    "link": "https://spectrum.ieee.org/distribution-grid-modernization",
+    "summary": "This sponsored article is brought to you by Black & Veatch . The biggest challenge facing utilities today isn’t what it seems. It’s not demand, even as load growth accelerates. It’s not extreme weather, even as “major events” become routine. It’s not cybersecurity, even as connections expand across ",
+    "source": "IEEE Spectrum",
+    "published": "Wed, 03 Jun 2026 11:00:01 +0000"
+  },
+  "https://events.bizzabo.com/860041": {
+    "id": "https://events.bizzabo.com/860041",
+    "title": "Transmission Hardware Corona Performance and HVDC Submarine Cable EM Fields",
+    "link": "https://events.bizzabo.com/860041",
+    "summary": "Laboratory or in-field measurements are often considered the gold standard for certain aspects of power system design; however, measurement approaches always have limitations. Simulation can help overcome some of these limitations, including speeding up the design process, reducing design costs, and",
+    "source": "IEEE Spectrum",
+    "published": "Thu, 30 Apr 2026 10:00:01 +0000"
+  },
+  "https://www.powermag.com/?p=266572": {
+    "id": "https://www.powermag.com/?p=266572",
+    "title": "Nebraska Public Power District Breaks Ground on 694-MW Princeton Road Station",
+    "link": "https://www.powermag.com/nebraska-public-power-district-breaks-ground-on-694-mw-princeton-road-station/",
+    "summary": "Nebraska Public Power District (NPPD) marked the start of construction on Princeton Road Station with a groundbreaking ceremony the morning of July 17, drawing state and local officials, community stakeholders, and NPPD staff to the site just north of Hallam, Nebraska. The 694-MW dual-fuel facility ",
+    "source": "POWER Magazine",
+    "published": "Tue, 04 Aug 2026 21:26:19 +0000"
+  },
+  "https://www.powermag.com/?p=266463": {
+    "id": "https://www.powermag.com/?p=266463",
+    "title": "Scalable, Grid-Ready Storage: How Connector Design Is Shaping the Next Generation of Energy Systems",
+    "link": "https://www.powermag.com/scalable-grid-ready-storage-how-connector-design-is-shaping-the-next-generation-of-energy-systems/",
+    "summary": "As utility-scale battery energy storage systems (BESS) scale from megawatts to gigawatts, the engineering complexity grows exponentially. Higher-voltage architectures and denser rack configurations are pushing the limits of conventional component design and exposing gaps that can compromise system p",
+    "source": "POWER Magazine",
+    "published": "Mon, 03 Aug 2026 18:09:50 +0000"
+  },
+  "https://www.powermag.com/?p=266560": {
+    "id": "https://www.powermag.com/?p=266560",
+    "title": "Abbott Orders Full Audit of Texas Data Center Interconnection Queue, Threatens to Deny Grid Access",
+    "link": "https://www.powermag.com/abbott-orders-full-audit-of-texas-data-center-interconnection-queue-threatens-to-deny-grid-access/",
+    "summary": "Texas Governor Greg Abbott has directed the Public Utility Commission of Texas (PUCT) and the Electric Reliability Council of Texas (ERCOT) to conduct a comprehensive audit of every data center advancing through the state’s interconnection queue, warning that projects that fail to disclose ownership",
+    "source": "POWER Magazine",
+    "published": "Tue, 04 Aug 2026 21:05:52 +0000"
+  },
+  "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/": {
+    "id": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
+    "title": "Southern Co. contracted large load rises to 17 GW",
+    "link": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
+    "summary": "Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. The contract includes 1 GW of “flexible demand response” for peak shaving — the first such flexibility provision the company has codified with a data center customer.",
+    "source": "Utility Dive - Latest News",
+    "published": "Tue, 04 Aug 2026 09:20:14 -0400"
   }
 }
