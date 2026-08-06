@@ -30,6 +30,15 @@
     "https://news.google.com/rss/search?q=%E5%A4%89%E5%9C%A7%E5%99%A8%20%E7%81%AB%E7%81%BD%20OR%20%E5%A4%89%E9%9B%BB%E6%89%80%20%E7%81%AB%E7%81%BD%20OR%20%E5%81%9C%E9%9B%BB&hl=ja&gl=JP&ceid=JP:ja",
     "https://news.google.com/rss/search?q=incendio%20transformador%20OR%20subestaci%C3%B3n%20incendio%20OR%20apag%C3%B3n&hl=es-419&gl=MX&ceid=MX:es-419",
     "https://news.google.com/rss/search?q=inc%C3%AAndio%20transformador%20OR%20subesta%C3%A7%C3%A3o%20inc%C3%AAndio%20OR%20apag%C3%A3o&hl=pt-BR&gl=BR&ceid=BR:pt-419",
-    "https://news.google.com/rss/search?q=incendie%20transformateur%20OR%20poste%20%C3%A9lectrique%20incendie%20OR%20panne%20%C3%A9lectricit%C3%A9&hl=fr&gl=FR&ceid=FR:fr"
+    "https://news.google.com/rss/search?q=incendie%20transformateur%20OR%20poste%20%C3%A9lectrique%20incendie%20OR%20panne%20%C3%A9lectricit%C3%A9&hl=fr&gl=FR&ceid=FR:fr",
+    "https://electrical-engineering-portal.com/category/news/feed",
+    "https://electrical-engineering-portal.com/category/protection/feed",
+    "https://electrical-engineering-portal.com/category/transformers-2/feed",
+    "https://electrical-engineering-portal.com/category/iec-standards/feed",
+    "https://electrical-engineering-portal.com/category/safety-2/feed",
+    "https://electrical-engineering-portal.com/category/transmission-and-distribution/feed",
+    "https://electrical-engineering-portal.com/category/power-substation/feed",
+    "https://electrical-engineering-portal.com/category/environment-2/feed",
+    "https://electrical-engineering-portal.com/category/maintenance-2/feed"
   ]
 }
