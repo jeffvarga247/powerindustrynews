@@ -149,7 +149,11 @@ ADVERTISE_FORM_EMBED_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd371L0E09U
 # ---------------------------------------------------------------------------
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 CLASSIFIER_MODEL = "claude-haiku-4-5-20251001"
-CLASSIFIER_BATCH_SIZE = 25   # stories per API call -- keeps each request small and cheap
+CLASSIFIER_BATCH_SIZE = 25
+# Ceiling on how many NEW stories get classified in a single run. Anything
+# over the limit is left unclassified and picked up next run, since results
+# are cached. Keeps a large backlog from producing a multi-hour job.
+MAX_NEW_CLASSIFICATIONS_PER_RUN = 300   # stories per API call -- keeps each request small and cheap
 
 # The category structure the site actually renders. "compound" categories
 # get split into subcategory sections on their own page (Installations,
@@ -1950,6 +1954,10 @@ def main():
 
     # --- classify only stories we've truly never seen before ---
     new_stories = [s for sid, s in fetched_by_id.items() if sid not in classification_cache]
+    if len(new_stories) > MAX_NEW_CLASSIFICATIONS_PER_RUN:
+        print(f"  {len(new_stories)} unclassified stories found -- capping this run at "
+              f"{MAX_NEW_CLASSIFICATIONS_PER_RUN}; the rest carry over to the next run.")
+        new_stories = new_stories[:MAX_NEW_CLASSIFICATIONS_PER_RUN]
     print(f"Classifying {len(new_stories)} new story(ies) with AI...")
     new_classifications = classify_stories_with_ai(new_stories, CATEGORY_DEFINITIONS)
     classification_cache.update(new_classifications)
