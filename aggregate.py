@@ -100,6 +100,17 @@ TRADE_SHOWS_LABEL = "Tradeshows"
 # Category artwork. These tiles carry the category NAME in the image itself,
 # so pages deliberately do not repeat the label as visible text -- the name is
 # still exposed to search engines and screen readers via alt text.
+# Authoritative bodies referenced by the Standards category. Rendered as a
+# link row at the top of that page only.
+STANDARDS_LINKS = [
+    ("NERC", "https://www.nerc.com/"),
+    ("NERC CIP", "https://www.nerc.com/pa/Stand/Pages/CIPStandards.aspx"),
+    ("FERC", "https://www.ferc.gov/"),
+    ("NFPA 70E", "https://www.nfpa.org/codes-and-standards/nfpa-70e-standard-development/70e"),
+    ("IEEE Standards", "https://standards.ieee.org/"),
+    ("IEC", "https://www.iec.ch/"),
+]
+
 CATEGORY_ICONS = {
     "Failures": "failures.png",
     "Protections": "protection.png",
@@ -354,7 +365,66 @@ header.masthead {
     display: block;
 }
 
-.masthead-logo-row .search-wrap { margin-left: auto; }
+.masthead-logo-row .search-wrap { margin-left: 12px; }
+
+/* Pushes the button + search to the right of the logo. On narrow screens the
+   row wraps instead of shrinking the controls. */
+.masthead-logo-row .advertise-btn { margin-left: auto; }
+
+.advertise-btn {
+    display: inline-block;
+    padding: 9px 16px;
+    background: var(--accent-solid);
+    color: #06121f;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: filter 0.12s ease;
+}
+
+.advertise-btn:hover { filter: brightness(1.12); }
+
+/* ---------- reference link row (Standards page) ---------- */
+.ref-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 22px 0;
+}
+
+.ref-links-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+}
+
+.ref-links a {
+    display: inline-block;
+    padding: 5px 11px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    background: var(--paper-raised);
+    color: var(--copper);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-decoration: none;
+    transition: border-color 0.12s ease;
+}
+
+.ref-links a:hover { border-color: var(--copper); }
+
+@media (max-width: 700px) {
+    .masthead-logo-row { flex-wrap: wrap; row-gap: 10px; }
+    .masthead-logo-row .advertise-btn { margin-left: 0; }
+    .masthead-logo-row .search-wrap { margin-left: 0; }
+}
 
 .masthead-tagline {
     font-family: 'IBM Plex Mono', monospace;
@@ -536,7 +606,7 @@ main {
 .category-intro {
     color: var(--body-dim);
     margin: 6px 0 26px 0;
-    max-width: 68ch;
+    max-width: 80ch;   /* fills more of the column, still inside a readable line length */
 }
 
 /* ---------- spotlight / callout cards (homepage) ---------- */
@@ -1040,6 +1110,8 @@ These stories come from broad news searches, so MOST of them will be irrelevant 
 - The story must be about a real event or development in the ELECTRICAL POWER industry (utilities, the grid, substations, power plants, power equipment).
 - Assign "None" to: consumer/retail energy tips, stock and earnings coverage, opinion columns, listicles, press-release marketing fluff, car fires or house fires that merely happen near power lines, weather stories that only mention outages in passing, and anything where the category topic is a passing mention rather than the subject.
 - A brief local news report about a real substation or transformer incident IS relevant -- small outlets are a valid source. Judge by the event, not the size of the publication.
+- A root-cause analysis or post-mortem of a failure IS a real event, even if published months later by an engineer rather than a reporter. Depth and delay do not disqualify it.
+- ONE EXCEPTION to the "must be a real event" rule: this site's core subject is transformer fires and explosions, substation fires, and switchgear failures and arc-flash events. Any story on those specific subjects is relevant EVEN IF no incident occurred -- including prevention, fire suppression, rapid depressurization, explosion mitigation, and protective equipment for them. Route actual incidents to "Failures" and prevention/mitigation content to "Protections". This exception does NOT extend to general engineering guidance on other topics: an article on transformer asset management economics or a tutorial on load calculations is still "None".
 - If you are unsure, choose "None".
 
 Stories:
@@ -1267,6 +1339,17 @@ def category_icon_img(name, cls="cat-icon"):
             f'alt="{html.escape(name)}" width="96" height="96" loading="lazy">')
 
 
+def standards_link_row(parent):
+    """Quick links to the bodies whose standards this category tracks."""
+    if parent != "Standards":
+        return ""
+    chips = "\n".join(
+        f'  <a href="{url}" target="_blank" rel="noopener">{html.escape(name)}</a>'
+        for name, url in STANDARDS_LINKS
+    )
+    return f'<div class="ref-links">\n  <span class="ref-links-label">Reference:</span>\n{chips}\n</div>'
+
+
 def category_page_heading(category):
     return (f'<div class="cat-heading">{category_icon_img(category, "cat-icon-head")}'
             f'<h1 class="sr-only">{html.escape(category)}</h1></div>')
@@ -1314,7 +1397,7 @@ def seo_head(title, description, canonical_path, og_type="website", og_image=Non
 
 def page_shell(title, description, canonical_path, body_html, nav_html,
                updated_line="", og_type="website", og_image=None,
-               structured_data=None):
+               structured_data=None, show_advertise_button=False):
     full_title = title if SITE_NAME in title else f"{title} | {SITE_NAME}"
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -1333,6 +1416,7 @@ def page_shell(title, description, canonical_path, body_html, nav_html,
       <a class="brand" href="index.html">
         <img class="brand-logo" src="assets/logo-lockup.png" alt="{html.escape(SITE_NAME)} logo">
       </a>
+      {'<a class="advertise-btn" href="advertise.html">Advertise With Us</a>' if show_advertise_button else ""}
       <div class="search-wrap">
         <input type="search" id="site-search" placeholder="Search stories, events, articles...">
         <div id="search-results"></div>
@@ -1437,6 +1521,7 @@ def render_compound_category_page(parent, sub_stories, all_categories):
     }
 
     body = f"""{category_page_heading(parent)}
+{standards_link_row(parent)}
 <p class="category-intro">{html.escape(description)}</p>
 {''.join(sections)}"""
 
@@ -1703,6 +1788,7 @@ def render_index_page(top_level_names, story_counts, last_updated, tradeshows, f
     return page_shell(
         SITE_NAME, SITE_TAGLINE, "", body, nav_html,
         updated_line=updated_line, structured_data=structured_data,
+        show_advertise_button=True,   # homepage only -- interior pages have it in the nav
     )
 
 
