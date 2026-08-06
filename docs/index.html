@@ -22,15 +22,15 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "NewsMediaOrganization", "name": "Power Industry News", "url": "https://powerindustry.news", "description": "Grid intelligence for utility, protection, and plant professionals", "logo": "https://powerindustry.news/assets/apple-touch-icon.png"}</script>
 <style>
 :root {
-    --ink: #e6e9ec;          /* primary text on dark */
-    --paper: #0f1216;        /* page background -- deep graphite, not pure black */
-    --paper-raised: #171b21; /* cards / raised surfaces */
-    --line: #2a313a;         /* hairlines and borders */
-    --muted: #949ca6;        /* secondary text */
-    --body-dim: #c2c8cf;     /* body copy inside cards */
-    --copper: #3d9bff;       /* primary accent (was copper) */
-    --accent-solid: #148bf5; /* solid fills / icon blue */
-    --masthead: #161b22;     /* header band, lifted off the page */
+    --ink: #eaf2fb;          /* primary text */
+    --paper: #10263f;        /* page background -- deep blue, same hue as the tiles */
+    --paper-raised: #16334f; /* cards / raised surfaces */
+    --line: #27496e;         /* hairlines and borders */
+    --muted: #9fb6ce;        /* secondary text */
+    --body-dim: #cfdeee;     /* body copy inside cards */
+    --copper: #6fb6ff;       /* primary accent -- lighter blue, readable on navy */
+    --accent-solid: #148bf5; /* the tile blue, for solid fills */
+    --masthead: #0c1e33;     /* header band, deeper than the page */
 }
 
 * { box-sizing: border-box; }
@@ -83,17 +83,19 @@ header.masthead {
 }
 
 .masthead-logo-row img.brand-logo {
-    height: 44px;
+    height: 88px;          /* doubled */
     width: auto;
     display: block;
 }
+
+.masthead-logo-row .search-wrap { margin-left: auto; }
 
 .masthead-tagline {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
     color: var(--muted);
     letter-spacing: 0.5px;
-    margin: 4px 0 18px 0;
+    margin: 2px 0 12px 0;
     text-transform: uppercase;
 }
 
@@ -116,11 +118,11 @@ nav.catnav {
 
 nav.catnav a {
     text-decoration: none;
-    color: #e9e3d2;
+    color: #dbe8f6;
     padding: 7px 11px;
-    border: 1px solid #3a3f46;
+    border: 1px solid #2d5480;
     border-bottom: none;
-    background: #23282f;
+    background: #163558;
     text-transform: uppercase;
     white-space: nowrap;
 }
@@ -583,21 +585,19 @@ footer.site-footer {
       <a class="brand" href="index.html">
         <img class="brand-logo" src="assets/logo-lockup.png" alt="Power Industry News logo">
       </a>
-    </div>
-    <p class="masthead-tagline">Grid intelligence for utility, protection, and plant professionals</p>
-    <div class="masthead-row">
-      
       <div class="search-wrap">
         <input type="search" id="site-search" placeholder="Search stories, events, articles...">
         <div id="search-results"></div>
       </div>
     </div>
+    <p class="masthead-tagline">Grid intelligence for utility, protection, and plant professionals</p>
+    
   </div>
 </header>
 <div class="diagram-rule"></div>
 <div class="ad-banner">Your advertisement could be here</div>
 <main>
-<p class="updated">Last updated: 2026-08-05 22:14 UTC</p>
+<p class="updated">Last updated: 2026-08-06 00:25 UTC</p>
 <a class="next-event" href="https://session.cigre.org/" target="_blank" rel="noopener">
   <span class="next-event-tag">Next Event</span>
   <span class="next-event-name">CIGRE Paris Session</span>
@@ -607,27 +607,27 @@ footer.site-footer {
 
 <div class="cat-grid">
 <a class="cat-card" style="--accent:#3d9bff" href="category_failures.html">
-  <img class="cat-icon" src="assets/icons/failures.png" alt="Failures" width="96" height="96" loading="lazy">
+  <img class="cat-icon" src="assets/failures.png" alt="Failures" width="96" height="96" loading="lazy">
   <span class="sr-only">Failures</span>
   <p>0 stories tracked</p>
 </a><a class="cat-card" style="--accent:#5cb872" href="category_protections.html">
-  <img class="cat-icon" src="assets/icons/protection.png" alt="Protections" width="96" height="96" loading="lazy">
+  <img class="cat-icon" src="assets/protection.png" alt="Protections" width="96" height="96" loading="lazy">
   <span class="sr-only">Protections</span>
   <p>0 stories tracked</p>
 </a><a class="cat-card" style="--accent:#4da3e0" href="category_installations.html">
-  <img class="cat-icon" src="assets/icons/installations.png" alt="Installations" width="96" height="96" loading="lazy">
+  <img class="cat-icon" src="assets/installations.png" alt="Installations" width="96" height="96" loading="lazy">
   <span class="sr-only">Installations</span>
   <p>14 stories tracked</p>
 </a><a class="cat-card" style="--accent:#5cb872" href="category_standards.html">
-  <img class="cat-icon" src="assets/icons/standards.png" alt="Standards" width="96" height="96" loading="lazy">
+  <img class="cat-icon" src="assets/standards.png" alt="Standards" width="96" height="96" loading="lazy">
   <span class="sr-only">Standards</span>
   <p>4 stories tracked</p>
 </a><a class="cat-card" style="--accent:#ff6f4d" href="category_insurance.html">
-  <img class="cat-icon" src="assets/icons/insurance.png" alt="Insurance" width="96" height="96" loading="lazy">
+  <img class="cat-icon" src="assets/insurance.png" alt="Insurance" width="96" height="96" loading="lazy">
   <span class="sr-only">Insurance</span>
   <p>0 stories tracked</p>
 </a><a class="cat-card" style="--accent:#a58ae0" href="category_trade_shows.html">
-  <img class="cat-icon" src="assets/icons/trade-shows.png" alt="Tradeshows" width="96" height="96" loading="lazy">
+  <img class="cat-icon" src="assets/trade-shows.png" alt="Tradeshows" width="96" height="96" loading="lazy">
   <span class="sr-only">Tradeshows</span>
   <p>7 events listed</p>
 </a>

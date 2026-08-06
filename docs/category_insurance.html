@@ -22,15 +22,15 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Insurance News", "description": "Insurability of power generation companies and their infrastructure -- coverage denials, non-renewals, and insurers pulling back from power industry risk.", "url": "https://powerindustry.news/category_insurance.html", "isPartOf": {"@type": "WebSite", "name": "Power Industry News", "url": "https://powerindustry.news"}}</script>
 <style>
 :root {
-    --ink: #e6e9ec;          /* primary text on dark */
-    --paper: #0f1216;        /* page background -- deep graphite, not pure black */
-    --paper-raised: #171b21; /* cards / raised surfaces */
-    --line: #2a313a;         /* hairlines and borders */
-    --muted: #949ca6;        /* secondary text */
-    --body-dim: #c2c8cf;     /* body copy inside cards */
-    --copper: #3d9bff;       /* primary accent (was copper) */
-    --accent-solid: #148bf5; /* solid fills / icon blue */
-    --masthead: #161b22;     /* header band, lifted off the page */
+    --ink: #eaf2fb;          /* primary text */
+    --paper: #10263f;        /* page background -- deep blue, same hue as the tiles */
+    --paper-raised: #16334f; /* cards / raised surfaces */
+    --line: #27496e;         /* hairlines and borders */
+    --muted: #9fb6ce;        /* secondary text */
+    --body-dim: #cfdeee;     /* body copy inside cards */
+    --copper: #6fb6ff;       /* primary accent -- lighter blue, readable on navy */
+    --accent-solid: #148bf5; /* the tile blue, for solid fills */
+    --masthead: #0c1e33;     /* header band, deeper than the page */
 }
 
 * { box-sizing: border-box; }
@@ -83,17 +83,19 @@ header.masthead {
 }
 
 .masthead-logo-row img.brand-logo {
-    height: 44px;
+    height: 88px;          /* doubled */
     width: auto;
     display: block;
 }
+
+.masthead-logo-row .search-wrap { margin-left: auto; }
 
 .masthead-tagline {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
     color: var(--muted);
     letter-spacing: 0.5px;
-    margin: 4px 0 18px 0;
+    margin: 2px 0 12px 0;
     text-transform: uppercase;
 }
 
@@ -116,11 +118,11 @@ nav.catnav {
 
 nav.catnav a {
     text-decoration: none;
-    color: #e9e3d2;
+    color: #dbe8f6;
     padding: 7px 11px;
-    border: 1px solid #3a3f46;
+    border: 1px solid #2d5480;
     border-bottom: none;
-    background: #23282f;
+    background: #163558;
     text-transform: uppercase;
     white-space: nowrap;
 }
@@ -583,29 +585,27 @@ footer.site-footer {
       <a class="brand" href="index.html">
         <img class="brand-logo" src="assets/logo-lockup.png" alt="Power Industry News logo">
       </a>
+      <div class="search-wrap">
+        <input type="search" id="site-search" placeholder="Search stories, events, articles...">
+        <div id="search-results"></div>
+      </div>
     </div>
     <p class="masthead-tagline">Grid intelligence for utility, protection, and plant professionals</p>
-    <div class="masthead-row">
-      <nav class="catnav"><a class="home" href="index.html">Home</a>
+    <div class="masthead-row"><nav class="catnav"><a class="home" href="index.html">Home</a>
 <a class="" href="category_failures.html">Failures</a>
 <a class="" href="category_protections.html">Protections</a>
 <a class="" href="category_installations.html">Installations</a>
 <a class="" href="category_standards.html">Standards</a>
 <a class="active" href="category_insurance.html">Insurance</a>
 <a href="advertise.html">Advertise With Us</a>
-<a href="featured_archive.html">Featured</a></nav>
-      <div class="search-wrap">
-        <input type="search" id="site-search" placeholder="Search stories, events, articles...">
-        <div id="search-results"></div>
-      </div>
-    </div>
+<a href="featured_archive.html">Featured</a></nav></div>
   </div>
 </header>
 <div class="diagram-rule"></div>
 <div class="ad-banner">Your advertisement could be here</div>
 <main>
 
-<div class="cat-heading"><img class="cat-icon-head" src="assets/icons/insurance.png" alt="Insurance" width="96" height="96" loading="lazy"><h1 class="sr-only">Insurance</h1></div>
+<div class="cat-heading"><img class="cat-icon-head" src="assets/insurance.png" alt="Insurance" width="96" height="96" loading="lazy"><h1 class="sr-only">Insurance</h1></div>
 <p class="category-intro">Insurability of power generation companies and their infrastructure -- coverage denials, non-renewals, and insurers pulling back from power industry risk.</p>
 <div class="empty-state">No new stories yet. Check back after the next update.</div>
 <footer class="site-footer">

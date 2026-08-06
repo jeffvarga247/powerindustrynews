@@ -22,15 +22,15 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Installations News", "description": "Sales leads for vendors: new and retrofit transmission and distribution equipment installs, plus new generation facilities being built, around the world.", "url": "https://powerindustry.news/category_installations.html", "isPartOf": {"@type": "WebSite", "name": "Power Industry News", "url": "https://powerindustry.news"}}</script>
 <style>
 :root {
-    --ink: #e6e9ec;          /* primary text on dark */
-    --paper: #0f1216;        /* page background -- deep graphite, not pure black */
-    --paper-raised: #171b21; /* cards / raised surfaces */
-    --line: #2a313a;         /* hairlines and borders */
-    --muted: #949ca6;        /* secondary text */
-    --body-dim: #c2c8cf;     /* body copy inside cards */
-    --copper: #3d9bff;       /* primary accent (was copper) */
-    --accent-solid: #148bf5; /* solid fills / icon blue */
-    --masthead: #161b22;     /* header band, lifted off the page */
+    --ink: #eaf2fb;          /* primary text */
+    --paper: #10263f;        /* page background -- deep blue, same hue as the tiles */
+    --paper-raised: #16334f; /* cards / raised surfaces */
+    --line: #27496e;         /* hairlines and borders */
+    --muted: #9fb6ce;        /* secondary text */
+    --body-dim: #cfdeee;     /* body copy inside cards */
+    --copper: #6fb6ff;       /* primary accent -- lighter blue, readable on navy */
+    --accent-solid: #148bf5; /* the tile blue, for solid fills */
+    --masthead: #0c1e33;     /* header band, deeper than the page */
 }
 
 * { box-sizing: border-box; }
@@ -83,17 +83,19 @@ header.masthead {
 }
 
 .masthead-logo-row img.brand-logo {
-    height: 44px;
+    height: 88px;          /* doubled */
     width: auto;
     display: block;
 }
+
+.masthead-logo-row .search-wrap { margin-left: auto; }
 
 .masthead-tagline {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 12px;
     color: var(--muted);
     letter-spacing: 0.5px;
-    margin: 4px 0 18px 0;
+    margin: 2px 0 12px 0;
     text-transform: uppercase;
 }
 
@@ -116,11 +118,11 @@ nav.catnav {
 
 nav.catnav a {
     text-decoration: none;
-    color: #e9e3d2;
+    color: #dbe8f6;
     padding: 7px 11px;
-    border: 1px solid #3a3f46;
+    border: 1px solid #2d5480;
     border-bottom: none;
-    background: #23282f;
+    background: #163558;
     text-transform: uppercase;
     white-space: nowrap;
 }
@@ -583,29 +585,27 @@ footer.site-footer {
       <a class="brand" href="index.html">
         <img class="brand-logo" src="assets/logo-lockup.png" alt="Power Industry News logo">
       </a>
+      <div class="search-wrap">
+        <input type="search" id="site-search" placeholder="Search stories, events, articles...">
+        <div id="search-results"></div>
+      </div>
     </div>
     <p class="masthead-tagline">Grid intelligence for utility, protection, and plant professionals</p>
-    <div class="masthead-row">
-      <nav class="catnav"><a class="home" href="index.html">Home</a>
+    <div class="masthead-row"><nav class="catnav"><a class="home" href="index.html">Home</a>
 <a class="" href="category_failures.html">Failures</a>
 <a class="" href="category_protections.html">Protections</a>
 <a class="active" href="category_installations.html">Installations</a>
 <a class="" href="category_standards.html">Standards</a>
 <a class="" href="category_insurance.html">Insurance</a>
 <a href="advertise.html">Advertise With Us</a>
-<a href="featured_archive.html">Featured</a></nav>
-      <div class="search-wrap">
-        <input type="search" id="site-search" placeholder="Search stories, events, articles...">
-        <div id="search-results"></div>
-      </div>
-    </div>
+<a href="featured_archive.html">Featured</a></nav></div>
   </div>
 </header>
 <div class="diagram-rule"></div>
 <div class="ad-banner">Your advertisement could be here</div>
 <main>
 
-<div class="cat-heading"><img class="cat-icon-head" src="assets/icons/installations.png" alt="Installations" width="96" height="96" loading="lazy"><h1 class="sr-only">Installations</h1></div>
+<div class="cat-heading"><img class="cat-icon-head" src="assets/installations.png" alt="Installations" width="96" height="96" loading="lazy"><h1 class="sr-only">Installations</h1></div>
 <p class="category-intro">Sales leads for vendors: new and retrofit transmission and distribution equipment installs, plus new generation facilities being built, around the world.</p>
 <section class="subcategory-block">
   <h2 style="border-bottom:2px solid #4da3e0; padding-bottom:8px;">Transmission and Distribution</h2>
@@ -632,6 +632,11 @@ footer.site-footer {
   <h3><a href="https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid" target="_blank" rel="noopener">Puerto Rico Upgrades Remote Microgrid With Clean Hydrogen</a></h3>
   <p class="meta">IEEE Spectrum &middot; Wed, 15 Jul 2026 14:00:02 +0000</p>
   <p>On the nights after Hurricane Maria ravaged Puerto Rico’s power grid in 2017, former Puerto Rican energy regulator Javier Rúa-Jovet remembers watching the sky warp along the horizon as thousands of fossil fuel-powered generators spewed emissions into the atmosphere. The “whole society” was running o&hellip;</p>
+</div>
+<div class="story" style="--accent:#a58ae0">
+  <h3><a href="https://www.powermag.com/the-power-interview-nrgs-case-for-bring-your-own-power-and-the-labor-to-build-it/" target="_blank" rel="noopener">The POWER Interview: NRG’s Case for Bring Your Own Power—and the Labor to Build It</a></h3>
+  <p class="meta">POWER Magazine &middot; Wed, 05 Aug 2026 15:07:15 +0000</p>
+  <p>NRG Energy on Aug. 4 unveiled its first Bring Your Own Power (BYOP) project, a 1.2-GW combined-cycle plant in Texas supported by a 15-year contract with an investment-grade “leading global cloud and artificial-intelligence hyperscaler.” The $3.2 billion facility, backed by a customer parent guarante&hellip;</p>
 </div>
 <div class="story" style="--accent:#a58ae0">
   <h3><a href="https://www.powermag.com/nebraska-public-power-district-breaks-ground-on-694-mw-princeton-road-station/" target="_blank" rel="noopener">Nebraska Public Power District Breaks Ground on 694-MW Princeton Road Station</a></h3>
@@ -677,11 +682,6 @@ footer.site-footer {
   <h3><a href="https://www.utilitydive.com/news/dominion-offshore-wind-project-cost-rises-nearly-300m/826845/" target="_blank" rel="noopener">Dominion offshore wind project cost rises nearly $300M</a></h3>
   <p class="meta">Utility Dive - Latest News &middot; Mon, 03 Aug 2026 12:07:45 -0400</p>
   <p>The increase is due to revised network upgrade costs assigned by the PJM Interconnection, tariffs imposed by the Trump administration in April and updated turbine installation projections, executives said.&hellip;</p>
-</div>
-<div class="story" style="--accent:#a58ae0">
-  <h3><a href="https://www.powermag.com/rayburn-energy-station-a-cooperatives-answer-to-texas-sized-risk/" target="_blank" rel="noopener">Rayburn Energy Station: A Cooperative’s Answer to Texas-Sized Risk</a></h3>
-  <p class="meta">POWER Magazine &middot; Mon, 03 Aug 2026 11:34:04 +0000</p>
-  <p>For Rayburn Electric Cooperative, ownership of the 758-MW combined cycle plant in Sherman, Texas, means stable rates, hardened reliability through heat waves and winter storms, and a hedge against the The post Rayburn Energy Station: A Cooperative’s Answer to Texas-Sized Risk appeared first on POWER&hellip;</p>
 </div>
 </section>
 <footer class="site-footer">
