@@ -149,6 +149,11 @@ ADVERTISE_FORM_EMBED_URL = "https://docs.google.com/forms/d/e/1FAIpQLSd371L0E09U
 # ---------------------------------------------------------------------------
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 CLASSIFIER_MODEL = "claude-haiku-4-5-20251001"
+# GoatCounter: privacy-friendly, cookie-free visitor counting. The dashboard
+# lives at https://powerindustrynews.goatcounter.com -- nothing is displayed on
+# the site itself. Set to "" to disable analytics entirely.
+GOATCOUNTER_URL = "https://powerindustrynews.goatcounter.com/count"
+
 CLASSIFIER_BATCH_SIZE = 25
 # Ceiling on how many NEW stories get classified in a single run. Anything
 # over the limit is left unclassified and picked up next run, since results
@@ -238,12 +243,32 @@ CATEGORY_PALETTE = [
     {"accent": "#9aa5b1", "tint": "#1c2027"},  # standards -- graphite
     {"accent": "#a58ae0", "tint": "#201a2b"},  # insurance -- violet
     {"accent": "#3d9bff", "tint": "#12202e"},  # primary blue
+    {"accent": "#e0b155", "tint": "#2a2317"},  # featured -- warm gold, editorial
 ]
 
 
 
+# Explicit color per category. This used to be a hash of the category name,
+# which drifted every time a category was renamed and produced collisions
+# (two tiles the same color). Pinning it keeps the intended meaning: warm
+# for hazard, cool for engineering, neutral for reference.
+CATEGORY_COLOR_MAP = {
+    "Failures":      CATEGORY_PALETTE[0],  # ember orange -- hazard
+    "Protections":   CATEGORY_PALETTE[1],  # steel blue
+    "Installations": CATEGORY_PALETTE[2],  # green -- build/growth
+    "Standards":     CATEGORY_PALETTE[3],  # graphite -- reference
+    "Insurance":     CATEGORY_PALETTE[4],  # violet
+    "Tradeshows":    CATEGORY_PALETTE[5],  # primary blue
+    "Featured":      CATEGORY_PALETTE[6],  # warm gold -- editorial, not a feed
+}
+
+
 def category_color(category):
-    """Deterministically assign one of the palette colors to a category name."""
+    """Palette color for a category. Falls back to a stable hash for any
+    category added later in feeds_config.json that isn't mapped above."""
+    mapped = CATEGORY_COLOR_MAP.get(category)
+    if mapped:
+        return mapped
     idx = sum(ord(c) for c in category) % len(CATEGORY_PALETTE)
     return CATEGORY_PALETTE[idx]
 
@@ -1399,6 +1424,14 @@ def seo_head(title, description, canonical_path, og_type="website", og_image=Non
     return "\n".join(tags)
 
 
+def analytics_script():
+    """GoatCounter tag. Async, so it never blocks page render."""
+    if not GOATCOUNTER_URL:
+        return ""
+    return (f'<script data-goatcounter="{html.escape(GOATCOUNTER_URL)}"\n'
+            f'        async src="//gc.zgo.at/count.js"></script>')
+
+
 def page_shell(title, description, canonical_path, body_html, nav_html,
                updated_line="", og_type="website", og_image=None,
                structured_data=None, show_advertise_button=False):
@@ -1441,6 +1474,7 @@ def page_shell(title, description, canonical_path, body_html, nav_html,
 </footer>
 </main>
 {SEARCH_SCRIPT}
+{analytics_script()}
 </body>
 </html>
 """
@@ -1707,7 +1741,9 @@ def render_privacy_page(all_categories):
 <p class="category-intro">Last updated: {updated}</p>
 <div class="article-body">
 <h2>What We Collect</h2>
-<p>{html.escape(SITE_NAME)} itself doesn't use accounts, cookies, or analytics tracking, and doesn't collect any personal information from you just by browsing the site. Our web host (GitHub Pages) may log basic technical request data (like IP address and browser type) as part of standard hosting operations, which we don't have direct access to.</p>
+<p>{html.escape(SITE_NAME)} doesn't use accounts and doesn't ask you for any personal information just to read the site. Our web host (GitHub Pages) may log basic technical request data (like IP address and browser type) as part of standard hosting operations, which we don't have direct access to.</p>
+<h2>Visitor Statistics</h2>
+<p>We use <a href="https://www.goatcounter.com" target="_blank" rel="noopener">GoatCounter</a>, a privacy-focused analytics tool, to count how many people visit the site and which pages they read. GoatCounter does not use cookies, does not track you across other websites, and does not collect or store personal information that identifies you individually. We use these aggregate numbers only to understand readership and to describe our audience to prospective advertisers. You can read GoatCounter's <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener">privacy policy</a> for details on what it records.</p>
 <h2>Advertise With Us Form</h2>
 <p>If you submit an inquiry through our <a href="advertise.html">Advertise With Us</a> page, that form is hosted by Google Forms, and your name, email address, and phone number are submitted directly to Google and to us. That submission is subject to <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>. We use the information you submit only to follow up about advertising opportunities.</p>
 <h2>Third-Party Links</h2>
@@ -1767,6 +1803,17 @@ def render_index_page(top_level_names, story_counts, last_updated, tradeshows, f
   {category_icon_img(TRADE_SHOWS_LABEL)}
   <span class="sr-only">{html.escape(TRADE_SHOWS_LABEL)}</span>
   <p>{len(tradeshows)} events listed</p>
+</a>""")
+
+    # Featured tile. The spotlight card above promotes the newest article by
+    # name; this tile is the way into the whole archive, which otherwise was
+    # only reachable from the interior-page nav.
+    feat_color = category_color("Featured")
+    article_word = "article" if len(featured_articles) == 1 else "articles"
+    cards.append(f"""<a class="cat-card" style="--accent:{feat_color['accent']}" href="featured_archive.html">
+  {category_icon_img("Featured")}
+  <span class="sr-only">Featured</span>
+  <p>{len(featured_articles)} {article_word}</p>
 </a>""")
 
     body = f"""{next_event_html}
