@@ -1,28 +1,4 @@
 {
-  "CBMibEFVX3lxTFBjMUU2eVFDYXdtdExlWTNENm5Ua1p2Sk5ZOURBT0F5WTdNNDdhcTVRNnR0Mlc1MWtDTWRNMmZaRUdvY1B0OWRHMlZGSkdmYk5hVnpHeU5kNTFDS3hzQjFnQU9CbHkyZWo5WnVVYQ": {
-    "id": "CBMibEFVX3lxTFBjMUU2eVFDYXdtdExlWTNENm5Ua1p2Sk5ZOURBT0F5WTdNNDdhcTVRNnR0Mlc1MWtDTWRNMmZaRUdvY1B0OWRHMlZGSkdmYk5hVnpHeU5kNTFDS3hzQjFnQU9CbHkyZWo5WnVVYQ",
-    "title": "Chubb CEO Greenberg: Insurer Has Reshaped Portfolio in Response to California Wildfires",
-    "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBjMUU2eVFDYXdtdExlWTNENm5Ua1p2Sk5ZOURBT0F5WTdNNDdhcTVRNnR0Mlc1MWtDTWRNMmZaRUdvY1B0OWRHMlZGSkdmYk5hVnpHeU5kNTFDS3hzQjFnQU9CbHkyZWo5WnVVYQ?oc=5",
-    "summary": "",
-    "source": "Carrier Management",
-    "published": "Wed, 30 Oct 2019 07:00:00 GMT"
-  },
-  "https://electrical-engineering-portal.com/?p=90109": {
-    "id": "https://electrical-engineering-portal.com/?p=90109",
-    "title": "Electrical thumb rules for staying safe and alive",
-    "link": "https://electrical-engineering-portal.com/electrical-thumb-rules-for-staying-safe-and-alive",
-    "summary": "How can one stay safe and alive while working in a power system? That’s a good question; however, there are a dozen answers. But let’s start with the first answer. The primary concerns about electrical safety are the unseen nature... Read more The post Electrical thumb rules for staying safe and ali",
-    "source": "Safety - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Wed, 27 Nov 2024 14:55:36 +0000"
-  },
-  "https://content.knowledgehub.wiley.com/energy-in-motion-unlocking-the-interconnected-grid-of-tomorrow/": {
-    "id": "https://content.knowledgehub.wiley.com/energy-in-motion-unlocking-the-interconnected-grid-of-tomorrow/",
-    "title": "Building an Interregional Transmission Overlay for a Resilient U.S. Grid",
-    "link": "https://content.knowledgehub.wiley.com/energy-in-motion-unlocking-the-interconnected-grid-of-tomorrow/",
-    "summary": "Examining how a U.S. Interregional Transmission Overlay could address aging grid infrastructure, surging demand, and renewable integration challenges. What Attendees will Learn Why the current regional grid structure is approaching its limits — Explore how coal-fired generation retirements, renewabl",
-    "source": "IEEE Spectrum",
-    "published": "Wed, 22 Apr 2026 10:00:02 +0000"
-  },
   "https://electrical-engineering-portal.com/?p=89989": {
     "id": "https://electrical-engineering-portal.com/?p=89989",
     "title": "Bringing new life to an old Air-Insulated Substation (AIS)",
@@ -31,237 +7,13 @@
     "source": "Maintenance - Technical Articles | EEP - Electrical Engineering Portal",
     "published": "Thu, 07 Nov 2024 11:23:02 +0000"
   },
-  "https://electrical-engineering-portal.com/?p=92012": {
-    "id": "https://electrical-engineering-portal.com/?p=92012",
-    "title": "Best Practices in Troubleshooting Breaker Tripping Problems in Modern Power Substations",
-    "link": "https://electrical-engineering-portal.com/best-practices-in-troubleshooting-breaker-tripping-problems-in-modern-power-substations",
-    "summary": "For some substation engineers, sudden breaker tripping incidents are a favorite puzzle that demands clear, out-of-the-box thinking. However, for the majority, these events are a true nightmare with no obvious starting point for troubleshooting. However, any anomalies in circuit breaker... Read more ",
-    "source": "Protection - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Mon, 08 Jun 2026 05:21:36 +0000"
-  },
-  "https://www.powermag.com/?p=266182": {
-    "id": "https://www.powermag.com/?p=266182",
-    "title": "Understanding NERC Impact Ratings and Compliance Timing for Generation Control Facilities",
-    "link": "https://www.powermag.com/understanding-nerc-impact-ratings-and-compliance-timing-for-generation-control-facilities/",
-    "summary": "For power generation operators navigating the complex landscape of North American Electric Reliability Corporation (NERC) compliance, two critical questions frequently arise: when does a generation control facility become a Low Impact BES (Bulk Electric System) Control Center, and when does it escal",
-    "source": "POWER Magazine",
-    "published": "Mon, 03 Aug 2026 22:36:05 +0000"
-  },
-  "https://electrical-engineering-portal.com/?p=5989": {
-    "id": "https://electrical-engineering-portal.com/?p=5989",
-    "title": "Advantages Of IEC 61850",
-    "link": "https://electrical-engineering-portal.com/advantages-of-iec-61850",
-    "summary": "One of the significant challenges that substation engineers face is justifying substation automation investments. The positive impacts that automation has on operating costs, increased power quality, and reduced outage response are well known. But little attention is paid to how... Read more The pos",
-    "source": "IEC Standards - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Wed, 29 Dec 2010 14:35:59 +0000"
-  },
-  "https://electrical-engineering-portal.com/?p=92173": {
-    "id": "https://electrical-engineering-portal.com/?p=92173",
-    "title": "Trip Signal and Trip Circuit Analysis of the 132kV Line-1 (=E01) Schematics (PDF included)",
-    "link": "https://electrical-engineering-portal.com/trip-signal-trip-circuit-analysis-of-the-132kv-line-1-schematics-pdf-included",
-    "summary": "The execution of a high-voltage circuit breaker trip is the most critical function within any electrical substation. In the provided schematic document for the 132kV Line-1 (=E01) Relay Panel +RP3, the trip circuits are meticulously designed to ensure absolute reliability,... Read more The post Trip",
-    "source": "Protection - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Mon, 27 Jul 2026 06:09:35 +0000"
-  },
-  "https://www.powermag.com/?p=267214": {
-    "id": "https://www.powermag.com/?p=267214",
-    "title": "Texas 2.5-GW Gas-Plus-Nuclear Project Proceeds to Engineering, Licensing Phase",
-    "link": "https://www.powermag.com/texas-2-5-gw-gas-plus-nuclear-project-proceeds-to-engineering-licensing-phase/",
-    "summary": "Blue Energy and GE Vernova Hitachi Nuclear Energy (GVH) have signed an agreement to launch the next phase of their collaboration on a planned 2.5-GW gas-plus-nuclear power project in Victoria, Texas, moving the closely watched data-center power concept from an announced collaboration to engineering,",
-    "source": "POWER Magazine",
-    "published": "Thu, 13 Aug 2026 20:26:14 +0000"
-  },
-  "https://electrical-engineering-portal.com/?p=6390": {
-    "id": "https://electrical-engineering-portal.com/?p=6390",
-    "title": "EN61800-3 (IEC1800-3) – Adjustable speed electrical power drive systems",
-    "link": "https://electrical-engineering-portal.com/en61800-3-iec1800-3-adjustable-speed-electrical-power-drive-systems",
-    "summary": "The countries of the European Economic Area (EEA) have agreed on common minimum regulatory requirements in order to ensure the free movement of products within the EEA. The CE marking indicates that the product works in conformity with the directives... Read more The post EN61800-3 (IEC1800-3) – Adj",
-    "source": "IEC Standards - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Fri, 14 Jan 2011 16:11:48 +0000"
-  },
-  "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/": {
-    "id": "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/",
-    "title": "Battery-eligible New Jersey VPP program begins to take shape",
-    "link": "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/",
-    "summary": "Utility-owned storage could help mitigate grid congestion, a utility manager said at a July stakeholder meeting. Another said customer-centric program design is crucial to reducing attrition.",
-    "source": "Utility Dive - Latest News",
-    "published": "Tue, 04 Aug 2026 12:50:30 -0400"
-  },
-  "https://www.powermag.com/?p=267546": {
-    "id": "https://www.powermag.com/?p=267546",
-    "title": "Contested 5-GW Ridgeline Gas, Solar, and Data-Center Complex in West Virginia Clears Site-Control Question",
-    "link": "https://www.powermag.com/contested-5-gw-ridgeline-gas-solar-and-data-center-complex-in-west-virginia-clears-site-control-question/",
-    "summary": "The West Virginia Department of Environmental Protection’s (WVDEP) Division of Air Quality (DAQ) has determined that Purcellville, Virginia-based Fundamental Data satisfied the site-control requirements associated with its August 2025 air quality permit for the Ridgeline Facility—a gas turbine power",
-    "source": "POWER Magazine",
-    "published": "Tue, 18 Aug 2026 16:45:19 +0000"
-  },
-  "https://www.powermag.com/?p=267651": {
-    "id": "https://www.powermag.com/?p=267651",
-    "title": "Brazilian Group Supporting Grid With New Gas-Fired Power Plants",
-    "link": "https://www.powermag.com/brazilian-group-supporting-grid-with-new-gas-fired-power-plants/",
-    "summary": "A Brazilian natural gas company has launched a new model for power generation. Eneva, the largest natural gas operator in Brazil, said it started commercial operation of the first asset in its Azulão Complex, part of the company’s “Reservoir-to-Wire” (R2W) model. Officials on August 19 said the Azul",
-    "source": "POWER Magazine",
-    "published": "Thu, 20 Aug 2026 17:42:37 +0000"
-  },
-  "https://www.powermag.com/?p=266572": {
-    "id": "https://www.powermag.com/?p=266572",
-    "title": "Nebraska Public Power District Breaks Ground on 694-MW Princeton Road Station",
-    "link": "https://www.powermag.com/nebraska-public-power-district-breaks-ground-on-694-mw-princeton-road-station/",
-    "summary": "Nebraska Public Power District (NPPD) marked the start of construction on Princeton Road Station with a groundbreaking ceremony the morning of July 17, drawing state and local officials, community stakeholders, and NPPD staff to the site just north of Hallam, Nebraska. The 694-MW dual-fuel facility ",
-    "source": "POWER Magazine",
-    "published": "Tue, 04 Aug 2026 21:26:19 +0000"
-  },
-  "https://spectrum.ieee.org/ferc-data-center-policy": {
-    "id": "https://spectrum.ieee.org/ferc-data-center-policy",
-    "title": "U.S. Pushes Grid Operators to Connect Data Centers Faster",
-    "link": "https://spectrum.ieee.org/ferc-data-center-policy",
-    "summary": "The United States’ top energy regulator has ordered grid operators to either overhaul how they connect data centers to the grid, or justify their current strategy. The highly anticipated set of directives , issued 18 June by the U.S. Federal Energy Regulatory Commission (FERC) targets six regional t",
-    "source": "IEEE Spectrum",
-    "published": "Wed, 24 Jun 2026 12:00:01 +0000"
-  },
-  "CBMibkFVX3lxTE1URU5HdGgwc1JudHRZa094ZTJnNVlRNkFSRmZWN0ZzRk9kMkZBVDNHWVRVM1VHbzUyOURkcVN1QmpsaUtkMGhkSmNqSFd2YmxyMDVkc2dTSkhLV1hHM1RFd01qMzlkbUpvNXZBQmJn": {
-    "id": "CBMibkFVX3lxTE1URU5HdGgwc1JudHRZa094ZTJnNVlRNkFSRmZWN0ZzRk9kMkZBVDNHWVRVM1VHbzUyOURkcVN1QmpsaUtkMGhkSmNqSFd2YmxyMDVkc2dTSkhLV1hHM1RFd01qMzlkbUpvNXZBQmJn",
-    "title": "Hedge Fund Holds $1B in PG&E Insurance Claims",
-    "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1URU5HdGgwc1JudHRZa094ZTJnNVlRNkFSRmZWN0ZzRk9kMkZBVDNHWVRVM1VHbzUyOURkcVN1QmpsaUtkMGhkSmNqSFd2YmxyMDVkc2dTSkhLV1hHM1RFd01qMzlkbUpvNXZBQmJn?oc=5",
-    "summary": "",
-    "source": "Claims Journal",
-    "published": "Tue, 15 Jan 2019 08:00:00 GMT"
-  },
-  "https://www.renewableenergyworld.com/?p=80798140619": {
-    "id": "https://www.renewableenergyworld.com/?p=80798140619",
-    "title": "Tens of thousands in Indiana are still without power a week after deadly storms",
-    "link": "https://www.renewableenergyworld.com/power-grid/outage-management/tens-of-thousands-in-indiana-are-still-without-power-a-week-after-deadly-storms/",
-    "summary": "Tens of thousands of people in northwest Indiana remained without power Wednesday, more than a week after deadly storms leveled trees and knocked down power lines across the region.",
-    "source": "Factor This™",
-    "published": "Wed, 19 Aug 2026 20:37:00 +0000"
-  },
-  "https://electrical-engineering-portal.com/?p=90162": {
-    "id": "https://electrical-engineering-portal.com/?p=90162",
-    "title": "Once Again, the Entire Island of Cuba Falls Into Darkness as Power Grid Collapses",
-    "link": "https://electrical-engineering-portal.com/again-entire-island-of-cuba-falls-into-darkness-power-grid-collapses",
-    "summary": "HAVANA, December 4 – Cuba announced the initiation of power restoration following the collapse of the island’s electrical grid, marking the latest incident in a series of statewide blackouts that highlight the deteriorating condition of the country’s power generating infrastructure.... Read more The",
-    "source": "News - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Wed, 04 Dec 2024 16:38:43 +0000"
-  },
-  "https://events.bizzabo.com/860041": {
-    "id": "https://events.bizzabo.com/860041",
-    "title": "Transmission Hardware Corona Performance and HVDC Submarine Cable EM Fields",
-    "link": "https://events.bizzabo.com/860041",
-    "summary": "Laboratory or in-field measurements are often considered the gold standard for certain aspects of power system design; however, measurement approaches always have limitations. Simulation can help overcome some of these limitations, including speeding up the design process, reducing design costs, and",
-    "source": "IEEE Spectrum",
-    "published": "Thu, 30 Apr 2026 10:00:01 +0000"
-  },
-  "https://www.powermag.com/?p=266721": {
-    "id": "https://www.powermag.com/?p=266721",
-    "title": "Curio, NuScale, Framatome Join to Support Fuel Solution for Advanced Reactors",
-    "link": "https://www.powermag.com/curio-nuscale-framatome-join-to-support-fuel-solution-for-advanced-reactors/",
-    "summary": "Three companies at the forefront of nuclear energy technology have signed a memorandum of understanding (MOU) to evaluate fuel technologies to support advancement of next-generation nuclear power. The post Curio, NuScale, Framatome Join to Support Fuel Solution for Advanced Reactors appeared first o",
-    "source": "POWER Magazine",
-    "published": "Thu, 06 Aug 2026 14:37:56 +0000"
-  },
-  "CBMiqgFBVV95cUxQOV9BOE1ELVpTMFJ5WTdpclJISVlkUUtQSWtUV21zSDhoV0lDLXVDMWdYTzZxRktzWHBxN0xKQ2lVRDVIT0ZZQV9sSmJnSFVzN0wxdzduX0ZBaDdMUExTeUZiZWxmVXNQbnBMMzl2aGJReUd6MUJCSGFOQlVtUVIyZVJJY3EteW1vOFhDOGgtYm1yWXJUQk55RVFFd0VwSWpwdEEtcjBaUXNZQQ": {
-    "id": "CBMiqgFBVV95cUxQOV9BOE1ELVpTMFJ5WTdpclJISVlkUUtQSWtUV21zSDhoV0lDLXVDMWdYTzZxRktzWHBxN0xKQ2lVRDVIT0ZZQV9sSmJnSFVzN0wxdzduX0ZBaDdMUExTeUZiZWxmVXNQbnBMMzl2aGJReUd6MUJCSGFOQlVtUVIyZVJJY3EteW1vOFhDOGgtYm1yWXJUQk55RVFFd0VwSWpwdEEtcjBaUXNZQQ",
-    "title": "PG&E takes step out of bankruptcy with $11 billion insurance settlement",
-    "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQOV9BOE1ELVpTMFJ5WTdpclJISVlkUUtQSWtUV21zSDhoV0lDLXVDMWdYTzZxRktzWHBxN0xKQ2lVRDVIT0ZZQV9sSmJnSFVzN0wxdzduX0ZBaDdMUExTeUZiZWxmVXNQbnBMMzl2aGJReUd6MUJCSGFOQlVtUVIyZVJJY3EteW1vOFhDOGgtYm1yWXJUQk55RVFFd0VwSWpwdEEtcjBaUXNZQQ?oc=5",
-    "summary": "",
-    "source": "San Francisco Chronicle",
-    "published": "Fri, 13 Sep 2019 07:00:00 GMT"
-  },
-  "https://spectrum.ieee.org/distribution-grid-modernization": {
-    "id": "https://spectrum.ieee.org/distribution-grid-modernization",
-    "title": "What It Takes for Future-Ready Power Distribution",
-    "link": "https://spectrum.ieee.org/distribution-grid-modernization",
-    "summary": "This sponsored article is brought to you by Black & Veatch . The biggest challenge facing utilities today isn’t what it seems. It’s not demand, even as load growth accelerates. It’s not extreme weather, even as “major events” become routine. It’s not cybersecurity, even as connections expand across ",
-    "source": "IEEE Spectrum",
-    "published": "Wed, 03 Jun 2026 11:00:01 +0000"
-  },
-  "https://spectrum.ieee.org/sodium-ion-battery-peak-energy": {
-    "id": "https://spectrum.ieee.org/sodium-ion-battery-peak-energy",
-    "title": "Sodium-Ion Batteries Get Another Shot at Success in the U.S.",
-    "link": "https://spectrum.ieee.org/sodium-ion-battery-peak-energy",
-    "summary": "Despite setbacks in sodium-ion battery development in the U.S., the startup Peak Energy says it can be the one to finally achieve the ambitious application of using the tech to store energy for the grid. When U.S. start-ups Natron Energy and Bedrock Materials shut down sodium-ion battery operations ",
-    "source": "IEEE Spectrum",
-    "published": "Wed, 22 Jul 2026 15:00:02 +0000"
-  },
-  "https://electrical-engineering-portal.com/?p=92121": {
-    "id": "https://electrical-engineering-portal.com/?p=92121",
-    "title": "132/33kV, 31.5MVA Transformer Protection Schematics (PDF)",
-    "link": "https://electrical-engineering-portal.com/132-33kv-31-5mva-transformer-protection-schematics-pdf",
-    "summary": "The provided schematics detail the comprehensive control, protection, metering, and operational logic for a 132/33kV, 31.5MVA Power Transformer (Transformer-1), explicitly designed by Schneider Electric for the APTRANSCO Thimmapuram substation. The architecture strictly segregates the high-voltage (",
+  "https://electrical-engineering-portal.com/?p=90894": {
+    "id": "https://electrical-engineering-portal.com/?p=90894",
+    "title": "Best Practice in Substation Oil Containment",
+    "link": "https://electrical-engineering-portal.com/best-practice-in-substation-oil-containment",
+    "summary": "Numerous firms in emerging sectors offer conceptual substation oil containment solutions that remain unproven yet have been deployed. This has resulted in several installations of containment systems that are functionally ineffective. There have been and continue to be assertions that... Read more T",
     "source": "Transformers - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Mon, 13 Jul 2026 05:30:54 +0000"
-  },
-  "https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid": {
-    "id": "https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid",
-    "title": "Puerto Rico Upgrades Remote Microgrid With Clean Hydrogen",
-    "link": "https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid",
-    "summary": "On the nights after Hurricane Maria ravaged Puerto Rico’s power grid in 2017, former Puerto Rican energy regulator Javier Rúa-Jovet remembers watching the sky warp along the horizon as thousands of fossil fuel-powered generators spewed emissions into the atmosphere. The “whole society” was running o",
-    "source": "IEEE Spectrum",
-    "published": "Wed, 15 Jul 2026 14:00:02 +0000"
-  },
-  "https://www.utilitydive.com/news/dukes-carolinas-resource-plan-solar-gas-nuclear/828402/": {
-    "id": "https://www.utilitydive.com/news/dukes-carolinas-resource-plan-solar-gas-nuclear/828402/",
-    "title": "Duke’s Carolinas resource plan targets 18.5 GW new solar by 2041",
-    "link": "https://www.utilitydive.com/news/dukes-carolinas-resource-plan-solar-gas-nuclear/828402/",
-    "summary": "The utility’s North Carolina and South Carolina territory “continues to experience significant growth,” with both states ranked among the fastest-growing, Duke told South Carolina regulators.",
-    "source": "Utility Dive - Latest News",
-    "published": "Thu, 20 Aug 2026 11:16:56 -0400"
-  },
-  "https://www.powermag.com/?p=266960": {
-    "id": "https://www.powermag.com/?p=266960",
-    "title": "3 GW Off PJM, Again: What NERC’s 2024 Investigation Already Told Us",
-    "link": "https://www.powermag.com/3-gw-off-pjm-again-what-nercs-2024-investigation-already-told-us/",
-    "summary": "More than 3 GW of data center load left the PJM system on July 22, 2026, after a single transmission fault. The North American Electric Reliability Corporation (NERC) investigated the same failure mode in 2024 and found that utility equipment shed none of it. Customer-side protection did all of it. ",
-    "source": "POWER Magazine",
-    "published": "Mon, 10 Aug 2026 16:18:53 +0000"
-  },
-  "CBMilgFBVV95cUxPNnJNNEpEa1ZxSWp3dG5xcDQtRXlUZWV6a0o1bzdLZzdyOVJQcE9obXB0MXlYZElkQ2tNWlF3djhJbXprRUdHU0NnRlNqRTc5ZzdXR21iS1lDNEtvUDlzM21QQ2Z6Rk1SWVM3LVRBZmFoQUVfQkxqSEN6UkI3ZElGTjJUcEh1VmtIdnh2OTRXSXZkSDZfelE": {
-    "id": "CBMilgFBVV95cUxPNnJNNEpEa1ZxSWp3dG5xcDQtRXlUZWV6a0o1bzdLZzdyOVJQcE9obXB0MXlYZElkQ2tNWlF3djhJbXprRUdHU0NnRlNqRTc5ZzdXR21iS1lDNEtvUDlzM21QQ2Z6Rk1SWVM3LVRBZmFoQUVfQkxqSEN6UkI3ZElGTjJUcEh1VmtIdnh2OTRXSXZkSDZfelE",
-    "title": "Protecting researcher safety one industry standard at a time",
-    "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPNnJNNEpEa1ZxSWp3dG5xcDQtRXlUZWV6a0o1bzdLZzdyOVJQcE9obXB0MXlYZElkQ2tNWlF3djhJbXprRUdHU0NnRlNqRTc5ZzdXR21iS1lDNEtvUDlzM21QQ2Z6Rk1SWVM3LVRBZmFoQUVfQkxqSEN6UkI3ZElGTjJUcEh1VmtIdnh2OTRXSXZkSDZfelE?oc=5",
-    "summary": "",
-    "source": "Idaho National Laboratory (.gov)",
-    "published": "Tue, 05 Oct 2021 07:00:00 GMT"
-  },
-  "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/": {
-    "id": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
-    "title": "Southern Co. contracted large load rises to 17 GW",
-    "link": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
-    "summary": "Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. The contract includes 1 GW of “flexible demand response” for peak shaving — the first such flexibility provision the company has codified with a data center customer.",
-    "source": "Utility Dive - Latest News",
-    "published": "Tue, 04 Aug 2026 09:20:14 -0400"
-  },
-  "https://electrical-engineering-portal.com/?p=92054": {
-    "id": "https://electrical-engineering-portal.com/?p=92054",
-    "title": "Technical Analysis of BCU Logic in 132kV Line Protection Panel Schematics (Bay-B102)",
-    "link": "https://electrical-engineering-portal.com/technical-analysis-bcu-logic-132kv-line-protection-panel-schematics-bay-b102",
-    "summary": "The schematic drawings for the 132kV Line-1 Protection Panel (Bay-B102) provide a detailed, component-level view of how digital boolean logic is employed to govern the operation of high-voltage circuit breakers, isolators (disconnect switches), and earth switches. Operating within the framework... R",
-    "source": "Transmission and Distribution - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Mon, 22 Jun 2026 05:48:23 +0000"
-  },
-  "https://electrical-engineering-portal.com/?p=5342": {
-    "id": "https://electrical-engineering-portal.com/?p=5342",
-    "title": "IEC 62271-200 – HV Switchgear And Controlgear",
-    "link": "https://electrical-engineering-portal.com/iec-62271-200",
-    "summary": "Part 200: AC metal-enclosed switchgear and controlgear for rated voltages above 1 kV and up to and including 52 kV Switchgears are important nodal points in modern power distribution. Correspondingly important is their reliable functioning, a clearly defined switching behavior... Read more The post ",
-    "source": "IEC Standards - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Thu, 09 Dec 2010 13:00:22 +0000"
-  },
-  "https://electrical-engineering-portal.com/?p=7468": {
-    "id": "https://electrical-engineering-portal.com/?p=7468",
-    "title": "Protection Relay – ANSI Standards",
-    "link": "https://electrical-engineering-portal.com/protection-relay-ansi-standards",
-    "summary": "In the design of electrical power systems, the ANSI Standard Device Numbers denote what features a protective device supports (such as a relay or circuit breaker). These types of devices protect electrical systems and components from damage when an unwanted... Read more The post Protection Relay – A",
-    "source": "IEC Standards - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Tue, 22 Feb 2011 05:27:12 +0000"
-  },
-  "https://electrical-engineering-portal.com/?p=19531": {
-    "id": "https://electrical-engineering-portal.com/?p=19531",
-    "title": "UK Electrical Industry British Standards (BS)",
-    "link": "https://electrical-engineering-portal.com/uk-electrical-industry-british-standards-bs",
-    "summary": "These standards are the whole of the prescriptions on the basis of which machines, apparatus, materials and the installations should be designed, manufactured and tested so that efficiency and function safety are ensured – and all according to the UK Electrical... Read more The post UK Electrical In",
-    "source": "IEC Standards - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Fri, 20 Jan 2012 05:24:21 +0000"
+    "published": "Mon, 23 Jun 2025 06:17:53 +0000"
   },
   "https://www.powermag.com/?p=266636": {
     "id": "https://www.powermag.com/?p=266636",
@@ -271,37 +23,21 @@
     "source": "POWER Magazine",
     "published": "Wed, 05 Aug 2026 15:07:15 +0000"
   },
-  "https://www.utilitydive.com/news/coned-plans-28-new-substations-by-2035/827700/": {
-    "id": "https://www.utilitydive.com/news/coned-plans-28-new-substations-by-2035/827700/",
-    "title": "ConEd plans 28 new substations by 2035",
-    "link": "https://www.utilitydive.com/news/coned-plans-28-new-substations-by-2035/827700/",
-    "summary": "The New York-based utility company is pursuing growth through electrification, in alignment with city and state climate policies, it said last week.",
-    "source": "Utility Dive - Latest News",
-    "published": "Wed, 12 Aug 2026 11:46:32 -0400"
+  "https://www.powermag.com/?p=267546": {
+    "id": "https://www.powermag.com/?p=267546",
+    "title": "Contested 5-GW Ridgeline Gas, Solar, and Data-Center Complex in West Virginia Clears Site-Control Question",
+    "link": "https://www.powermag.com/contested-5-gw-ridgeline-gas-solar-and-data-center-complex-in-west-virginia-clears-site-control-question/",
+    "summary": "The West Virginia Department of Environmental Protection’s (WVDEP) Division of Air Quality (DAQ) has determined that Purcellville, Virginia-based Fundamental Data satisfied the site-control requirements associated with its August 2025 air quality permit for the Ridgeline Facility—a gas turbine power",
+    "source": "POWER Magazine",
+    "published": "Tue, 18 Aug 2026 16:45:19 +0000"
   },
-  "https://www.renewableenergyworld.com/?p=80798140397": {
-    "id": "https://www.renewableenergyworld.com/?p=80798140397",
-    "title": "Case study: Preparing to power data-driven demand with solar and storage at the Appledale Energy Center",
-    "link": "https://www.renewableenergyworld.com/solar/case-study-preparing-to-power-data-driven-demand-with-solar-and-storage-at-the-appledale-energy-center/",
-    "summary": "Global engineering consulting firm RINA was engaged by Hawthorne Renewable Energy to support the development of a planned 300 MW solar project combined with a 4-hour, 300 MW battery energy storage system.",
-    "source": "Factor This™",
-    "published": "Wed, 12 Aug 2026 18:02:03 +0000"
-  },
-  "https://electrical-engineering-portal.com/?p=90203": {
-    "id": "https://electrical-engineering-portal.com/?p=90203",
-    "title": "What is Interlocking in substations, and what is it for?",
-    "link": "https://electrical-engineering-portal.com/what-is-interlocking-in-substations",
-    "summary": "Interlocking in substations is a critical aspect of power system protection and control, designed to ensure the safe and efficient operation of substation equipment. The primary objective of interlocking is to prevent hazardous situations, such as energizing an earthed circuit... Read more The post ",
+  "https://electrical-engineering-portal.com/?p=90109": {
+    "id": "https://electrical-engineering-portal.com/?p=90109",
+    "title": "Electrical thumb rules for staying safe and alive",
+    "link": "https://electrical-engineering-portal.com/electrical-thumb-rules-for-staying-safe-and-alive",
+    "summary": "How can one stay safe and alive while working in a power system? That’s a good question; however, there are a dozen answers. But let’s start with the first answer. The primary concerns about electrical safety are the unseen nature... Read more The post Electrical thumb rules for staying safe and ali",
     "source": "Safety - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Mon, 16 Dec 2024 07:56:13 +0000"
-  },
-  "https://electrical-engineering-portal.com/?p=90894": {
-    "id": "https://electrical-engineering-portal.com/?p=90894",
-    "title": "Best Practice in Substation Oil Containment",
-    "link": "https://electrical-engineering-portal.com/best-practice-in-substation-oil-containment",
-    "summary": "Numerous firms in emerging sectors offer conceptual substation oil containment solutions that remain unproven yet have been deployed. This has resulted in several installations of containment systems that are functionally ineffective. There have been and continue to be assertions that... Read more T",
-    "source": "Transformers - Technical Articles | EEP - Electrical Engineering Portal",
-    "published": "Mon, 23 Jun 2025 06:17:53 +0000"
+    "published": "Wed, 27 Nov 2024 14:55:36 +0000"
   },
   "https://electrical-engineering-portal.com/?p=53780": {
     "id": "https://electrical-engineering-portal.com/?p=53780",
@@ -319,6 +55,134 @@
     "source": "POWER Magazine",
     "published": "Tue, 04 Aug 2026 21:05:52 +0000"
   },
+  "https://www.renewableenergyworld.com/?p=80798140397": {
+    "id": "https://www.renewableenergyworld.com/?p=80798140397",
+    "title": "Case study: Preparing to power data-driven demand with solar and storage at the Appledale Energy Center",
+    "link": "https://www.renewableenergyworld.com/solar/case-study-preparing-to-power-data-driven-demand-with-solar-and-storage-at-the-appledale-energy-center/",
+    "summary": "Global engineering consulting firm RINA was engaged by Hawthorne Renewable Energy to support the development of a planned 300 MW solar project combined with a 4-hour, 300 MW battery energy storage system.",
+    "source": "Factor This™",
+    "published": "Wed, 12 Aug 2026 18:02:03 +0000"
+  },
+  "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/": {
+    "id": "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/",
+    "title": "Battery-eligible New Jersey VPP program begins to take shape",
+    "link": "https://www.utilitydive.com/news/battery-eligible-new-jersey-vpp-program-begins-to-take-shape/826969/",
+    "summary": "Utility-owned storage could help mitigate grid congestion, a utility manager said at a July stakeholder meeting. Another said customer-centric program design is crucial to reducing attrition.",
+    "source": "Utility Dive - Latest News",
+    "published": "Tue, 04 Aug 2026 12:50:30 -0400"
+  },
+  "https://www.powermag.com/?p=267651": {
+    "id": "https://www.powermag.com/?p=267651",
+    "title": "Brazilian Group Supporting Grid With New Gas-Fired Power Plants",
+    "link": "https://www.powermag.com/brazilian-group-supporting-grid-with-new-gas-fired-power-plants/",
+    "summary": "A Brazilian natural gas company has launched a new model for power generation. Eneva, the largest natural gas operator in Brazil, said it started commercial operation of the first asset in its Azulão Complex, part of the company’s “Reservoir-to-Wire” (R2W) model. Officials on August 19 said the Azul",
+    "source": "POWER Magazine",
+    "published": "Thu, 20 Aug 2026 17:42:37 +0000"
+  },
+  "https://events.bizzabo.com/860041": {
+    "id": "https://events.bizzabo.com/860041",
+    "title": "Transmission Hardware Corona Performance and HVDC Submarine Cable EM Fields",
+    "link": "https://events.bizzabo.com/860041",
+    "summary": "Laboratory or in-field measurements are often considered the gold standard for certain aspects of power system design; however, measurement approaches always have limitations. Simulation can help overcome some of these limitations, including speeding up the design process, reducing design costs, and",
+    "source": "IEEE Spectrum",
+    "published": "Thu, 30 Apr 2026 10:00:01 +0000"
+  },
+  "CBMiqgFBVV95cUxQOV9BOE1ELVpTMFJ5WTdpclJISVlkUUtQSWtUV21zSDhoV0lDLXVDMWdYTzZxRktzWHBxN0xKQ2lVRDVIT0ZZQV9sSmJnSFVzN0wxdzduX0ZBaDdMUExTeUZiZWxmVXNQbnBMMzl2aGJReUd6MUJCSGFOQlVtUVIyZVJJY3EteW1vOFhDOGgtYm1yWXJUQk55RVFFd0VwSWpwdEEtcjBaUXNZQQ": {
+    "id": "CBMiqgFBVV95cUxQOV9BOE1ELVpTMFJ5WTdpclJISVlkUUtQSWtUV21zSDhoV0lDLXVDMWdYTzZxRktzWHBxN0xKQ2lVRDVIT0ZZQV9sSmJnSFVzN0wxdzduX0ZBaDdMUExTeUZiZWxmVXNQbnBMMzl2aGJReUd6MUJCSGFOQlVtUVIyZVJJY3EteW1vOFhDOGgtYm1yWXJUQk55RVFFd0VwSWpwdEEtcjBaUXNZQQ",
+    "title": "PG&E takes step out of bankruptcy with $11 billion insurance settlement",
+    "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQOV9BOE1ELVpTMFJ5WTdpclJISVlkUUtQSWtUV21zSDhoV0lDLXVDMWdYTzZxRktzWHBxN0xKQ2lVRDVIT0ZZQV9sSmJnSFVzN0wxdzduX0ZBaDdMUExTeUZiZWxmVXNQbnBMMzl2aGJReUd6MUJCSGFOQlVtUVIyZVJJY3EteW1vOFhDOGgtYm1yWXJUQk55RVFFd0VwSWpwdEEtcjBaUXNZQQ?oc=5",
+    "summary": "",
+    "source": "San Francisco Chronicle",
+    "published": "Fri, 13 Sep 2019 07:00:00 GMT"
+  },
+  "https://www.powermag.com/?p=266721": {
+    "id": "https://www.powermag.com/?p=266721",
+    "title": "Curio, NuScale, Framatome Join to Support Fuel Solution for Advanced Reactors",
+    "link": "https://www.powermag.com/curio-nuscale-framatome-join-to-support-fuel-solution-for-advanced-reactors/",
+    "summary": "Three companies at the forefront of nuclear energy technology have signed a memorandum of understanding (MOU) to evaluate fuel technologies to support advancement of next-generation nuclear power. The post Curio, NuScale, Framatome Join to Support Fuel Solution for Advanced Reactors appeared first o",
+    "source": "POWER Magazine",
+    "published": "Thu, 06 Aug 2026 14:37:56 +0000"
+  },
+  "https://spectrum.ieee.org/sodium-ion-battery-peak-energy": {
+    "id": "https://spectrum.ieee.org/sodium-ion-battery-peak-energy",
+    "title": "Sodium-Ion Batteries Get Another Shot at Success in the U.S.",
+    "link": "https://spectrum.ieee.org/sodium-ion-battery-peak-energy",
+    "summary": "Despite setbacks in sodium-ion battery development in the U.S., the startup Peak Energy says it can be the one to finally achieve the ambitious application of using the tech to store energy for the grid. When U.S. start-ups Natron Energy and Bedrock Materials shut down sodium-ion battery operations ",
+    "source": "IEEE Spectrum",
+    "published": "Wed, 22 Jul 2026 15:00:02 +0000"
+  },
+  "https://spectrum.ieee.org/ferc-data-center-policy": {
+    "id": "https://spectrum.ieee.org/ferc-data-center-policy",
+    "title": "U.S. Pushes Grid Operators to Connect Data Centers Faster",
+    "link": "https://spectrum.ieee.org/ferc-data-center-policy",
+    "summary": "The United States’ top energy regulator has ordered grid operators to either overhaul how they connect data centers to the grid, or justify their current strategy. The highly anticipated set of directives , issued 18 June by the U.S. Federal Energy Regulatory Commission (FERC) targets six regional t",
+    "source": "IEEE Spectrum",
+    "published": "Wed, 24 Jun 2026 12:00:01 +0000"
+  },
+  "https://electrical-engineering-portal.com/?p=5989": {
+    "id": "https://electrical-engineering-portal.com/?p=5989",
+    "title": "Advantages Of IEC 61850",
+    "link": "https://electrical-engineering-portal.com/advantages-of-iec-61850",
+    "summary": "One of the significant challenges that substation engineers face is justifying substation automation investments. The positive impacts that automation has on operating costs, increased power quality, and reduced outage response are well known. But little attention is paid to how... Read more The pos",
+    "source": "IEC Standards - Technical Articles | EEP - Electrical Engineering Portal",
+    "published": "Wed, 29 Dec 2010 14:35:59 +0000"
+  },
+  "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/": {
+    "id": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
+    "title": "Southern Co. contracted large load rises to 17 GW",
+    "link": "https://www.utilitydive.com/news/southern-co-contracted-large-load-data-centers/826919/",
+    "summary": "Recently announced projects include a 3.2-GW OpenAI data center near Savannah, Georgia. The contract includes 1 GW of “flexible demand response” for peak shaving — the first such flexibility provision the company has codified with a data center customer.",
+    "source": "Utility Dive - Latest News",
+    "published": "Tue, 04 Aug 2026 09:20:14 -0400"
+  },
+  "https://www.powermag.com/?p=266182": {
+    "id": "https://www.powermag.com/?p=266182",
+    "title": "Understanding NERC Impact Ratings and Compliance Timing for Generation Control Facilities",
+    "link": "https://www.powermag.com/understanding-nerc-impact-ratings-and-compliance-timing-for-generation-control-facilities/",
+    "summary": "For power generation operators navigating the complex landscape of North American Electric Reliability Corporation (NERC) compliance, two critical questions frequently arise: when does a generation control facility become a Low Impact BES (Bulk Electric System) Control Center, and when does it escal",
+    "source": "POWER Magazine",
+    "published": "Mon, 03 Aug 2026 22:36:05 +0000"
+  },
+  "https://www.powermag.com/?p=266960": {
+    "id": "https://www.powermag.com/?p=266960",
+    "title": "3 GW Off PJM, Again: What NERC’s 2024 Investigation Already Told Us",
+    "link": "https://www.powermag.com/3-gw-off-pjm-again-what-nercs-2024-investigation-already-told-us/",
+    "summary": "More than 3 GW of data center load left the PJM system on July 22, 2026, after a single transmission fault. The North American Electric Reliability Corporation (NERC) investigated the same failure mode in 2024 and found that utility equipment shed none of it. Customer-side protection did all of it. ",
+    "source": "POWER Magazine",
+    "published": "Mon, 10 Aug 2026 16:18:53 +0000"
+  },
+  "https://www.powermag.com/?p=267214": {
+    "id": "https://www.powermag.com/?p=267214",
+    "title": "Texas 2.5-GW Gas-Plus-Nuclear Project Proceeds to Engineering, Licensing Phase",
+    "link": "https://www.powermag.com/texas-2-5-gw-gas-plus-nuclear-project-proceeds-to-engineering-licensing-phase/",
+    "summary": "Blue Energy and GE Vernova Hitachi Nuclear Energy (GVH) have signed an agreement to launch the next phase of their collaboration on a planned 2.5-GW gas-plus-nuclear power project in Victoria, Texas, moving the closely watched data-center power concept from an announced collaboration to engineering,",
+    "source": "POWER Magazine",
+    "published": "Thu, 13 Aug 2026 20:26:14 +0000"
+  },
+  "https://electrical-engineering-portal.com/?p=6390": {
+    "id": "https://electrical-engineering-portal.com/?p=6390",
+    "title": "EN61800-3 (IEC1800-3) – Adjustable speed electrical power drive systems",
+    "link": "https://electrical-engineering-portal.com/en61800-3-iec1800-3-adjustable-speed-electrical-power-drive-systems",
+    "summary": "The countries of the European Economic Area (EEA) have agreed on common minimum regulatory requirements in order to ensure the free movement of products within the EEA. The CE marking indicates that the product works in conformity with the directives... Read more The post EN61800-3 (IEC1800-3) – Adj",
+    "source": "IEC Standards - Technical Articles | EEP - Electrical Engineering Portal",
+    "published": "Fri, 14 Jan 2011 16:11:48 +0000"
+  },
+  "https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid": {
+    "id": "https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid",
+    "title": "Puerto Rico Upgrades Remote Microgrid With Clean Hydrogen",
+    "link": "https://spectrum.ieee.org/puerto-rico-hydrogen-microgrid",
+    "summary": "On the nights after Hurricane Maria ravaged Puerto Rico’s power grid in 2017, former Puerto Rican energy regulator Javier Rúa-Jovet remembers watching the sky warp along the horizon as thousands of fossil fuel-powered generators spewed emissions into the atmosphere. The “whole society” was running o",
+    "source": "IEEE Spectrum",
+    "published": "Wed, 15 Jul 2026 14:00:02 +0000"
+  },
+  "https://www.utilitydive.com/news/dukes-carolinas-resource-plan-solar-gas-nuclear/828402/": {
+    "id": "https://www.utilitydive.com/news/dukes-carolinas-resource-plan-solar-gas-nuclear/828402/",
+    "title": "Duke’s Carolinas resource plan targets 18.5 GW new solar by 2041",
+    "link": "https://www.utilitydive.com/news/dukes-carolinas-resource-plan-solar-gas-nuclear/828402/",
+    "summary": "The utility’s North Carolina and South Carolina territory “continues to experience significant growth,” with both states ranked among the fastest-growing, Duke told South Carolina regulators.",
+    "source": "Utility Dive - Latest News",
+    "published": "Thu, 20 Aug 2026 11:16:56 -0400"
+  },
   "https://www.renewableenergyworld.com/?p=80798140410": {
     "id": "https://www.renewableenergyworld.com/?p=80798140410",
     "title": "Hydropower faces unique challenges in a worldwide race to acquire transformers",
@@ -326,5 +190,141 @@
     "summary": "A new report examines how the growing demand for transformers, dependence on imports, and low domestic manufacturing capacity are threatening the nation's hydropower modernization efforts, and some unique challenges that the hydropower industry faces.",
     "source": "Factor This™",
     "published": "Mon, 10 Aug 2026 21:13:12 +0000"
+  },
+  "https://content.knowledgehub.wiley.com/energy-in-motion-unlocking-the-interconnected-grid-of-tomorrow/": {
+    "id": "https://content.knowledgehub.wiley.com/energy-in-motion-unlocking-the-interconnected-grid-of-tomorrow/",
+    "title": "Building an Interregional Transmission Overlay for a Resilient U.S. Grid",
+    "link": "https://content.knowledgehub.wiley.com/energy-in-motion-unlocking-the-interconnected-grid-of-tomorrow/",
+    "summary": "Examining how a U.S. Interregional Transmission Overlay could address aging grid infrastructure, surging demand, and renewable integration challenges. What Attendees will Learn Why the current regional grid structure is approaching its limits — Explore how coal-fired generation retirements, renewabl",
+    "source": "IEEE Spectrum",
+    "published": "Wed, 22 Apr 2026 10:00:02 +0000"
+  },
+  "https://electrical-engineering-portal.com/?p=19531": {
+    "id": "https://electrical-engineering-portal.com/?p=19531",
+    "title": "UK Electrical Industry British Standards (BS)",
+    "link": "https://electrical-engineering-portal.com/uk-electrical-industry-british-standards-bs",
+    "summary": "These standards are the whole of the prescriptions on the basis of which machines, apparatus, materials and the installations should be designed, manufactured and tested so that efficiency and function safety are ensured – and all according to the UK Electrical... Read more The post UK Electrical In",
+    "source": "IEC Standards - Technical Articles | EEP - Electrical Engineering Portal",
+    "published": "Fri, 20 Jan 2012 05:24:21 +0000"
+  },
+  "https://electrical-engineering-portal.com/?p=90162": {
+    "id": "https://electrical-engineering-portal.com/?p=90162",
+    "title": "Once Again, the Entire Island of Cuba Falls Into Darkness as Power Grid Collapses",
+    "link": "https://electrical-engineering-portal.com/again-entire-island-of-cuba-falls-into-darkness-power-grid-collapses",
+    "summary": "HAVANA, December 4 – Cuba announced the initiation of power restoration following the collapse of the island’s electrical grid, marking the latest incident in a series of statewide blackouts that highlight the deteriorating condition of the country’s power generating infrastructure.... Read more The",
+    "source": "News - Technical Articles | EEP - Electrical Engineering Portal",
+    "published": "Wed, 04 Dec 2024 16:38:43 +0000"
+  },
+  "https://www.powermag.com/?p=266572": {
+    "id": "https://www.powermag.com/?p=266572",
+    "title": "Nebraska Public Power District Breaks Ground on 694-MW Princeton Road Station",
+    "link": "https://www.powermag.com/nebraska-public-power-district-breaks-ground-on-694-mw-princeton-road-station/",
+    "summary": "Nebraska Public Power District (NPPD) marked the start of construction on Princeton Road Station with a groundbreaking ceremony the morning of July 17, drawing state and local officials, community stakeholders, and NPPD staff to the site just north of Hallam, Nebraska. The 694-MW dual-fuel facility ",
+    "source": "POWER Magazine",
+    "published": "Tue, 04 Aug 2026 21:26:19 +0000"
+  },
+  "https://electrical-engineering-portal.com/?p=92173": {
+    "id": "https://electrical-engineering-portal.com/?p=92173",
+    "title": "Trip Signal and Trip Circuit Analysis of the 132kV Line-1 (=E01) Schematics (PDF included)",
+    "link": "https://electrical-engineering-portal.com/trip-signal-trip-circuit-analysis-of-the-132kv-line-1-schematics-pdf-included",
+    "summary": "The execution of a high-voltage circuit breaker trip is the most critical function within any electrical substation. In the provided schematic document for the 132kV Line-1 (=E01) Relay Panel +RP3, the trip circuits are meticulously designed to ensure absolute reliability,... Read more The post Trip",
+    "source": "Protection - Technical Articles | EEP - Electrical Engineering Portal",
+    "published": "Mon, 27 Jul 2026 06:09:35 +0000"
+  },
+  "https://electrical-engineering-portal.com/?p=92054": {
+    "id": "https://electrical-engineering-portal.com/?p=92054",
+    "title": "Technical Analysis of BCU Logic in 132kV Line Protection Panel Schematics (Bay-B102)",
+    "link": "https://electrical-engineering-portal.com/technical-analysis-bcu-logic-132kv-line-protection-panel-schematics-bay-b102",
+    "summary": "The schematic drawings for the 132kV Line-1 Protection Panel (Bay-B102) provide a detailed, component-level view of how digital boolean logic is employed to govern the operation of high-voltage circuit breakers, isolators (disconnect switches), and earth switches. Operating within the framework... R",
+    "source": "Transmission and Distribution - Technical Articles | EEP - Electrical Engineering Portal",
+    "published": "Mon, 22 Jun 2026 05:48:23 +0000"
+  },
+  "CBMilgFBVV95cUxPNnJNNEpEa1ZxSWp3dG5xcDQtRXlUZWV6a0o1bzdLZzdyOVJQcE9obXB0MXlYZElkQ2tNWlF3djhJbXprRUdHU0NnRlNqRTc5ZzdXR21iS1lDNEtvUDlzM21QQ2Z6Rk1SWVM3LVRBZmFoQUVfQkxqSEN6UkI3ZElGTjJUcEh1VmtIdnh2OTRXSXZkSDZfelE": {
+    "id": "CBMilgFBVV95cUxPNnJNNEpEa1ZxSWp3dG5xcDQtRXlUZWV6a0o1bzdLZzdyOVJQcE9obXB0MXlYZElkQ2tNWlF3djhJbXprRUdHU0NnRlNqRTc5ZzdXR21iS1lDNEtvUDlzM21QQ2Z6Rk1SWVM3LVRBZmFoQUVfQkxqSEN6UkI3ZElGTjJUcEh1VmtIdnh2OTRXSXZkSDZfelE",
+    "title": "Protecting researcher safety one industry standard at a time",
+    "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPNnJNNEpEa1ZxSWp3dG5xcDQtRXlUZWV6a0o1bzdLZzdyOVJQcE9obXB0MXlYZElkQ2tNWlF3djhJbXprRUdHU0NnRlNqRTc5ZzdXR21iS1lDNEtvUDlzM21QQ2Z6Rk1SWVM3LVRBZmFoQUVfQkxqSEN6UkI3ZElGTjJUcEh1VmtIdnh2OTRXSXZkSDZfelE?oc=5",
+    "summary": "",
+    "source": "Idaho National Laboratory (.gov)",
+    "published": "Tue, 05 Oct 2021 07:00:00 GMT"
+  },
+  "https://spectrum.ieee.org/distribution-grid-modernization": {
+    "id": "https://spectrum.ieee.org/distribution-grid-modernization",
+    "title": "What It Takes for Future-Ready Power Distribution",
+    "link": "https://spectrum.ieee.org/distribution-grid-modernization",
+    "summary": "This sponsored article is brought to you by Black & Veatch . The biggest challenge facing utilities today isn’t what it seems. It’s not demand, even as load growth accelerates. It’s not extreme weather, even as “major events” become routine. It’s not cybersecurity, even as connections expand across ",
+    "source": "IEEE Spectrum",
+    "published": "Wed, 03 Jun 2026 11:00:01 +0000"
+  },
+  "https://electrical-engineering-portal.com/?p=92121": {
+    "id": "https://electrical-engineering-portal.com/?p=92121",
+    "title": "132/33kV, 31.5MVA Transformer Protection Schematics (PDF)",
+    "link": "https://electrical-engineering-portal.com/132-33kv-31-5mva-transformer-protection-schematics-pdf",
+    "summary": "The provided schematics detail the comprehensive control, protection, metering, and operational logic for a 132/33kV, 31.5MVA Power Transformer (Transformer-1), explicitly designed by Schneider Electric for the APTRANSCO Thimmapuram substation. The architecture strictly segregates the high-voltage (",
+    "source": "Transformers - Technical Articles | EEP - Electrical Engineering Portal",
+    "published": "Mon, 13 Jul 2026 05:30:54 +0000"
+  },
+  "https://www.renewableenergyworld.com/?p=80798140619": {
+    "id": "https://www.renewableenergyworld.com/?p=80798140619",
+    "title": "Tens of thousands in Indiana are still without power a week after deadly storms",
+    "link": "https://www.renewableenergyworld.com/power-grid/outage-management/tens-of-thousands-in-indiana-are-still-without-power-a-week-after-deadly-storms/",
+    "summary": "Tens of thousands of people in northwest Indiana remained without power Wednesday, more than a week after deadly storms leveled trees and knocked down power lines across the region.",
+    "source": "Factor This™",
+    "published": "Wed, 19 Aug 2026 20:37:00 +0000"
+  },
+  "https://electrical-engineering-portal.com/?p=5342": {
+    "id": "https://electrical-engineering-portal.com/?p=5342",
+    "title": "IEC 62271-200 – HV Switchgear And Controlgear",
+    "link": "https://electrical-engineering-portal.com/iec-62271-200",
+    "summary": "Part 200: AC metal-enclosed switchgear and controlgear for rated voltages above 1 kV and up to and including 52 kV Switchgears are important nodal points in modern power distribution. Correspondingly important is their reliable functioning, a clearly defined switching behavior... Read more The post ",
+    "source": "IEC Standards - Technical Articles | EEP - Electrical Engineering Portal",
+    "published": "Thu, 09 Dec 2010 13:00:22 +0000"
+  },
+  "https://electrical-engineering-portal.com/?p=90203": {
+    "id": "https://electrical-engineering-portal.com/?p=90203",
+    "title": "What is Interlocking in substations, and what is it for?",
+    "link": "https://electrical-engineering-portal.com/what-is-interlocking-in-substations",
+    "summary": "Interlocking in substations is a critical aspect of power system protection and control, designed to ensure the safe and efficient operation of substation equipment. The primary objective of interlocking is to prevent hazardous situations, such as energizing an earthed circuit... Read more The post ",
+    "source": "Safety - Technical Articles | EEP - Electrical Engineering Portal",
+    "published": "Mon, 16 Dec 2024 07:56:13 +0000"
+  },
+  "CBMibkFVX3lxTE1URU5HdGgwc1JudHRZa094ZTJnNVlRNkFSRmZWN0ZzRk9kMkZBVDNHWVRVM1VHbzUyOURkcVN1QmpsaUtkMGhkSmNqSFd2YmxyMDVkc2dTSkhLV1hHM1RFd01qMzlkbUpvNXZBQmJn": {
+    "id": "CBMibkFVX3lxTE1URU5HdGgwc1JudHRZa094ZTJnNVlRNkFSRmZWN0ZzRk9kMkZBVDNHWVRVM1VHbzUyOURkcVN1QmpsaUtkMGhkSmNqSFd2YmxyMDVkc2dTSkhLV1hHM1RFd01qMzlkbUpvNXZBQmJn",
+    "title": "Hedge Fund Holds $1B in PG&E Insurance Claims",
+    "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1URU5HdGgwc1JudHRZa094ZTJnNVlRNkFSRmZWN0ZzRk9kMkZBVDNHWVRVM1VHbzUyOURkcVN1QmpsaUtkMGhkSmNqSFd2YmxyMDVkc2dTSkhLV1hHM1RFd01qMzlkbUpvNXZBQmJn?oc=5",
+    "summary": "",
+    "source": "Claims Journal",
+    "published": "Tue, 15 Jan 2019 08:00:00 GMT"
+  },
+  "https://electrical-engineering-portal.com/?p=92012": {
+    "id": "https://electrical-engineering-portal.com/?p=92012",
+    "title": "Best Practices in Troubleshooting Breaker Tripping Problems in Modern Power Substations",
+    "link": "https://electrical-engineering-portal.com/best-practices-in-troubleshooting-breaker-tripping-problems-in-modern-power-substations",
+    "summary": "For some substation engineers, sudden breaker tripping incidents are a favorite puzzle that demands clear, out-of-the-box thinking. However, for the majority, these events are a true nightmare with no obvious starting point for troubleshooting. However, any anomalies in circuit breaker... Read more ",
+    "source": "Protection - Technical Articles | EEP - Electrical Engineering Portal",
+    "published": "Mon, 08 Jun 2026 05:21:36 +0000"
+  },
+  "https://electrical-engineering-portal.com/?p=7468": {
+    "id": "https://electrical-engineering-portal.com/?p=7468",
+    "title": "Protection Relay – ANSI Standards",
+    "link": "https://electrical-engineering-portal.com/protection-relay-ansi-standards",
+    "summary": "In the design of electrical power systems, the ANSI Standard Device Numbers denote what features a protective device supports (such as a relay or circuit breaker). These types of devices protect electrical systems and components from damage when an unwanted... Read more The post Protection Relay – A",
+    "source": "IEC Standards - Technical Articles | EEP - Electrical Engineering Portal",
+    "published": "Tue, 22 Feb 2011 05:27:12 +0000"
+  },
+  "CBMibEFVX3lxTFBjMUU2eVFDYXdtdExlWTNENm5Ua1p2Sk5ZOURBT0F5WTdNNDdhcTVRNnR0Mlc1MWtDTWRNMmZaRUdvY1B0OWRHMlZGSkdmYk5hVnpHeU5kNTFDS3hzQjFnQU9CbHkyZWo5WnVVYQ": {
+    "id": "CBMibEFVX3lxTFBjMUU2eVFDYXdtdExlWTNENm5Ua1p2Sk5ZOURBT0F5WTdNNDdhcTVRNnR0Mlc1MWtDTWRNMmZaRUdvY1B0OWRHMlZGSkdmYk5hVnpHeU5kNTFDS3hzQjFnQU9CbHkyZWo5WnVVYQ",
+    "title": "Chubb CEO Greenberg: Insurer Has Reshaped Portfolio in Response to California Wildfires",
+    "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBjMUU2eVFDYXdtdExlWTNENm5Ua1p2Sk5ZOURBT0F5WTdNNDdhcTVRNnR0Mlc1MWtDTWRNMmZaRUdvY1B0OWRHMlZGSkdmYk5hVnpHeU5kNTFDS3hzQjFnQU9CbHkyZWo5WnVVYQ?oc=5",
+    "summary": "",
+    "source": "Carrier Management",
+    "published": "Wed, 30 Oct 2019 07:00:00 GMT"
+  },
+  "https://www.utilitydive.com/news/coned-plans-28-new-substations-by-2035/827700/": {
+    "id": "https://www.utilitydive.com/news/coned-plans-28-new-substations-by-2035/827700/",
+    "title": "ConEd plans 28 new substations by 2035",
+    "link": "https://www.utilitydive.com/news/coned-plans-28-new-substations-by-2035/827700/",
+    "summary": "The New York-based utility company is pursuing growth through electrification, in alignment with city and state climate policies, it said last week.",
+    "source": "Utility Dive - Latest News",
+    "published": "Wed, 12 Aug 2026 11:46:32 -0400"
   }
 }
